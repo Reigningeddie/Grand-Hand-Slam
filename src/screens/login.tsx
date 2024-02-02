@@ -22,7 +22,9 @@ export default function Login({navigation}: LoginProps) {
         placeholder={'password'}
         placeholderTextColor="#1B1B1B"
       />
-      <Pressable style={styles.LoginBtn}>
+      <Pressable
+        style={styles.LoginBtn}
+        onPress={() => navigation.navigate('Home')}>
         <Text style={styles.loginTxt}>Login</Text>
       </Pressable>
       <Text style={styles.text}>

@@ -4,10 +4,12 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Login from './screens/Login';
 import SignUp from './screens/SignUp';
+import Profile from './screens/Profile';
 
 export type RootStackParamList = {
   Login: undefined;
   SignUp: undefined;
+  Home: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -22,6 +24,11 @@ function App(): React.JSX.Element {
           options={{headerShown: false}}
         />
         <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen
+          name="Home"
+          component={Profile}
+          options={{headerShown: false}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
