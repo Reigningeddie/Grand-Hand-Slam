@@ -23,6 +23,7 @@ export default function login() {
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   body: {
     flex: 1,
