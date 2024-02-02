@@ -6,14 +6,44 @@ export default function SignUp() {
     <View style={styles.body}>
       <Text style={styles.txt}>Let's get you signed up!</Text>
       <View style={styles.name}>
-        <TextInput style={styles.nameInput} placeholder={'First Name'} />
-        <TextInput style={styles.nameInput} placeholder={'Last Name'} />
+        <TextInput
+          style={styles.nameInput}
+          placeholder={'First Name'}
+          placeholderTextColor="#1B1B1B"
+        />
+        <TextInput
+          style={styles.nameInput}
+          placeholder={'Last Name'}
+          placeholderTextColor="#1B1B1B"
+        />
       </View>
-      <TextInput style={styles.input} placeholder={'Create a User Name'} />
-      <TextInput style={styles.input} placeholder={'Email'} />
-      <TextInput style={styles.input} placeholder={'Mobile Number'} />
-      <TextInput style={styles.input} placeholder={'New Password'} />
-      <TextInput style={styles.input} placeholder={'Confirm Password'} />
+      <TextInput
+        style={styles.input}
+        placeholder={'Create a User Name'}
+        placeholderTextColor="#1B1B1B"
+      />
+      <TextInput
+        style={styles.input}
+        placeholder={'Email'}
+        placeholderTextColor="#1B1B1B"
+      />
+      <TextInput
+        style={styles.input}
+        placeholder={'Mobile Number'}
+        placeholderTextColor="#1B1B1B"
+      />
+      <TextInput
+        style={styles.input}
+        placeholder={'New Password'}
+        secureTextEntry={true}
+        placeholderTextColor="#1B1B1B"
+      />
+      <TextInput
+        style={styles.input}
+        placeholder={'Confirm Password'}
+        secureTextEntry={true}
+        placeholderTextColor="#1B1B1B"
+      />
       <Pressable style={styles.btn}>
         <Text style={styles.signUp}>Sign Up</Text>
       </Pressable>
@@ -29,6 +59,7 @@ const styles = StyleSheet.create({
   },
 
   txt: {
+    color: '#1B1B1B',
     fontSize: 30,
   },
 
@@ -38,6 +69,7 @@ const styles = StyleSheet.create({
   },
 
   nameInput: {
+    color: '#1B1B1B',
     fontSize: 15,
     borderWidth: 2,
     borderRadius: 5,
@@ -48,6 +80,7 @@ const styles = StyleSheet.create({
   },
 
   input: {
+    color: '#1B1B1B',
     fontSize: 15,
     borderWidth: 2,
     borderRadius: 5,
