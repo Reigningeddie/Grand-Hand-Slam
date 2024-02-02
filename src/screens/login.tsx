@@ -1,24 +1,38 @@
 import React from 'react';
 import {View, Text, StyleSheet, TextInput, Pressable} from 'react-native';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {RootStackParamList} from '../App';
 
-export default function login() {
+type LoginProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
+
+export default function Login({navigation}: LoginProps) {
   return (
     <View style={styles.body}>
       <View style={styles.logo}>
         <Text style={styles.logoTxt}>Logo</Text>
       </View>
-      <TextInput style={styles.input} placeholder={'Username'} />
+      <TextInput
+        style={styles.input}
+        placeholder={'Username'}
+        placeholderTextColor="#1B1B1B"
+      />
       <TextInput
         style={styles.input}
         secureTextEntry={true}
         placeholder={'password'}
+        placeholderTextColor="#1B1B1B"
       />
       <Pressable style={styles.LoginBtn}>
         <Text style={styles.loginTxt}>Login</Text>
       </Pressable>
       <Text style={styles.text}>
         Don't have an account?
-        <Text style={styles.signUpTxt}>Sign Up</Text>
+        <Text
+          style={styles.signUpTxt}
+          onPress={() => navigation.navigate('SignUp')}>
+          {' '}
+          SignUp
+        </Text>
       </Text>
     </View>
   );
@@ -29,6 +43,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#F2F3F4',
   },
 
   logo: {
@@ -42,11 +57,12 @@ const styles = StyleSheet.create({
   },
 
   logoTxt: {
-    color: 'aliceblue',
+    color: '#1B1B1B',
     fontSize: 30,
   },
 
   input: {
+    color: '#1B1B1B',
     fontSize: 15,
     borderWidth: 2,
     height: 40,
@@ -73,6 +89,7 @@ const styles = StyleSheet.create({
 
   text: {
     fontSize: 14,
+    color: '#1B1B1B',
   },
 
   signUpTxt: {

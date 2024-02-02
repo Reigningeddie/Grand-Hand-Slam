@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View, TextInput, Pressable} from 'react-native';
 
-export default function signUp() {
+export default function SignUp() {
   return (
     <View style={styles.body}>
       <Text style={styles.txt}>Let's get you signed up!</Text>
