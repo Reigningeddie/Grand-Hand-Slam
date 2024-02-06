@@ -4,17 +4,13 @@ import {Dimensions} from 'react-native';
 
 //Get device Width
 const screenWidth = Dimensions.get('window').width;
-const screenHeight = Dimensions.get('window').height;
 
 const thirds = screenWidth / 3;
 
 const Profile = () => {
   return (
-    <View style={styles.body}>
-      <ScrollView
-        contentContainerStyle={styles.contentContainer}
-        scrollEnabled={true}
-        nestedScrollEnabled={true}>
+    <View>
+      <ScrollView contentContainerStyle={styles.contentContainer}>
         <View style={styles.banner} />
         <Text style={styles.txt}>Grand Hand Slam</Text>
         <View style={styles.pic} />
@@ -35,7 +31,7 @@ const Profile = () => {
         </View>
         <Text style={styles.dez}>Description (add max characters)</Text>
         <View style={styles.portrait}>
-        <Text style={styles.vids} />
+          <Text style={styles.vids} />
           <Text style={styles.vids} />
           <Text style={styles.vids} />
           <Text style={styles.vids} />
@@ -52,11 +48,6 @@ const Profile = () => {
 export default Profile;
 
 const styles = StyleSheet.create({
-  body: {
-    backgroundColor: '#FFFFFF',
-    alignItems: 'center',
-    height: screenHeight,
-  },
   contentContainer: {
     flexGrow: 1,
     alignItems: 'center',
