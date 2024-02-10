@@ -7,7 +7,7 @@ const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 const divHeight = screenHeight / 10;
 const div = screenWidth - 25;
-const info = screenWidth / 2;
+const info = screenWidth / 2.5;
 
 export default function underThree() {
   return (
@@ -23,6 +23,56 @@ export default function underThree() {
           <Text style={styles.place}>4</Text>
         </View>
       </View>
+      <View style={styles.div}>
+        <View style={styles.pic} />
+        <View style={styles.info}>
+          <Text style={styles.name}>name</Text>
+          <Text style={styles.points}>187pts</Text>
+        </View>
+        <View style={styles.border}>
+          <Text style={styles.place}>5</Text>
+        </View>
+      </View>
+      <View style={styles.div}>
+        <View style={styles.pic} />
+        <View style={styles.info}>
+          <Text style={styles.name}>name</Text>
+          <Text style={styles.points}>190pts</Text>
+        </View>
+        <View style={styles.border}>
+          <Text style={styles.place}>4</Text>
+        </View>
+      </View>
+      <View style={styles.div}>
+        <View style={styles.pic} />
+        <View style={styles.info}>
+          <Text style={styles.name}>name</Text>
+          <Text style={styles.points}>187pts</Text>
+        </View>
+        <View style={styles.border}>
+          <Text style={styles.place}>5</Text>
+        </View>
+      </View>
+      <View style={styles.div}>
+        <View style={styles.pic} />
+        <View style={styles.info}>
+          <Text style={styles.name}>name</Text>
+          <Text style={styles.points}>190pts</Text>
+        </View>
+        <View style={styles.border}>
+          <Text style={styles.place}>4</Text>
+        </View>
+      </View>
+      <View style={styles.div}>
+        <View style={styles.pic} />
+        <View style={styles.info}>
+          <Text style={styles.name}>name</Text>
+          <Text style={styles.points}>187pts</Text>
+        </View>
+        <View style={styles.border}>
+          <Text style={styles.place}>5</Text>
+        </View>
+      </View>
     </View>
   );
 }
@@ -33,7 +83,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   txt: {
-    color: 'black',
+    color: '#1B1B1B',
     fontSize: 30,
     textAlign: 'center',
   },
@@ -45,27 +95,38 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     height: divHeight,
     borderRadius: 20,
+    marginBottom: 10,
   },
   pic: {
-    borderWidth: 2,
-    height: 60,
-    width: 60,
-    borderRadius: 30,
+    borderWidth: 5,
+    borderColor: '#284B63',
+    height: 72,
+    width: 72,
+    borderRadius: 36,
     marginLeft: 15,
   },
   info: {
     marginLeft: -info,
   },
   name: {
-    color: 'black',
+    color: '#1B1B1B',
+    fontSize: 20,
   },
   points: {
-    color: 'black',
+    color: '#3C6E71',
+    fontWeight: 'bold',
+    fontSize: 20,
   },
   border: {
+    backgroundColor: '#284B63',
     marginRight: 15,
+    height: 22,
+    width: 22,
+    borderRadius: 50,
   },
   place: {
-    color: 'black',
+    color: '#F2F3F4',
+    textAlign: 'center',
+    fontSize: 16,
   },
 });

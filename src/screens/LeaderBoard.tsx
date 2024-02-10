@@ -1,13 +1,16 @@
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, ScrollView} from 'react-native';
 import React from 'react';
+//components
 import TopThree from '../components/topThree';
 import UnderThree from '../components/underThree';
 
 const LeaderBoard = () => {
   return (
     <View style={styles.body}>
-      <TopThree />
-      <UnderThree />
+      <ScrollView>
+        <TopThree />
+        <UnderThree />
+      </ScrollView>
     </View>
   );
 };
