@@ -38,7 +38,6 @@ const Profile = () => {
           <Text style={styles.vids} />
           <Text style={styles.vids} />
           <Text style={styles.vids} />
-          <Text style={styles.vids} />
         </View>
       </ScrollView>
     </View>
