@@ -5,11 +5,13 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Login from './screens/Login';
 import SignUp from './screens/SignUp';
 import Profile from './screens/Profile';
+import LeaderBoard from './screens/LeaderBoard';
 
 export type RootStackParamList = {
   Login: undefined;
   SignUp: undefined;
   Home: undefined;
+  LeaderBoard: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -29,6 +31,7 @@ function App(): React.JSX.Element {
           component={Profile}
           options={{headerShown: false}}
         />
+        <Stack.Screen name="LeaderBoard" component={LeaderBoard} />
       </Stack.Navigator>
     </NavigationContainer>
   );

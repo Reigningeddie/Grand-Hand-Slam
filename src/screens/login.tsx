@@ -24,7 +24,7 @@ export default function Login({navigation}: LoginProps) {
       />
       <Pressable
         style={styles.LoginBtn}
-        onPress={() => navigation.navigate('Home')}>
+        onPress={() => navigation.navigate('LeaderBoard')}>
         <Text style={styles.loginTxt}>Login</Text>
       </Pressable>
       <Text style={styles.text}>
