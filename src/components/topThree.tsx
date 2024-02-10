@@ -6,10 +6,10 @@ import {Dimensions} from 'react-native';
 const screenWidth = Dimensions.get('window').width;
 const screenLength = Dimensions.get('window').height;
 
-const top3 = screenLength / 3.2;
+const top3 = screenLength / 10;
 const thirds = screenWidth / 3 - 5;
 
-const LeaderBoard = () => {
+const topThree = () => {
   return (
     <View style={styles.body}>
       <View style={styles.top3}>
@@ -38,15 +38,13 @@ const LeaderBoard = () => {
   );
 };
 
-export default LeaderBoard;
+export default topThree;
 
 const styles = StyleSheet.create({
   body: {
-    flex: 1,
     backgroundColor: '#F2F3F4',
   },
   top3: {
-    justifyContent: 'center',
     alignItems: 'center',
     width: screenWidth,
     marginTop: top3,
