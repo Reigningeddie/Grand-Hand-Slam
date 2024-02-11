@@ -5,7 +5,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Login from './screens/Login';
 import SignUp from './screens/SignUp';
 import Profile from './screens/Profile';
-import LeaderBoard from './components/TopThree';
+import LeaderBoard from './screens/LeaderBoard';
 
 export type RootStackParamList = {
   Login: undefined;
