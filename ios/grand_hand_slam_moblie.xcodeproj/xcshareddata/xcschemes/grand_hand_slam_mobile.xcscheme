@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "grandHandSlamMobile.app"
-               BlueprintName = "grandHandSlamMobile"
-               ReferencedContainer = "container:grandHandSlamMobile.xcodeproj">
+               BuildableName = "grand_hand_slam_mobile.app"
+               BlueprintName = "grand_hand_slam_mobile"
+               ReferencedContainer = "container:ggrand_hand_slam_mobile.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "grandHandSlamMobileTests.xctest"
-               BlueprintName = "grandHandSlamMobileTests"
-               ReferencedContainer = "container:grandHandSlamMobile.xcodeproj">
+               BuildableName = "grand_hand_slam_mobileTests.xctest"
+               BlueprintName = "grand_hand_slam_mobileTests"
+               ReferencedContainer = "container:grand_hand_slam_mobile.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "grandHandSlamMobile.app"
-            BlueprintName = "grandHandSlamMobile"
-            ReferencedContainer = "container:grandHandSlamMobile.xcodeproj">
+            BuildableName = "grand_hand_slam_mobile.app"
+            BlueprintName = "grand_hand_slam_mobile"
+            ReferencedContainer = "container:grand_hand_slam_mobile.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "grandHandSlamMobile.app"
-            BlueprintName = "grandHandSlamMobile"
-            ReferencedContainer = "container:grandHandSlamMobile.xcodeproj">
+            BuildableName = "grand_hand_slam_mobile.app"
+            BlueprintName = "grand_hand_slam_mobile"
+            ReferencedContainer = "container:grand_hand_slam_mobile.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
