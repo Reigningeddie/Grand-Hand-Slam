@@ -9,7 +9,7 @@ const divHeight = screenHeight / 10;
 const div = screenWidth - 25;
 const info = screenWidth / 2.5;
 
-export default function underThree() {
+export default function UnderThree() {
   return (
     <View style={styles.body}>
       <Text style={styles.txt}>Friends</Text>

@@ -1,8 +1,8 @@
 import {View, StyleSheet, ScrollView} from 'react-native';
 import React from 'react';
 //components
-import TopThree from '../components/topThree';
-import UnderThree from '../components/underThree';
+import TopThree from '../components/TopThree';
+import UnderThree from '../components/UnderThree';
 
 const LeaderBoard = () => {
   return (

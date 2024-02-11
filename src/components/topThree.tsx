@@ -9,7 +9,7 @@ const screenLength = Dimensions.get('window').height;
 const top3 = screenLength / 10;
 const thirds = screenWidth / 3 - 5;
 
-const topThree = () => {
+const TopThree = () => {
   return (
     <View style={styles.body}>
       <View style={styles.top3}>
@@ -38,7 +38,7 @@ const topThree = () => {
   );
 };
 
-export default topThree;
+export default TopThree;
 
 const styles = StyleSheet.create({
   body: {
