@@ -1,5 +1,24 @@
 import React from 'react';
-import {StyleSheet, Text, View, TextInput, Pressable} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Pressable,
+  Alert,
+} from 'react-native';
+import auth from '@react-native-firebase/auth';
+
+const testSignUp = () => {
+  auth()
+    .createUserWithEmailAndPassword('test2@example.com', 'password')
+    .then(() => {
+      Alert.alert('Welcome to Grand Hand Slam');
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
 
 export default function SignUp() {
   return (
@@ -44,7 +63,7 @@ export default function SignUp() {
         secureTextEntry={true}
         placeholderTextColor="#1B1B1B"
       />
-      <Pressable style={styles.btn}>
+      <Pressable onPress={testSignUp} style={styles.btn}>
         <Text style={styles.signUp}>Sign Up</Text>
       </Pressable>
     </View>
