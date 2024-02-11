@@ -7,11 +7,19 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
+<<<<<<< HEAD:ios/grand_hand_slam_mobileTests/grand_hand_slam_mobileTests.m
 @interface grand_hand_slam_mobileTests : XCTestCase
 
 @end
 
 @implementation grand_hand_slam_mobileTests
+=======
+@interface grand_hand_Slam_mobileTests : XCTestCase
+
+@end
+
+@implementation grand_hand_Slam_mobileTests
+>>>>>>> 78ad9a4b84229593e7c24325d9429a35c4426080:ios/grandHandSlamMobileTests/grandHandSlamMobileTests.m
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL (^)(UIView *view))test
 {
