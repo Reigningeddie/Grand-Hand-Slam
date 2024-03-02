@@ -1,11 +1,8 @@
 import React from 'react';
 import {View, Text, StyleSheet, TextInput, Pressable} from 'react-native';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParamList} from '../Stacks/App';
+import {NavProps} from '../types/navigation';
 
-type LoginProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
-
-export default function Login({navigation}: LoginProps) {
+export default function Login({navigation}: NavProps) {
   return (
     <View style={styles.body}>
       <View style={styles.logo}>
@@ -24,7 +21,7 @@ export default function Login({navigation}: LoginProps) {
       />
       <Pressable
         style={styles.LoginBtn}
-        onPress={() => navigation.navigate('LeaderBoard')}>
+        onPress={() => navigation.navigate('BottomTabs')}>
         <Text style={styles.loginTxt}>Login</Text>
       </Pressable>
       <Text style={styles.text}>
