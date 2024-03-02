@@ -16,7 +16,11 @@ const Root = () => {
           component={Auth}
           options={{headerShown: false}}
         />
-        <Stack.Screen name="BottomTabs" component={BottomTabs} />
+        <Stack.Screen
+          name="BottomTabs"
+          component={BottomTabs}
+          options={{headerShown: false}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
