@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   StyleSheet,
   Text,
@@ -6,10 +6,10 @@ import {
   TextInput,
   Pressable,
   Dimensions,
-  // Alert,
+  Alert,
 } from 'react-native';
-import {useForm, Controller} from 'react-hook-form';
-// import auth from '@react-native-firebase/auth';
+import {useForm, Controller, FieldValues} from 'react-hook-form';
+import auth from '@react-native-firebase/auth';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -21,27 +21,26 @@ export default function SignUp() {
     control,
     formState: {errors},
   } = useForm();
-  const [confirmPassword, setConfirmPassword] = useState('');
 
-  // function verifyPassword() {
-  //   if (password !== confirmPassword) {
-  //     Alert.alert('passwords do not match.');
-  //   } else {
-  //     testSignUp();
-  //   }
-  // }
+  function verifyPassword(data: FieldValues) {
+    if (data.password !== data.confirmPassword) {
+      Alert.alert('passwords do not match.');
+    } else {
+      testSignUp(data);
+    }
+  }
 
-  // function testSignUp() {
-  //   auth()
-  //     .createUserWithEmailAndPassword(email, password)
-  //     .then(() => {
-  //       Alert.alert('Welcome to Grand Hand Slam');
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //       Alert.alert('email already in use.');
-  //     });
-  // }
+  function testSignUp(data: FieldValues) {
+    auth()
+      .createUserWithEmailAndPassword(data.email, data.password)
+      .then(() => {
+        Alert.alert('Welcome to Grand Hand Slam');
+      })
+      .catch(err => {
+        console.log(err);
+        Alert.alert(err);
+      });
+  }
 
   return (
     <View style={styles.body}>
@@ -122,7 +121,7 @@ export default function SignUp() {
       />
       {errors.confirmPassword && <Text style={styles.require}>*Required</Text>}
       <Pressable
-        onPress={handleSubmit(data => console.log(data))}
+        onPress={handleSubmit(data => verifyPassword(data))}
         style={styles.btn}>
         <Text style={styles.signUp}>Sign Up</Text>
       </Pressable>
