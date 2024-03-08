@@ -17,16 +17,6 @@ function App(): React.JSX.Element {
         options={{headerShown: false}}
       />
       <Auth.Screen name="SignUp" component={SignUp} />
-      {/* <Auth.Screen
-        name="Home"
-        component={Profile}
-        options={{headerShown: false}}
-      /> */}
-      {/* <Stack.Screen
-          name="LeaderBoard"
-          component={LeaderBoard}
-          options={{title: 'Leaderboard'}}
-        /> */}
     </Auth.Navigator>
   );
 }

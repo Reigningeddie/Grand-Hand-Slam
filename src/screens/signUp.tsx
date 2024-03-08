@@ -1,26 +1,48 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   Text,
   View,
   TextInput,
   Pressable,
-  Alert,
+  Dimensions,
+  // Alert,
 } from 'react-native';
-import auth from '@react-native-firebase/auth';
+import {useForm, Controller} from 'react-hook-form';
+// import auth from '@react-native-firebase/auth';
 
-const testSignUp = () => {
-  auth()
-    .createUserWithEmailAndPassword('test2@example.com', 'password')
-    .then(() => {
-      Alert.alert('Welcome to Grand Hand Slam');
-    })
-    .catch(err => {
-      console.log(err);
-    });
-};
+const screenWidth = Dimensions.get('window').width;
+
+const thirds = screenWidth / -1.3;
 
 export default function SignUp() {
+  const {
+    handleSubmit,
+    control,
+    formState: {errors},
+  } = useForm();
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  // function verifyPassword() {
+  //   if (password !== confirmPassword) {
+  //     Alert.alert('passwords do not match.');
+  //   } else {
+  //     testSignUp();
+  //   }
+  // }
+
+  // function testSignUp() {
+  //   auth()
+  //     .createUserWithEmailAndPassword(email, password)
+  //     .then(() => {
+  //       Alert.alert('Welcome to Grand Hand Slam');
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //       Alert.alert('email already in use.');
+  //     });
+  // }
+
   return (
     <View style={styles.body}>
       <Text style={styles.txt}>Let's get you signed up!</Text>
@@ -41,29 +63,67 @@ export default function SignUp() {
         placeholder={'Create a User Name'}
         placeholderTextColor="#1B1B1B"
       />
-      <TextInput
-        style={styles.input}
-        placeholder={'Email'}
-        placeholderTextColor="#1B1B1B"
+      <Controller
+        control={control}
+        render={({field: {onChange, onBlur, value}}) => (
+          <TextInput
+            style={styles.input}
+            value={value}
+            onChangeText={input => onChange(input)}
+            onBlur={onBlur}
+            placeholder={'Email'}
+            placeholderTextColor="#1B1B1B"
+          />
+        )}
+        name="email"
+        rules={{required: true}}
+        defaultValue=""
       />
+      {errors.email && <Text style={styles.require}>*Required</Text>}
       <TextInput
         style={styles.input}
         placeholder={'Mobile Number'}
         placeholderTextColor="#1B1B1B"
       />
-      <TextInput
-        style={styles.input}
-        placeholder={'New Password'}
-        secureTextEntry={true}
-        placeholderTextColor="#1B1B1B"
+      <Controller
+        control={control}
+        render={({field: {onChange, onBlur, value}}) => (
+          <TextInput
+            style={styles.input}
+            placeholder={'New Password'}
+            secureTextEntry={true}
+            placeholderTextColor="#1B1B1B"
+            value={value}
+            onChangeText={input => onChange(input)}
+            onBlur={onBlur}
+          />
+        )}
+        name="password"
+        rules={{required: true}}
+        defaultValue=""
       />
-      <TextInput
-        style={styles.input}
-        placeholder={'Confirm Password'}
-        secureTextEntry={true}
-        placeholderTextColor="#1B1B1B"
+      {errors.password && <Text style={styles.require}>*Required</Text>}
+      <Controller
+        control={control}
+        render={({field: {onChange, onBlur, value}}) => (
+          <TextInput
+            style={styles.input}
+            placeholder={'Confirm Password'}
+            secureTextEntry={true}
+            placeholderTextColor="#1B1B1B"
+            value={value}
+            onChangeText={input => onChange(input)}
+            onBlur={onBlur}
+          />
+        )}
+        name="confirmPassword"
+        rules={{required: true}}
+        defaultValue=""
       />
-      <Pressable onPress={testSignUp} style={styles.btn}>
+      {errors.confirmPassword && <Text style={styles.require}>*Required</Text>}
+      <Pressable
+        onPress={handleSubmit(data => console.log(data))}
+        style={styles.btn}>
         <Text style={styles.signUp}>Sign Up</Text>
       </Pressable>
     </View>
@@ -123,5 +183,10 @@ const styles = StyleSheet.create({
 
   signUp: {
     color: 'aliceblue',
+  },
+
+  require: {
+    color: 'red',
+    marginLeft: thirds,
   },
 });
