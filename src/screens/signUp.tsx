@@ -8,6 +8,7 @@ import {
   Dimensions,
   Alert,
 } from 'react-native';
+import {NavProps} from '../types/navigation';
 import {useForm, Controller, FieldValues} from 'react-hook-form';
 import auth from '@react-native-firebase/auth';
 
@@ -15,7 +16,7 @@ const screenWidth = Dimensions.get('window').width;
 
 const thirds = screenWidth / -1.3;
 
-export default function SignUp() {
+export default function SignUp({navigation}: NavProps) {
   const {
     handleSubmit,
     control,
@@ -35,14 +36,21 @@ export default function SignUp() {
     auth()
       .createUserWithEmailAndPassword(data.email, data.password)
       .then(() => {
-        Alert.alert('Welcome to Grand Hand Slam');
+        Alert.alert('Welcome to Grand Hand Slam', '', [
+          {
+            text: 'ok',
+            onPress: () => {
+              navigation.navigate('Login');
+            },
+          },
+        ]);
       })
       .catch(err => {
         console.log(err.code);
         if (err.code === 'auth/invalid-email') {
-          Alert.alert('Email does not exist/invalid');
+          Alert.alert('Email is invalid');
         } else if (err.code === 'auth/email-already-in-use') {
-          Alert.alert('User already exist with this password');
+          Alert.alert('User already exists with this e-mail.');
         }
       });
   }
