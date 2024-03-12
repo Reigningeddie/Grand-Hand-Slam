@@ -36,14 +36,18 @@ export default function SignUp({navigation}: NavProps) {
     auth()
       .createUserWithEmailAndPassword(data.email, data.password)
       .then(() => {
-        Alert.alert('Welcome to Grand Hand Slam', '', [
-          {
-            text: 'ok',
-            onPress: () => {
-              navigation.navigate('Login');
+        Alert.alert(
+          'Welcome to Grand Hand Slam',
+          'User has been created successfully.',
+          [
+            {
+              text: 'ok',
+              onPress: () => {
+                navigation.navigate('Login');
+              },
             },
-          },
-        ]);
+          ],
+        );
       })
       .catch(err => {
         console.log(err.code);
