@@ -22,6 +22,7 @@ export default function SignUp() {
     formState: {errors},
   } = useForm();
 
+  //*! add more password rules
   function verifyPassword(data: FieldValues) {
     if (data.password !== data.confirmPassword) {
       Alert.alert('passwords do not match.');
@@ -37,8 +38,12 @@ export default function SignUp() {
         Alert.alert('Welcome to Grand Hand Slam');
       })
       .catch(err => {
-        console.log(err);
-        Alert.alert(err);
+        console.log(err.code);
+        if (err.code === 'auth/invalid-email') {
+          Alert.alert('Email does not exist/invalid');
+        } else if (err.code === 'auth/email-already-in-use') {
+          Alert.alert('User already exist with this password');
+        }
       });
   }
 
