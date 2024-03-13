@@ -27,12 +27,15 @@ export default function SignUp({navigation}: NavProps) {
   function verifyPassword(data: FieldValues) {
     if (data.password !== data.confirmPassword) {
       Alert.alert('passwords do not match.');
+    } else if (data.password.length < 8) {
+      Alert.alert('password must contain at least 8 characters.');
     } else {
-      testSignUp(data);
+      signUp(data);
+      console.log(data.password.length);
     }
   }
 
-  function testSignUp(data: FieldValues) {
+  function signUp(data: FieldValues) {
     auth()
       .createUserWithEmailAndPassword(data.email, data.password)
       .then(() => {

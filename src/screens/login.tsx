@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, StyleSheet, TextInput, Pressable} from 'react-native';
 import {NavProps} from '../types/navigation';
 
 export default function Login({navigation}: NavProps) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
     <View style={styles.body}>
       <View style={styles.logo}>
@@ -12,16 +15,22 @@ export default function Login({navigation}: NavProps) {
         style={styles.input}
         placeholder={'Username'}
         placeholderTextColor="#1B1B1B"
+        value={email}
+        onChangeText={input => setEmail(input)}
       />
       <TextInput
         style={styles.input}
         secureTextEntry={true}
         placeholder={'password'}
+        value={password}
+        onChangeText={input => setPassword(input)}
         placeholderTextColor="#1B1B1B"
       />
       <Pressable
         style={styles.LoginBtn}
-        onPress={() => navigation.navigate('BottomTabs')}>
+        onPress={() =>
+          console.log(`[email:] ${email}`, `[password:] ${password}`)
+        }>
         <Text style={styles.loginTxt}>Login</Text>
       </Pressable>
       <Text style={styles.text}>
