@@ -31,7 +31,7 @@ export default function SignUp({navigation}: NavProps) {
       Alert.alert('password must contain at least 8 characters.');
     } else {
       signUp(data);
-      console.log(data.password.length);
+      console.log(data);
     }
   }
   //TODO: change to async function
@@ -66,22 +66,52 @@ export default function SignUp({navigation}: NavProps) {
     <View style={styles.body}>
       <Text style={styles.txt}>Let's get you signed up!</Text>
       <View style={styles.name}>
-        <TextInput
-          style={styles.nameInput}
-          placeholder={'First Name'}
-          placeholderTextColor="#1B1B1B"
+        <Controller
+          control={control}
+          render={({field: {onChange, value}}) => (
+            <TextInput
+              style={styles.nameInput}
+              placeholder={'First Name'}
+              placeholderTextColor="#1B1B1B"
+              value={value}
+              onChangeText={input => onChange(input)}
+            />
+          )}
+          name="firstName"
+          defaultValue=""
         />
-        <TextInput
-          style={styles.nameInput}
-          placeholder={'Last Name'}
-          placeholderTextColor="#1B1B1B"
+        <Controller
+          control={control}
+          render={({field: {onChange, value}}) => (
+            <TextInput
+              style={styles.nameInput}
+              placeholder={'Last Name'}
+              placeholderTextColor="#1B1B1B"
+              value={value}
+              onChangeText={input => onChange(input)}
+            />
+          )}
+          name="lastName"
+          defaultValue=""
         />
       </View>
-      <TextInput
-        style={styles.input}
-        placeholder={'Create a User Name'}
-        placeholderTextColor="#1B1B1B"
+      <Controller
+        control={control}
+        render={({field: {onChange, onBlur, value}}) => (
+          <TextInput
+            style={styles.input}
+            placeholder={'Create a User Name'}
+            placeholderTextColor="#1B1B1B"
+            value={value}
+            onChangeText={input => onChange(input)}
+            onBlur={onBlur}
+          />
+        )}
+        name="username"
+        rules={{required: true}}
+        defaultValue=""
       />
+      {errors.username && <Text style={styles.require}>*Required</Text>}
       <Controller
         control={control}
         render={({field: {onChange, onBlur, value}}) => (
@@ -99,10 +129,19 @@ export default function SignUp({navigation}: NavProps) {
         defaultValue=""
       />
       {errors.email && <Text style={styles.require}>*Required</Text>}
-      <TextInput
-        style={styles.input}
-        placeholder={'Mobile Number'}
-        placeholderTextColor="#1B1B1B"
+      <Controller
+        control={control}
+        render={({field: {onChange, value}}) => (
+          <TextInput
+            style={styles.input}
+            placeholder={'Mobile Number'}
+            placeholderTextColor="#1B1B1B"
+            value={value}
+            onChangeText={input => onChange(input)}
+          />
+        )}
+        name="mobileNumber"
+        defaultValue=""
       />
       <Controller
         control={control}
