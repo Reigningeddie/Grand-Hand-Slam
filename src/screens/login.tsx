@@ -1,36 +1,87 @@
-import React, {useState} from 'react';
-import {View, Text, StyleSheet, TextInput, Pressable} from 'react-native';
+import React from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Pressable,
+  Alert,
+} from 'react-native';
 import {NavProps} from '../types/navigation';
+import {useForm, Controller, FieldValues} from 'react-hook-form';
+import auth from '@react-native-firebase/auth';
 
 export default function Login({navigation}: NavProps) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const {
+    handleSubmit,
+    control,
+    formState: {errors},
+  } = useForm();
+
+  const loginUser = async (data: FieldValues) => {
+    try {
+      const response = await auth().signInWithEmailAndPassword(
+        data.email,
+        data.password,
+      );
+      if (response && response.user) {
+        console.log('verified');
+        navigation.navigate('BottomTabs');
+      }
+    } catch (error: any) {
+      console.log(error.code);
+      console.log(error.message);
+      if (error.code === 'auth/invalid-email') {
+        Alert.alert('No user with that E-mail was found');
+      } else if (error.code === 'auth/invalid-credential') {
+        Alert.alert('E-mail or password is incorrect.');
+      }
+    }
+  };
 
   return (
     <View style={styles.body}>
       <View style={styles.logo}>
         <Text style={styles.logoTxt}>Logo</Text>
       </View>
-      <TextInput
-        style={styles.input}
-        placeholder={'Username'}
-        placeholderTextColor="#1B1B1B"
-        value={email}
-        onChangeText={input => setEmail(input)}
+      <Controller
+        control={control}
+        render={({field: {onChange, onBlur, value}}) => (
+          <TextInput
+            style={styles.input}
+            placeholder={'E-mail'}
+            placeholderTextColor="#1B1B1B"
+            value={value}
+            onChangeText={input => onChange(input)}
+            onBlur={onBlur}
+          />
+        )}
+        name="email"
+        rules={{required: true}}
+        defaultValue=""
       />
-      <TextInput
-        style={styles.input}
-        secureTextEntry={true}
-        placeholder={'password'}
-        value={password}
-        onChangeText={input => setPassword(input)}
-        placeholderTextColor="#1B1B1B"
+      {errors.email && <Text style={styles.require}>*Required</Text>}
+      <Controller
+        control={control}
+        render={({field: {onChange, onBlur, value}}) => (
+          <TextInput
+            style={styles.input}
+            secureTextEntry={true}
+            placeholder={'password'}
+            value={value}
+            onChangeText={input => onChange(input)}
+            onBlur={onBlur}
+            placeholderTextColor="#1B1B1B"
+          />
+        )}
+        name="password"
+        rules={{required: true}}
+        defaultValue=""
       />
+      {errors.password && <Text style={styles.require}>*Required</Text>}
       <Pressable
         style={styles.LoginBtn}
-        onPress={() =>
-          console.log(`[email:] ${email}`, `[password:] ${password}`)
-        }>
+        onPress={handleSubmit(data => loginUser(data))}>
         <Text style={styles.loginTxt}>Login</Text>
       </Pressable>
       <Text style={styles.text}>
@@ -102,5 +153,9 @@ const styles = StyleSheet.create({
 
   signUpTxt: {
     color: '#2EA1DD',
+  },
+  require: {
+    color: 'red',
+    marginTop: -15,
   },
 });

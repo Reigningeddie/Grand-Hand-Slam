@@ -23,7 +23,7 @@ export default function SignUp({navigation}: NavProps) {
     formState: {errors},
   } = useForm();
 
-  //*! add more password rules
+  //Todo:  add more password rules && verify email
   function verifyPassword(data: FieldValues) {
     if (data.password !== data.confirmPassword) {
       Alert.alert('passwords do not match.');
@@ -34,7 +34,7 @@ export default function SignUp({navigation}: NavProps) {
       console.log(data.password.length);
     }
   }
-
+  //TODO: change to async function
   function signUp(data: FieldValues) {
     auth()
       .createUserWithEmailAndPassword(data.email, data.password)
@@ -55,7 +55,7 @@ export default function SignUp({navigation}: NavProps) {
       .catch(err => {
         console.log(err.code);
         if (err.code === 'auth/invalid-email') {
-          Alert.alert('Email is invalid');
+          Alert.alert('Not a verified e-mail.');
         } else if (err.code === 'auth/email-already-in-use') {
           Alert.alert('User already exists with this e-mail.');
         }
