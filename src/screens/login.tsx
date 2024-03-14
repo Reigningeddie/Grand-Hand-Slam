@@ -11,6 +11,8 @@ import {NavProps} from '../types/navigation';
 import {useForm, Controller, FieldValues} from 'react-hook-form';
 import auth from '@react-native-firebase/auth';
 
+//! check if client wants to know when users are online - (use initialize in firebase)
+
 export default function Login({navigation}: NavProps) {
   const {
     handleSubmit,
@@ -20,12 +22,13 @@ export default function Login({navigation}: NavProps) {
 
   const loginUser = async (data: FieldValues) => {
     try {
-      const response = await auth().signInWithEmailAndPassword(
+      const {user} = await auth().signInWithEmailAndPassword(
         data.email,
         data.password,
       );
-      if (response && response.user) {
-        console.log('verified');
+      if (!user.emailVerified) {
+        Alert.alert('Please verify your email before logging in.');
+      } else {
         navigation.navigate('BottomTabs');
       }
     } catch (error: any) {
