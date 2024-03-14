@@ -23,7 +23,6 @@ export default function SignUp({navigation}: NavProps) {
     formState: {errors},
   } = useForm();
 
-  //Todo:  add more password rules && verify email
   function verifyPassword(data: FieldValues) {
     if (data.password !== data.confirmPassword) {
       Alert.alert('passwords do not match.');
@@ -31,36 +30,36 @@ export default function SignUp({navigation}: NavProps) {
       Alert.alert('password must contain at least 8 characters.');
     } else {
       signUp(data);
-      console.log(data);
     }
   }
-  //TODO: change to async function
-  function signUp(data: FieldValues) {
-    auth()
-      .createUserWithEmailAndPassword(data.email, data.password)
-      .then(() => {
+
+  const signUp = async (data: FieldValues) => {
+    try {
+      const {user} = await auth().createUserWithEmailAndPassword(
+        data.email,
+        data.password,
+      );
+      Alert.alert('Welcome to Grand Hand Slam', 'Please verify e-mail.', [
+        {
+          text: 'ok',
+          onPress: () => {
+            navigation.navigate('Login');
+          },
+        },
+      ]);
+      await user.sendEmailVerification();
+    } catch (err: any) {
+      console.log(err.code);
+      console.log(err.message);
+      if (err.code === 'auth/invalid-email') {
+        Alert.alert('Not a verified e-mail');
+      } else if (err.code === 'auth/email-already-in-use') {
         Alert.alert(
-          'Welcome to Grand Hand Slam',
-          'User has been created successfully.',
-          [
-            {
-              text: 'ok',
-              onPress: () => {
-                navigation.navigate('Login');
-              },
-            },
-          ],
+          'e-mail is already signed up. try resetting your password.',
         );
-      })
-      .catch(err => {
-        console.log(err.code);
-        if (err.code === 'auth/invalid-email') {
-          Alert.alert('Not a verified e-mail.');
-        } else if (err.code === 'auth/email-already-in-use') {
-          Alert.alert('User already exists with this e-mail.');
-        }
-      });
-  }
+      }
+    }
+  };
 
   return (
     <View style={styles.body}>
