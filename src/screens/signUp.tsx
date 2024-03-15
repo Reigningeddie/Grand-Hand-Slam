@@ -11,6 +11,7 @@ import {
 import {NavProps} from '../types/navigation';
 import {useForm, Controller, FieldValues} from 'react-hook-form';
 import auth from '@react-native-firebase/auth';
+// import database from '@react-native-firebase/database';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -35,31 +36,60 @@ export default function SignUp({navigation}: NavProps) {
 
   const signUp = async (data: FieldValues) => {
     try {
-      const {user} = await auth().createUserWithEmailAndPassword(
+      const response = await auth().createUserWithEmailAndPassword(
         data.email,
         data.password,
       );
-      Alert.alert('Welcome to Grand Hand Slam', 'Please verify e-mail.', [
-        {
-          text: 'ok',
-          onPress: () => {
-            navigation.navigate('Login');
+      if (response.user) {
+        console.log(response.user.uid);
+        Alert.alert('Welcome to Grand Hand Slam', 'Please verify e-mail.', [
+          {
+            text: 'ok',
+            onPress: () => {
+              navigation.navigate('Login');
+            },
           },
-        },
-      ]);
-      await user.sendEmailVerification();
+        ]);
+        await response.user.sendEmailVerification();
+      }
     } catch (err: any) {
       console.log(err.code);
       console.log(err.message);
       if (err.code === 'auth/invalid-email') {
         Alert.alert('Not a verified e-mail');
       } else if (err.code === 'auth/email-already-in-use') {
-        Alert.alert(
-          'e-mail is already signed up. try resetting your password.',
-        );
+        Alert.alert('e-mail already signed up. try resetting your password.');
       }
     }
   };
+
+  // const signUp = async (data: FieldValues) => {
+  //   try {
+  //     const {user} = await auth().createUserWithEmailAndPassword(
+  //       data.email,
+  //       data.password,
+  //     );
+  //     Alert.alert('Welcome to Grand Hand Slam', 'Please verify e-mail.', [
+  //       {
+  //         text: 'ok',
+  //         onPress: () => {
+  //           navigation.navigate('Login');
+  //         },
+  //       },
+  //     ]);
+  //     await user.sendEmailVerification();
+  //   } catch (err: any) {
+  //     console.log(err.code);
+  //     console.log(err.message);
+  //     if (err.code === 'auth/invalid-email') {
+  //       Alert.alert('Not a verified e-mail');
+  //     } else if (err.code === 'auth/email-already-in-use') {
+  //       Alert.alert(
+  //         'e-mail is already signed up. try resetting your password.',
+  //       );
+  //     }
+  //   }
+  // };
 
   return (
     <View style={styles.body}>
