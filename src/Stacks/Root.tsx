@@ -10,7 +10,7 @@ const Stack = createNativeStackNavigator<NavigationList>();
 const Root = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="Auth">
         <Stack.Screen
           name="Auth"
           component={Auth}

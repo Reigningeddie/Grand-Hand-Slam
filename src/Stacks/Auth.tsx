@@ -10,7 +10,7 @@ const Auth = createNativeStackNavigator<NavigationList>();
 
 function App(): React.JSX.Element {
   return (
-    <Auth.Navigator initialRouteName="Login">
+    <Auth.Navigator>
       <Auth.Screen
         name="Login"
         component={Login}

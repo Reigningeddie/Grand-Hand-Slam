@@ -11,4 +11,4 @@ export type NavigationList = {
 };
 
 // export type NavProp = RouteProp<NavigationParamList, 'Login'>;
-export type NavProps = NativeStackScreenProps<NavigationList, 'Login'>;
+export type NavProps = NativeStackScreenProps<NavigationList>;
