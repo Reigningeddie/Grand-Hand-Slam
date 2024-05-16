@@ -36,12 +36,13 @@ export default function SignUp({navigation}: NavProps) {
 
   const signUp = async (data: FieldValues) => {
     try {
-      const response = await auth().createUserWithEmailAndPassword(
+      console.log(data);
+      const createUser = await auth().createUserWithEmailAndPassword(
         data.email,
         data.password,
       );
-      if (response.user) {
-        console.log(response.user.uid);
+      if (createUser.user) {
+        console.log(createUser.user.uid);
         Alert.alert('Welcome to Grand Hand Slam', 'Please verify e-mail.', [
           {
             text: 'ok',
@@ -50,7 +51,7 @@ export default function SignUp({navigation}: NavProps) {
             },
           },
         ]);
-        await response.user.sendEmailVerification();
+        await createUser.user.sendEmailVerification();
       }
     } catch (err: any) {
       console.log(err.code);
@@ -62,34 +63,6 @@ export default function SignUp({navigation}: NavProps) {
       }
     }
   };
-
-  // const signUp = async (data: FieldValues) => {
-  //   try {
-  //     const {user} = await auth().createUserWithEmailAndPassword(
-  //       data.email,
-  //       data.password,
-  //     );
-  //     Alert.alert('Welcome to Grand Hand Slam', 'Please verify e-mail.', [
-  //       {
-  //         text: 'ok',
-  //         onPress: () => {
-  //           navigation.navigate('Login');
-  //         },
-  //       },
-  //     ]);
-  //     await user.sendEmailVerification();
-  //   } catch (err: any) {
-  //     console.log(err.code);
-  //     console.log(err.message);
-  //     if (err.code === 'auth/invalid-email') {
-  //       Alert.alert('Not a verified e-mail');
-  //     } else if (err.code === 'auth/email-already-in-use') {
-  //       Alert.alert(
-  //         'e-mail is already signed up. try resetting your password.',
-  //       );
-  //     }
-  //   }
-  // };
 
   return (
     <View style={styles.body}>
