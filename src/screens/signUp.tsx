@@ -11,6 +11,7 @@ import {
 import {NavProps} from '../types/navigation';
 import {useForm, Controller, FieldValues} from 'react-hook-form';
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 // import database from '@react-native-firebase/database';
 
 const screenWidth = Dimensions.get('window').width;
@@ -36,13 +37,17 @@ export default function SignUp({navigation}: NavProps) {
 
   const signUp = async (data: FieldValues) => {
     try {
-      console.log(data);
       const createUser = await auth().createUserWithEmailAndPassword(
         data.email,
         data.password,
       );
+      await createUser.user.updateProfile({displayName: data.name});
+      await firestore()
+        .collection('users')
+        .doc(createUser.user.uid)
+        .set({mobileNumber: data.mobileNumber});
+      await createUser.user.sendEmailVerification();
       if (createUser.user) {
-        console.log(createUser.user.uid);
         Alert.alert('Welcome to Grand Hand Slam', 'Please verify e-mail.', [
           {
             text: 'ok',
@@ -51,7 +56,6 @@ export default function SignUp({navigation}: NavProps) {
             },
           },
         ]);
-        await createUser.user.sendEmailVerification();
       }
     } catch (err: any) {
       console.log(err.code);
