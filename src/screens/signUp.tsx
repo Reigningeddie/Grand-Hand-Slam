@@ -41,12 +41,6 @@ export default function SignUp({navigation}: NavProps) {
         data.email,
         data.password,
       );
-      await createUser.user.updateProfile({displayName: data.name});
-      await firestore()
-        .collection('users')
-        .doc(createUser.user.uid)
-        .set({mobileNumber: data.mobileNumber});
-      await createUser.user.sendEmailVerification();
       if (createUser.user) {
         Alert.alert('Welcome to Grand Hand Slam', 'Please verify e-mail.', [
           {
@@ -57,6 +51,12 @@ export default function SignUp({navigation}: NavProps) {
           },
         ]);
       }
+      await createUser.user.updateProfile({displayName: data.username});
+      await firestore()
+        .collection('users')
+        .doc(createUser.user.uid)
+        .set({mobileNumber: data.mobileNumber});
+      await createUser.user.sendEmailVerification();
     } catch (err: any) {
       console.log(err.code);
       console.log(err.message);
