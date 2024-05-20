@@ -10,6 +10,7 @@ import {
 import {NavProps} from '../types/navigation';
 import {useForm, Controller, FieldValues} from 'react-hook-form';
 import auth from '@react-native-firebase/auth';
+// import firestore from '@react-native-firebase/firestore';
 
 //! check if client wants to know when users are online - (use initialize in firebase)
 
