@@ -1,6 +1,8 @@
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import React from 'react';
 import {Dimensions} from 'react-native';
+import {useState, useEffect} from 'react';
+import {auth} from '@react-native-firebase/auth';
 
 //Get device Width
 const screenWidth = Dimensions.get('window').width;
@@ -8,6 +10,18 @@ const screenWidth = Dimensions.get('window').width;
 const thirds = screenWidth / 3;
 
 const Profile = () => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const signIn = auth().onAuthStateChanged(setUser);
+    return signIn;
+  }, [user]);
+
+  useEffect(() => {
+    if (user) {
+      console.log(user.uid);
+    }
+  }, [user]);
   return (
     <View>
       <ScrollView contentContainerStyle={styles.contentContainer}>
