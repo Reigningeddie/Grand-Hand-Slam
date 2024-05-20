@@ -53,9 +53,9 @@ export default function SignUp({navigation}: NavProps) {
       }
       await createUser.user.updateProfile({displayName: data.username});
       await firestore().collection('users').doc(createUser.user.uid).set({
+        mobileNumber: data.mobileNumber,
         firstName: data.firstName,
         lastName: data.lastName,
-        mobileNumber: data.mobileNumber,
       });
       await createUser.user.sendEmailVerification();
     } catch (err: any) {
