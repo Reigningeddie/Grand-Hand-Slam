@@ -32,6 +32,7 @@ export default function Login({navigation}: NavProps) {
       } else {
         navigation.navigate('BottomTabs');
       }
+      console.log(user);
     } catch (error: any) {
       console.log(error.code);
       console.log(error.message);
