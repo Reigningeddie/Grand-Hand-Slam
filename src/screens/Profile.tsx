@@ -1,6 +1,7 @@
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import React from 'react';
 import {Dimensions} from 'react-native';
+import {fetchData} from '../database/fetchData';
 // import {useState, useEffect} from 'react';
 // import auth from '@react-native-firebase/auth';
 
@@ -10,6 +11,7 @@ const screenWidth = Dimensions.get('window').width;
 const thirds = screenWidth / 3;
 
 const Profile = () => {
+  fetchData();
   return (
     <View>
       <ScrollView contentContainerStyle={styles.contentContainer}>
