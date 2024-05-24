@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import React from 'react';
 import {Dimensions} from 'react-native';
-import {fetchData} from '../database/fetchData';
+import {userData} from '../database/userData';
 // import {useState, useEffect} from 'react';
 // import auth from '@react-native-firebase/auth';
 

@@ -13,6 +13,7 @@ import auth from '@react-native-firebase/auth';
 // import firestore from '@react-native-firebase/firestore';
 
 //! check if client wants to know when users are online - (use initialize in firebase)
+//*move phone number to settings
 
 export default function Login({navigation}: NavProps) {
   const {
