@@ -1,5 +1,14 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
+export interface metaData {
+  displayName: any;
+  email: any;
+  emailVerified: boolean;
+  isAnonymous: boolean;
+  phoneNumber: any;
+  photoURL: any;
+}
+
 export type NavigationList = {
   Auth: undefined;
   BottomTabs: undefined;

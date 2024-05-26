@@ -1,6 +1,6 @@
 import firestore from '@react-native-firebase/firestore';
 
-export const fetchData = async () => {
+export const userData = async () => {
   try {
     const collect = await firestore().collection('users').get();
     const data: {id: string}[] = [];

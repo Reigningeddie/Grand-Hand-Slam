@@ -3,7 +3,6 @@ import React from 'react';
 import {Dimensions} from 'react-native';
 import {userData} from '../database/userData';
 // import {useState, useEffect} from 'react';
-// import auth from '@react-native-firebase/auth';
 
 //Get device Width
 const screenWidth = Dimensions.get('window').width;
@@ -11,7 +10,7 @@ const screenWidth = Dimensions.get('window').width;
 const thirds = screenWidth / 3;
 
 const Profile = () => {
-  fetchData();
+  userData();
   return (
     <View>
       <ScrollView contentContainerStyle={styles.contentContainer}>

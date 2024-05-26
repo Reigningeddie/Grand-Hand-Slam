@@ -10,10 +10,11 @@ import {
 import {NavProps} from '../types/navigation';
 import {useForm, Controller, FieldValues} from 'react-hook-form';
 import auth from '@react-native-firebase/auth';
+
 // import firestore from '@react-native-firebase/firestore';
 
 //! check if client wants to know when users are online - (use initialize in firebase)
-//*move phone number to settings
+//*move phone number to settings from initial sign up component
 
 export default function Login({navigation}: NavProps) {
   const {
@@ -33,7 +34,6 @@ export default function Login({navigation}: NavProps) {
       } else {
         navigation.navigate('BottomTabs');
       }
-      console.log(user);
     } catch (error: any) {
       console.log(error.code);
       console.log(error.message);
