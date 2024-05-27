@@ -56,6 +56,7 @@ export default function SignUp({navigation}: NavProps) {
         mobileNumber: data.mobileNumber,
         firstName: data.firstName,
         lastName: data.lastName,
+        points: 0,
       });
       await createUser.user.sendEmailVerification();
     } catch (err: any) {
