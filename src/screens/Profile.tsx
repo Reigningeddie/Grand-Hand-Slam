@@ -10,7 +10,7 @@ const screenWidth = Dimensions.get('window').width;
 const thirds = screenWidth / 3;
 
 const Profile = () => {
-  console.log(userData());
+  userData();
   return (
     <View>
       <ScrollView contentContainerStyle={styles.contentContainer}>
