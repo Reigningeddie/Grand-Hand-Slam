@@ -4,7 +4,7 @@ import React from 'react';
 import TopThree from '../components/TopThree';
 import UnderThree from '../components/UnderThree';
 
-const LeaderBoard = () => {
+const LeaderBoard = (): React.JSX.Element => {
   return (
     <View style={styles.body}>
       <ScrollView>

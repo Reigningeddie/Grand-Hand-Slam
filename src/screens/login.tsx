@@ -16,7 +16,7 @@ import auth from '@react-native-firebase/auth';
 //! check if client wants to know when users are online - (use initialize in firebase)
 //*move phone number to settings from initial sign up component
 
-export default function Login({navigation}: NavProps) {
+export default function Login({navigation}: NavProps): React.JSX.Element {
   const {
     handleSubmit,
     control,

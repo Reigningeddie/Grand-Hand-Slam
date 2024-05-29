@@ -9,7 +9,7 @@ const divHeight = screenHeight / 10;
 const div = screenWidth - 25;
 const info = screenWidth / 2.5;
 
-export default function UnderThree() {
+export default function UnderThree(): React.JSX.Element {
   return (
     <View style={styles.body}>
       <Text style={styles.txt}>Friends</Text>

@@ -9,7 +9,7 @@ const screenWidth = Dimensions.get('window').width;
 
 const thirds = screenWidth / 3;
 
-const Profile = () => {
+const Profile = (): React.JSX.Element => {
   userData();
   return (
     <View>

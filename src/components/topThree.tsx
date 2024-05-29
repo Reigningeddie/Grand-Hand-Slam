@@ -9,7 +9,7 @@ const screenLength = Dimensions.get('window').height;
 const top3 = screenLength / 10;
 const thirds = screenWidth / 3 - 5;
 
-const TopThree = () => {
+const TopThree = (): React.JSX.Element => {
   return (
     <View style={styles.body}>
       <View style={styles.top3}>
