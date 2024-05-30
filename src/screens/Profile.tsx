@@ -1,8 +1,8 @@
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Dimensions} from 'react-native';
-import {userData} from '../database/userData';
-// import {useState, useEffect} from 'react';
+import {fetchUserData} from '../database/userData';
+import {UserData} from '../types/navigation';
 
 //Get device Width
 const screenWidth = Dimensions.get('window').width;
@@ -10,17 +10,31 @@ const screenWidth = Dimensions.get('window').width;
 const thirds = screenWidth / 3;
 
 const Profile = (): React.JSX.Element => {
-  userData();
+  const [users, setUsers] = useState<UserData[]>([]);
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const fetchedUsers = await fetchUserData();
+        setUsers(fetchedUsers);
+      } catch (error) {
+        console.log('failed to load users:', error);
+      }
+    };
+    loadData();
+  }, []);
+  fetchUserData();
+
   return (
     <View>
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <View style={styles.banner} />
         <Text style={styles.txt}>Grand Hand Slam</Text>
         <View style={styles.pic} />
-        <Text style={styles.user}>ReigningEddie</Text>
+        <Text style={styles.user}>Reigningeddie</Text>
         <View style={styles.flex}>
           <View style={styles.grid}>
-            <Text style={styles.num}>150</Text>
+            <Text style={styles.num}>{users.map(user => user.points)}</Text>
             <Text style={styles.item}>points</Text>
           </View>
           <View style={styles.grid}>

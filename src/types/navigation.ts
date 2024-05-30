@@ -1,22 +1,29 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-export interface metaData {
-  displayName: any;
-  email: any;
-  emailVerified: boolean;
-  isAnonymous: boolean;
-  phoneNumber: any;
-  photoURL: any;
+// interface MetaData {
+//   displayName: any;
+//   email: any;
+//   emailVerified: boolean;
+//   isAnonymous: boolean;
+//   phoneNumber: any;
+//   photoURL: any;
+// }
+
+export interface UserData {
+  firstName: string;
+  id: string;
+  lastName: string;
+  mobileNumber: number;
 }
 
 export type NavigationList = {
   Auth: undefined;
   BottomTabs: undefined;
-  Login: undefined;
-  Profile: undefined;
-  LeaderBoard: undefined;
-  SignUp: undefined;
-  Home: undefined;
+  Login: any;
+  Profile: any;
+  LeaderBoard: any;
+  SignUp: any;
+  Home: any;
 };
 
 // export type NavProp = RouteProp<NavigationParamList, 'Login'>;
