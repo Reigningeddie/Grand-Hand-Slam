@@ -23,8 +23,6 @@ const Profile = (): React.JSX.Element => {
     };
     loadData();
   }, []);
-  fetchUserData();
-
   return (
     <View>
       <ScrollView contentContainerStyle={styles.contentContainer}>

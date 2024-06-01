@@ -8,6 +8,7 @@ export const fetchUserData = async (): Promise<UserData[]> => {
     collect.forEach(doc => {
       data.push({id: doc.id, ...doc.data()} as UserData);
     });
+    console.log(data);
     return data;
   } catch (error) {
     throw error;
