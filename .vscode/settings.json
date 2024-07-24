@@ -3,5 +3,6 @@
     "firestore",
     "Leaderboard"
   ],
-  "discord.enabled": false
+  "discord.enabled": false,
+  "CodeGPT.apiKey": "Anthropic"
 }

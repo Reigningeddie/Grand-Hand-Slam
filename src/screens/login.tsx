@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet, TextInput, Pressable} from 'react-native';
 import {NavProps} from '../types/navigation';
 import {useForm, Controller, FieldValues} from 'react-hook-form';
+// import auth from '@react-native-firebase/auth';
 import {useAuth} from '../database/useAuth';
 
 // import firestore from '@react-native-firebase/firestore';
@@ -15,12 +16,17 @@ export default function Login({navigation}: NavProps) {
     control,
     formState: {errors},
   } = useForm();
-  const {signIn} = useAuth();
+
+  const {user, signIn} = useAuth();
 
   const loginUser = async (data: FieldValues) => {
     try {
       await signIn(data.email, data.password);
-      console.log(data.email, data.password);
+      if (user) {
+        navigation.navigate('BottomTabs');
+      } else {
+        console.log('verify email');
+      }
     } catch (error) {
       console.error('Failed to sign in:', error);
     }

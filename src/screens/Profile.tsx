@@ -1,6 +1,7 @@
-import {StyleSheet, Text, View, ScrollView} from 'react-native';
+import {StyleSheet, Text, View, ScrollView, Pressable} from 'react-native';
 import React from 'react';
 import {Dimensions} from 'react-native';
+import {useAuth} from '../database/useAuth';
 // import {fetchUserData} from '../database/userData';
 // import {UserData} from '../types/navigation';
 
@@ -10,13 +11,19 @@ const screenWidth = Dimensions.get('window').width;
 const thirds = screenWidth / 3;
 
 const Profile = (): React.JSX.Element => {
+  const {signOut} = useAuth();
   return (
     <View>
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <View style={styles.banner} />
-        <Text style={styles.txt}>Grand Hand Slam</Text>
+        <Text style={styles.txt}>
+          Grand Hand Slam{' '}
+          <Pressable onPress={signOut}>
+            <Text>O</Text>
+          </Pressable>
+        </Text>
         <View style={styles.pic} />
-        <Text style={styles.user}>Reigningeddie</Text>
+        <Text style={styles.user}>Display Name</Text>
         <View style={styles.flex}>
           <View style={styles.grid}>
             <Text style={styles.num}>150</Text>
@@ -62,7 +69,7 @@ const styles = StyleSheet.create({
   txt: {
     color: '#D9D9D9',
     marginTop: -120,
-    fontSize: 50,
+    fontSize: 48,
     fontWeight: 'bold',
   },
   pic: {
