@@ -17,17 +17,12 @@ export default function Login({navigation}: NavProps) {
     formState: {errors},
   } = useForm();
 
-  const {user, signIn} = useAuth();
+  const {signIn} = useAuth();
 
   const loginUser = async (data: FieldValues) => {
     try {
       await signIn(data.email, data.password);
-      if (user) {
-        navigation.navigate('BottomTabs');
-      } else {
-        console.log('verify email');
-      }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Failed to sign in:', error);
     }
   };
