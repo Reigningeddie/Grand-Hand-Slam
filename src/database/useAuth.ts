@@ -1,29 +1,33 @@
 import {useState, useEffect} from 'react';
-import auth from '@react-native-firebase/auth';
-import {FirebaseAuthTypes} from '@react-native-firebase/auth';
-import {Alert} from 'react-native';
+import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 
 export const useAuth = () => {
-  const [user, setUser] = useState<FirebaseAuthTypes.User | null>();
+  const [loading, setLoading] = useState<boolean>(true);
+  const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null);
 
   useEffect(() => {
-    const unsubscribe = auth().onAuthStateChanged(firebaseUser => {
-      setUser(firebaseUser);
+    auth().onAuthStateChanged(userState => {
+      setUser(userState);
+
+      if (loading) {
+        setLoading(false);
+      }
     });
-    return unsubscribe;
-  }, []);
+  });
+
+  // useEffect(() => {
+  //   const unsubscribe = auth().onAuthStateChanged(firebaseUser => {
+  //     setUser(firebaseUser);
+  //   });
+  //   return unsubscribe;
+  // }, []);
 
   const signIn = async (email: string, password: string) => {
     try {
       await auth().signInWithEmailAndPassword(email, password);
     } catch (error: any) {
-      console.error(error.code);
+      console.log(error.code);
       console.error(error.message);
-      if (error.code === 'auth/invalid-email') {
-        Alert.alert('No user with that E-mail was found');
-      } else if (error.code === 'auth/invalid-credential') {
-        Alert.alert('E-mail or password is incorrect.');
-      }
     }
   };
 
@@ -36,5 +40,5 @@ export const useAuth = () => {
     }
   };
 
-  return {user, signIn, signOut};
+  return {user, loading, signIn, signOut};
 };

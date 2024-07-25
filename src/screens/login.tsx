@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, Text, StyleSheet, TextInput, Pressable} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Pressable,
+  Alert,
+} from 'react-native';
 import {NavProps} from '../types/navigation';
 import {useForm, Controller, FieldValues} from 'react-hook-form';
 // import auth from '@react-native-firebase/auth';
@@ -16,38 +23,24 @@ export default function Login({navigation}: NavProps) {
     control,
     formState: {errors},
   } = useForm();
-
-  const {signIn} = useAuth();
+  const {user, signIn} = useAuth();
 
   const loginUser = async (data: FieldValues) => {
     try {
       await signIn(data.email, data.password);
+      if (!user) {
+        Alert.alert('incorrect credentials');
+      } else {
+        if (!user.emailVerified) {
+          Alert.alert('Please verify your email before logging in');
+        } else {
+          navigation.navigate('BottomTabs');
+        }
+      }
     } catch (error: any) {
       console.error('Failed to sign in:', error);
     }
   };
-
-  // const loginUser = async (data: FieldValues) => {
-  //   try {
-  //     const {user} = await auth().signInWithEmailAndPassword(
-  //       data.email,
-  //       data.password,
-  //     );
-  //     if (!user.emailVerified) {
-  //       Alert.alert('Please verify your email before logging in.');
-  //     } else {
-  //       navigation.navigate('BottomTabs');
-  //     }
-  //   } catch (error: any) {
-  //     console.log(error.code);
-  //     console.log(error.message);
-  //     if (error.code === 'auth/invalid-email') {
-  //       Alert.alert('No user with that E-mail was found');
-  //     } else if (error.code === 'auth/invalid-credential') {
-  //       Alert.alert('E-mail or password is incorrect.');
-  //     }
-  //   }
-  // };
 
   return (
     <View style={styles.body}>
