@@ -1,6 +1,6 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-// interface MetaData {
+// export interface MetaData {
 //   displayName: any;
 //   email: any;
 //   emailVerified: boolean;
@@ -14,6 +14,7 @@ export interface UserData {
   id: string;
   lastName: string;
   mobileNumber: number;
+  points: number;
 }
 
 export type NavigationList = {

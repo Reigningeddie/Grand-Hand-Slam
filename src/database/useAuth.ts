@@ -3,11 +3,11 @@ import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 
 export const useAuth = () => {
   const [loading, setLoading] = useState<boolean>(true);
-  const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null);
+  const [metaData, setMetaData] = useState<FirebaseAuthTypes.User | null>(null);
 
   useEffect(() => {
     auth().onAuthStateChanged(userState => {
-      setUser(userState);
+      setMetaData(userState);
 
       if (loading) {
         setLoading(false);
@@ -40,5 +40,5 @@ export const useAuth = () => {
     }
   };
 
-  return {user, loading, signIn, signOut};
+  return {metaData, loading, signIn, signOut};
 };

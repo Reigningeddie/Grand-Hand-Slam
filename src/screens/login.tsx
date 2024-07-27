@@ -23,15 +23,15 @@ export default function Login({navigation}: NavProps) {
     control,
     formState: {errors},
   } = useForm();
-  const {user, signIn} = useAuth();
+  const {metaData, signIn} = useAuth();
 
   const loginUser = async (data: FieldValues) => {
     try {
       await signIn(data.email, data.password);
-      if (!user) {
-        Alert.alert('incorrect credentials');
+      if (!metaData) {
+        Alert.alert('Incorrect credentials');
       } else {
-        if (!user.emailVerified) {
+        if (!metaData.emailVerified) {
           Alert.alert('Please verify your email before logging in');
         } else {
           navigation.navigate('BottomTabs');

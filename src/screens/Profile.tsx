@@ -11,8 +11,8 @@ const screenWidth = Dimensions.get('window').width;
 const thirds = screenWidth / 3;
 
 const Profile = (): React.JSX.Element => {
-  const {user, signOut} = useAuth();
-  console.log(user);
+  const {metaData, signOut} = useAuth();
+  console.log(metaData);
   return (
     <View>
       <ScrollView contentContainerStyle={styles.contentContainer}>
@@ -24,7 +24,7 @@ const Profile = (): React.JSX.Element => {
           </Pressable>
         </Text>
         <View style={styles.pic} />
-        <Text style={styles.user}>{`${user?.displayName}`}</Text>
+        <Text style={styles.user}>{`${metaData?.displayName}`}</Text>
         <View style={styles.flex}>
           <View style={styles.grid}>
             <Text style={styles.num}>150</Text>
