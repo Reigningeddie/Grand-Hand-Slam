@@ -2,6 +2,7 @@ import {StyleSheet, Text, View, ScrollView, Pressable} from 'react-native';
 import React from 'react';
 import {Dimensions} from 'react-native';
 import {useAuth} from '../database/useAuth';
+import firestore from '@react-native-firebase/firestore';
 // import {fetchUserData} from '../database/userData';
 // import {UserData} from '../types/navigation';
 
@@ -12,7 +13,18 @@ const thirds = screenWidth / 3;
 
 const Profile = (): React.JSX.Element => {
   const {metaData, signOut} = useAuth();
-  console.log(metaData);
+
+  //* turn this into a promise iin database file. then export to profile
+  const user = firestore()
+    .collection('users')
+    .doc(`${metaData?.uid}`)
+    .get()
+    .then(documentSnapshot => {
+      console.log('User:', documentSnapshot.id);
+    });
+  const points = user.collection('points').get();
+  console.log(points);
+  //*^^^^
   return (
     <View>
       <ScrollView contentContainerStyle={styles.contentContainer}>
