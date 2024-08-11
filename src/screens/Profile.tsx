@@ -1,10 +1,8 @@
 import {StyleSheet, Text, View, ScrollView, Pressable} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Dimensions} from 'react-native';
 import {useAuth} from '../database/useAuth';
-import firestore from '@react-native-firebase/firestore';
-// import {fetchUserData} from '../database/userData';
-// import {UserData} from '../types/navigation';
+import {userData} from '../types/navigation';
 
 //Get device Width
 const screenWidth = Dimensions.get('window').width;
@@ -13,18 +11,37 @@ const thirds = screenWidth / 3;
 
 const Profile = (): React.JSX.Element => {
   const {metaData, signOut} = useAuth();
+  const [user, setUser] = useState<UserData | null>(null);
 
-  //* turn this into a promise iin database file. then export to profile
-  const user = firestore()
-    .collection('users')
-    .doc(`${metaData?.uid}`)
-    .get()
-    .then(documentSnapshot => {
-      console.log('User:', documentSnapshot.id);
-    });
-  const points = user.collection('points').get();
-  console.log(points);
-  //*^^^^
+  useEffect(() => {
+    let isMounted = true;
+
+    const fetchData = async () => {
+      const data: any = await userData(metaData?.uid);
+      if (isMounted) {
+        setUser(data);
+      }
+    };
+
+    fetchData();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [metaData?.uid]);
+
+  console.log(user);
+
+  // const user = firestore()
+  //   .collection('users')
+  //   .doc(`${metaData?.uid}`)
+  //   .get()
+  //   .then(documentSnapshot => {
+  //     console.log('User:', documentSnapshot.id);
+  //   });
+  // const points = user.collection('points').get();
+  // console.log(points);
+
   return (
     <View>
       <ScrollView contentContainerStyle={styles.contentContainer}>
