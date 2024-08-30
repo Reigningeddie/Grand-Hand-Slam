@@ -1,0 +1,65 @@
+[33md6a0688[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m added proper types to user and metaData
+[33mc6e7f75[m figured out how to console log data from database
+[33m903ea5a[m changed from users variable to metaData
+[33m381779c[m posted username from database to profile
+[33m7870918[m removed redundant code in login.tsx
+[33m36b75b3[m added firebase types to useAuth
+[33mbf87db7[m reformatted login function to an outside component
+[33m3d2dfd0[m added useAuth function
+[33m98d0201[m pushed points from db to ui
+[33m6387faa[m added react.JSX.Element where necessary
+[33mc8c334d[m added interface to userData function
+[33m444d0d6[m consoled logged user data got new error
+[33mc0d31d4[m added points to firestore
+[33m9f0d29b[m removed firebase metadata from nav props
+[33mce906d0[m changed fetchData to userData
+[33mfea009d[m pulled data from firebase using fetchData module
+[33m9aaa713[m fixed fetdata.ts bug
+[33m4f40461[m working on database api
+[33m7a1b9fc[m added comments
+[33m19cb21a[m added some commments
+[33maf3b95b[m modded loginUser function
+[33mc5e7c13[m .
+[33m555bffa[m added first and last name to firestore collection
+[33m3de3345[m collected mobile number from firestore and displayname
+[33ma792781[m added firestore dependency and a firestore async function to take in mobilenumber
+[33m91c857d[m changed response await function to createUser
+[33me13e7a4[m removed type for navigation to rid of error
+[33m3adda4b[m optimizing signup async function
+[33m06675ef[m added a verify email alert before you can log into app
+[33m1cc69d6[m changed signup function to a async await
+[33m1277dbc[m updated react native package
+[33mf72c85c[m updated firebase app, auth and database to 19.0.1
+[33m6af45c1[m created firebase interface
+[33m67d84ee[m created controller for rest of form and consoled log data
+[33mc2b6583[m added login authentication
+[33m9a8ab0b[m added use state in login for email and password, and added 8 character min for signUp
+[33m1af6253[m added info and message for alert box
+[33mc11c25d[m added navigation in alert box to navigate to Login after profile is created
+[33m6dfea7a[m parsed password and email related firebase errors and made them user friendly
+[33m6ab5349[m passed data into existing functions
+[33mb330964[m added react-hook-form to signup
+[33m9c911ad[m bottom tabs leadrboard was poiting to profile instead of leaderboard
+[33mb30f67d[m added nested navigators
+[33m3667d9c[m changed app file location, created stack folder and added bottomTabs file
+[33m3a102f4[m added testSignUp function to test database
+[33mcd421d9[m added firebase/auth dependency
+[33m35ceac8[m configured android firebase
+[33m34b081f[m downloaded firebase dependencies
+[33mc357175[m Merge branch 'main' of github.com:Reigningeddie/Grand-Hand-Slam
+[33m5f9a8ca[m impor file for leaderboard was underThree component instead of leaderboard screen
+[33mfe5e506[m changed all instances of ghs
+[33m78ad9a4[m changed all instances of ghs to grand_hand_slam - to make sure noting goes wrong on host
+[33m87a9d90[m tested scroll view on leaderboard -pass
+[33m12ac7d9[m created underThree component and added to LeaderBoard
+[33mda20af9[m created leaderboard screen and top3 component
+[33mc451755[m added bottom tabs dependency
+[33me939383[m removed unecessary scroll props and css
+[33m0b4d808[m added scroll view and tested with hard code to make sure it works
+[33me71f74d[m created profile and added it to navigation
+[33m2495234[m added securetext entry to sign up screen and removed header in login
+[33m181f320[m added navigation to SignUp from login screen
+[33m69c95f8[m uploaded navigation screens and area context and modified app.tsx to show screens
+[33m4e24c05[m formatted app.tsx and created login screen
+[33m417076e[m initial commit
+[33m8f4c922[m Initial commit

@@ -1,12 +1,12 @@
 import firestore from '@react-native-firebase/firestore';
-import {UserData} from '../types/navigation';
+import {User} from '../types/navigation';
 
-export const fetchUserData = async (): Promise<UserData[]> => {
+export const fetchUserData = async (): Promise<User[]> => {
   try {
     const collect = await firestore().collection('users').get();
-    const data: UserData[] = [];
+    const data: User[] = [];
     collect.forEach(doc => {
-      data.push({id: doc.id, ...doc.data()} as UserData);
+      data.push({id: doc.id, ...doc.data()} as User);
     });
     console.log(data);
     return data;
