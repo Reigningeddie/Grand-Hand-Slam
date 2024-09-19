@@ -1,14 +1,5 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-// export interface MetaData {
-//   displayName: any;
-//   email: any;
-//   emailVerified: boolean;
-//   isAnonymous: boolean;
-//   phoneNumber: any;
-//   photoURL: any;
-// }
-
 export interface User {
   firstName: string;
   id: string;
