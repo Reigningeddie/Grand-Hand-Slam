@@ -1,38 +1,13 @@
 import {StyleSheet, Text, View, ScrollView, Pressable} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Dimensions} from 'react-native';
-import {useAuth} from '../database/useAuth';
-import {userData} from '../database/data';
 
 //Get device Width
-//help
 const screenWidth = Dimensions.get('window').width;
 
 const thirds = screenWidth / 3;
 
 const Profile = (): React.JSX.Element => {
-  const {metaData, signOut} = useAuth();
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    let isMounted = true;
-
-    const fetchData = async () => {
-      const data = await userData(metaData?.uid);
-      if (isMounted) {
-        setUser(data);
-      }
-    };
-
-    fetchData();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [metaData?.uid]);
-
-  console.log(user);
-
   // const user = firestore()
   //   .collection('users')
   //   .doc(`${metaData?.uid}`)
@@ -49,12 +24,12 @@ const Profile = (): React.JSX.Element => {
         <View style={styles.banner} />
         <Text style={styles.txt}>
           Grand Hand Slam{' '}
-          <Pressable onPress={signOut}>
+          <Pressable>
             <Text>O</Text>
           </Pressable>
         </Text>
         <View style={styles.pic} />
-        <Text style={styles.user}>{`${metaData?.displayName}`}</Text>
+        <Text style={styles.user}>Reigningeddie</Text>
         <View style={styles.flex}>
           <View style={styles.grid}>
             <Text style={styles.num}>150</Text>
