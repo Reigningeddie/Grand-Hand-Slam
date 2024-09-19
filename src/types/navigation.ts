@@ -25,7 +25,6 @@ export type NavigationList = {
   LeaderBoard: any;
   SignUp: any;
   Home: any;
-  Search: any;
 };
 
 // export type NavProp = RouteProp<NavigationParamList, 'Login'>;

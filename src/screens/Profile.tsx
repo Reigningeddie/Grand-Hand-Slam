@@ -2,7 +2,11 @@ import {StyleSheet, Text, View, ScrollView, Pressable} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {Dimensions} from 'react-native';
 import {useAuth} from '../database/useAuth';
+<<<<<<< HEAD
 import {userData} from '../database/data';
+=======
+import {userData} from '../types/navigation';
+>>>>>>> d6a0688081ce6fc2ebda965bd6903fe445674ee7
 
 //Get device Width
 const screenWidth = Dimensions.get('window').width;
@@ -11,13 +15,21 @@ const thirds = screenWidth / 3;
 
 const Profile = (): React.JSX.Element => {
   const {metaData, signOut} = useAuth();
+<<<<<<< HEAD
   const [user, setUser] = useState(null);
+=======
+  const [user, setUser] = useState<UserData | null>(null);
+>>>>>>> d6a0688081ce6fc2ebda965bd6903fe445674ee7
 
   useEffect(() => {
     let isMounted = true;
 
     const fetchData = async () => {
+<<<<<<< HEAD
       const data = await userData(metaData?.uid);
+=======
+      const data: any = await userData(metaData?.uid);
+>>>>>>> d6a0688081ce6fc2ebda965bd6903fe445674ee7
       if (isMounted) {
         setUser(data);
       }

@@ -19,11 +19,6 @@ function BottomTabs(): React.JSX.Element {
         component={LeaderBoard}
         options={{headerShown: false}}
       />
-      <Home.Screen
-        name="Search"
-        component={LeaderBoard}
-        options={{headerShown: false}}
-      />
     </Home.Navigator>
   );
 }
