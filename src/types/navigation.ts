@@ -8,16 +8,22 @@ export interface User {
   points: number;
 }
 
-export type NavigationList = {
-  Auth: undefined;
-  BottomTabs: undefined;
+export type AuthList = {
   Login: any;
-  Profile: any;
-  LeaderBoard: any;
   SignUp: any;
+  BottomTabs: undefined;
+};
+
+export type BottomTabsList = {
   Home: any;
+  LeaderBoard: any;
   Search: any;
 };
 
+export type RootList = {
+  Auth: undefined;
+  BottomTabs: undefined;
+};
+
 // export type NavProp = RouteProp<NavigationParamList, 'Login'>;
-export type NavProps = NativeStackScreenProps<NavigationList>;
+export type NavProps = NativeStackScreenProps<AuthList>;
