@@ -8,6 +8,8 @@ export interface User {
   points: number;
 }
 
+//! figure out how to keep bottomTabs only in bottomTabs list
+
 export type AuthList = {
   Login: any;
   SignUp: any;
