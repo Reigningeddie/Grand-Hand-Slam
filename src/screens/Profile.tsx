@@ -1,13 +1,14 @@
 import {StyleSheet, Text, View, ScrollView, Pressable} from 'react-native';
 import React from 'react';
 import {Dimensions} from 'react-native';
+import {TEST} from '@env';
 
 //Get device Width
 const screenWidth = Dimensions.get('window').width;
 
 const thirds = screenWidth / 3;
 
-const Profile = (): React.JSX.Element => {
+export default function Profile(): React.JSX.Element {
   // const user = firestore()
   //   .collection('users')
   //   .doc(`${metaData?.uid}`)
@@ -17,7 +18,6 @@ const Profile = (): React.JSX.Element => {
   //   });
   // const points = user.collection('points').get();
   // console.log(points);
-
   return (
     <View>
       <ScrollView contentContainerStyle={styles.contentContainer}>
@@ -29,7 +29,7 @@ const Profile = (): React.JSX.Element => {
           </Pressable>
         </Text>
         <View style={styles.pic} />
-        <Text style={styles.user}>Reigningeddie</Text>
+        <Text style={styles.user}>{TEST}</Text>
         <View style={styles.flex}>
           <View style={styles.grid}>
             <Text style={styles.num}>150</Text>
@@ -57,9 +57,7 @@ const Profile = (): React.JSX.Element => {
       </ScrollView>
     </View>
   );
-};
-
-export default Profile;
+}
 
 const styles = StyleSheet.create({
   contentContainer: {
