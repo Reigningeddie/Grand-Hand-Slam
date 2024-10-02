@@ -74,7 +74,11 @@ export default function Login({navigation}: NavProps) {
       />
       {errors.password && <Text style={styles.require}>*Required</Text>}
       <Pressable style={styles.LoginBtn}>
-        <Text style={styles.loginTxt}>Login</Text>
+        <Text
+          style={styles.loginTxt}
+          onPress={() => navigation.navigate('BottomTabs')}>
+          Login
+        </Text>
       </Pressable>
       <Text style={styles.text}>
         Don't have an account?
