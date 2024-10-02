@@ -6,69 +6,65 @@ import {
   TextInput,
   Pressable,
   Dimensions,
-  Alert,
 } from 'react-native';
 import {NavProps} from '../types/navigation';
-import {useForm, Controller, FieldValues} from 'react-hook-form';
-import auth from '@react-native-firebase/auth';
-import firestore from '@react-native-firebase/firestore';
-// import database from '@react-native-firebase/database';
+import {useForm, Controller} from 'react-hook-form';
 
 const screenWidth = Dimensions.get('window').width;
 
 const thirds = screenWidth / -1.3;
 
-export default function SignUp({navigation}: NavProps): React.JSX.Element {
+export default function SignUp({}: NavProps): React.JSX.Element {
+  //use FieldValue handle submit in useForm
   const {
-    handleSubmit,
     control,
     formState: {errors},
   } = useForm();
 
-  function verifyPassword(data: FieldValues) {
-    if (data.password !== data.confirmPassword) {
-      Alert.alert('passwords do not match.');
-    } else if (data.password.length < 8) {
-      Alert.alert('password must contain at least 8 characters.');
-    } else {
-      signUp(data);
-    }
-  }
+  // function verifyPassword(data: FieldValues) {
+  //   if (data.password !== data.confirmPassword) {
+  //     Alert.alert('passwords do not match.');
+  //   } else if (data.password.length < 8) {
+  //     Alert.alert('password must contain at least 8 characters.');
+  //   } else {
+  //     signUp(data);
+  //   }
+  // }
 
-  const signUp = async (data: FieldValues) => {
-    try {
-      const createUser = await auth().createUserWithEmailAndPassword(
-        data.email,
-        data.password,
-      );
-      if (createUser.user) {
-        Alert.alert('Welcome to Grand Hand Slam', 'Please verify e-mail.', [
-          {
-            text: 'ok',
-            onPress: () => {
-              navigation.navigate('Login');
-            },
-          },
-        ]);
-      }
-      await createUser.user.updateProfile({displayName: data.username});
-      await firestore().collection('users').doc(createUser.user.uid).set({
-        mobileNumber: data.mobileNumber,
-        firstName: data.firstName,
-        lastName: data.lastName,
-        points: 0,
-      });
-      await createUser.user.sendEmailVerification();
-    } catch (err: any) {
-      console.log(err.code);
-      console.log(err.message);
-      if (err.code === 'auth/invalid-email') {
-        Alert.alert('Not a verified e-mail');
-      } else if (err.code === 'auth/email-already-in-use') {
-        Alert.alert('e-mail already signed up. try resetting your password.');
-      }
-    }
-  };
+  // const signUp = async (data: FieldValues) => {
+  //   try {
+  //     const createUser = await auth().createUserWithEmailAndPassword(
+  //       data.email,
+  //       data.password,
+  //     );
+  //     if (createUser.user) {
+  //       Alert.alert('Welcome to Grand Hand Slam', 'Please verify e-mail.', [
+  //         {
+  //           text: 'ok',
+  //           onPress: () => {
+  //             navigation.navigate('Login');
+  //           },
+  //         },
+  //       ]);
+  //     }
+  //     await createUser.user.updateProfile({displayName: data.username});
+  //     await firestore().collection('users').doc(createUser.user.uid).set({
+  //       mobileNumber: data.mobileNumber,
+  //       firstName: data.firstName,
+  //       lastName: data.lastName,
+  //       points: 0,
+  //     });
+  //     await createUser.user.sendEmailVerification();
+  //   } catch (err: any) {
+  //     console.log(err.code);
+  //     console.log(err.message);
+  //     if (err.code === 'auth/invalid-email') {
+  //       Alert.alert('Not a verified e-mail');
+  //     } else if (err.code === 'auth/email-already-in-use') {
+  //       Alert.alert('e-mail already signed up. try resetting your password.');
+  //     }
+  //   }
+  // };
 
   return (
     <View style={styles.body}>
@@ -187,9 +183,7 @@ export default function SignUp({navigation}: NavProps): React.JSX.Element {
         defaultValue=""
       />
       {errors.confirmPassword && <Text style={styles.require}>*Required</Text>}
-      <Pressable
-        onPress={handleSubmit(data => verifyPassword(data))}
-        style={styles.btn}>
+      <Pressable style={styles.btn}>
         <Text style={styles.signUp}>Sign Up</Text>
       </Pressable>
     </View>

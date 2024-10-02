@@ -1,16 +1,7 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  Pressable,
-  Alert,
-} from 'react-native';
+import {View, Text, StyleSheet, TextInput, Pressable} from 'react-native';
 import {NavProps} from '../types/navigation';
-import {useForm, Controller, FieldValues} from 'react-hook-form';
-// import auth from '@react-native-firebase/auth';
-import {useAuth} from '../database/useAuth';
+import {useForm, Controller} from 'react-hook-form';
 
 // import firestore from '@react-native-firebase/firestore';
 
@@ -19,28 +10,28 @@ import {useAuth} from '../database/useAuth';
 
 export default function Login({navigation}: NavProps) {
   const {
-    handleSubmit,
+    // handleSubmit,
     control,
     formState: {errors},
   } = useForm();
-  const {metaData, signIn} = useAuth();
+  // const {metaData, signIn} = useAuth();
 
-  const loginUser = async (data: FieldValues) => {
-    try {
-      await signIn(data.email, data.password);
-      if (!metaData) {
-        Alert.alert('Incorrect credentials');
-      } else {
-        if (!metaData.emailVerified) {
-          Alert.alert('Please verify your email before logging in');
-        } else {
-          navigation.navigate('BottomTabs');
-        }
-      }
-    } catch (error: any) {
-      console.error('Failed to sign in:', error);
-    }
-  };
+  // const loginUser = async (data: FieldValues) => {
+  //   try {
+  //     await signIn(data.email, data.password);
+  //     if (!metaData) {
+  //       Alert.alert('Incorrect credentials');
+  //     } else {
+  //       if (!metaData.emailVerified) {
+  //         Alert.alert('Please verify your email before logging in');
+  //       } else {
+  //         navigation.navigate('BottomTabs');
+  //       }
+  //     }
+  //   } catch (error: any) {
+  //     console.error('Failed to sign in:', error);
+  //   }
+  // };
 
   return (
     <View style={styles.body}>
@@ -82,9 +73,7 @@ export default function Login({navigation}: NavProps) {
         defaultValue=""
       />
       {errors.password && <Text style={styles.require}>*Required</Text>}
-      <Pressable
-        style={styles.LoginBtn}
-        onPress={handleSubmit(data => loginUser(data))}>
+      <Pressable style={styles.LoginBtn}>
         <Text style={styles.loginTxt}>Login</Text>
       </Pressable>
       <Text style={styles.text}>
