@@ -1,7 +1,8 @@
 {
   "cSpell.words": [
     "firestore",
-    "Leaderboard"
+    "Leaderboard",
+    "rneui"
   ],
   "discord.enabled": false,
   "CodeGPT.apiKey": "Anthropic"
