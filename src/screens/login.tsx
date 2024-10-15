@@ -1,35 +1,66 @@
 import React from 'react';
 import {View, Text, StyleSheet, TextInput, Pressable} from 'react-native';
 import {NavProps} from '../types/navigation';
-import {useForm, Controller} from 'react-hook-form';
-
-// import firestore from '@react-native-firebase/firestore';
+import {useForm, Controller, FieldValues} from 'react-hook-form';
+// import {supabase} from '../database/supabase';
 
 //! check if client wants to know when users are online - (use initialize in firebase)
 //*move phone number to settings from initial sign up component
 
-export default function Login({navigation}: NavProps) {
+export default function Login({navigation}: NavProps): React.JSX.Element {
   const {
-    // handleSubmit,
+    handleSubmit,
     control,
     formState: {errors},
   } = useForm();
-  // const {metaData, signIn} = useAuth();
 
-  // const loginUser = async (data: FieldValues) => {
+  // const signIn = async (email: any, password: any) => {
+  //   const {data, error} = await supabase.auth.signInWithPassword({
+  //     email,
+  //     password,
+  //   });
+
+  //   if (error) {
+  //     throw error;
+  //   }
+  //   return data;
+  // };
+
+  const loginUser = async (info: FieldValues) => {
+    console.log(info.email, info.password);
+  };
+
+  // const loginUser = async (info: FieldValues) => {
   //   try {
-  //     await signIn(data.email, data.password);
-  //     if (!metaData) {
-  //       Alert.alert('Incorrect credentials');
+  //     const {data, error} = await signIn(info.email, info.password);
+
+  //     if (error) {
+  //       console.error('Login failed:', error.message);
+  //       Alert.alert('Login Failed', error.message);
   //     } else {
-  //       if (!metaData.emailVerified) {
-  //         Alert.alert('Please verify your email before logging in');
+  //       // Check if email is verified
+  //       const {data: userData, error: verificationError} =
+  //         await supabase.auth.getUser();
+
+  //       if (verificationError || !userData.user.email_verified_at) {
+  //         Alert.alert('Email not verified');
   //       } else {
   //         navigation.navigate('BottomTabs');
   //       }
   //     }
-  //   } catch (error: any) {
+  //   } catch (error) {
   //     console.error('Failed to sign in:', error);
+  //     Alert.alert('Login Error', 'An unexpected error occurred');
+  //   }
+  // };
+
+  // const loginUser = async (data: FieldValues) => {
+  //   try {
+  //     await auth().signInWithEmailAndPassword(data.email, data.password);
+  //     navigation.navigate('BottomTabs');
+  //   } catch (error) {
+  //     console.error('Failed to sign in:', error);
+  //     Alert.alert('Login Error', 'Invalid email or password');
   //   }
   // };
 
@@ -74,9 +105,7 @@ export default function Login({navigation}: NavProps) {
       />
       {errors.password && <Text style={styles.require}>*Required</Text>}
       <Pressable style={styles.LoginBtn}>
-        <Text
-          style={styles.loginTxt}
-          onPress={() => navigation.navigate('BottomTabs')}>
+        <Text style={styles.loginTxt} onPress={handleSubmit(loginUser)}>
           Login
         </Text>
       </Pressable>

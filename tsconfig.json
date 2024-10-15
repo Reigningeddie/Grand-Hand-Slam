@@ -5,6 +5,6 @@
     "baseUrl": ".",
     "paths": {
       "@env": ["node_modules/react-native-dotenv"]
-    }
+    },
   }
 }

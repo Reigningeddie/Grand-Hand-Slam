@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View, ScrollView, Pressable} from 'react-native';
 import React from 'react';
 import {Dimensions} from 'react-native';
-// import {TEST} from '@env';
+import {TEST} from '@env';
 
 //Get device Width
 const screenWidth = Dimensions.get('window').width;
@@ -29,7 +29,7 @@ export default function Profile(): React.JSX.Element {
           </Pressable>
         </Text>
         <View style={styles.pic} />
-        <Text style={styles.user}>Reigningeddie</Text>
+        <Text style={styles.user}>{TEST}</Text>
         <View style={styles.flex}>
           <View style={styles.grid}>
             <Text style={styles.num}>150</Text>
