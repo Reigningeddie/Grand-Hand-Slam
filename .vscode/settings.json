@@ -5,5 +5,5 @@
     "rneui"
   ],
   "discord.enabled": false,
-  "CodeGPT.apiKey": "Anthropic"
+  "CodeGPT.apiKey": "OpenAI"
 }
