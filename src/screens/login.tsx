@@ -14,7 +14,7 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
   };
 
   const validateEmail = (email: string) => {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const re = /^[^\s@]+@[^\s@]+\.(?:com|net|org|edu)$/i;
     return re.test(email);
   };
 
