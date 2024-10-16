@@ -8,6 +8,11 @@ export interface User {
   points: number;
 }
 
+export interface FormData {
+  email: string;
+  password: string;
+}
+
 //! figure out how to keep bottomTabs only in bottomTabs list
 
 export type AuthList = {

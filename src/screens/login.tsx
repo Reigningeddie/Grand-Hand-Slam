@@ -1,127 +1,79 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, StyleSheet, TextInput, Pressable} from 'react-native';
 import {NavProps} from '../types/navigation';
-import {useForm, Controller, FieldValues} from 'react-hook-form';
-// import {supabase} from '../database/supabase';
-
-//! check if client wants to know when users are online - (use initialize in firebase)
-//*move phone number to settings from initial sign up component
 
 export default function Login({navigation}: NavProps): React.JSX.Element {
-  const {
-    handleSubmit,
-    control,
-    formState: {errors},
-  } = useForm();
+  const [emailValue, setEmail] = useState('');
+  const [passwordValue, setPassword] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
 
-  // const signIn = async (email: any, password: any) => {
-  //   const {data, error} = await supabase.auth.signInWithPassword({
-  //     email,
-  //     password,
-  //   });
-
-  //   if (error) {
-  //     throw error;
-  //   }
-  //   return data;
-  // };
-
-  const loginUser = async (info: FieldValues) => {
-    console.log(info.email, info.password);
+  const loginUser = async () => {
+    console.log(emailValue, passwordValue);
+    // Add your login logic here
   };
 
-  // const loginUser = async (info: FieldValues) => {
-  //   try {
-  //     const {data, error} = await signIn(info.email, info.password);
+  const validateEmail = (email: string) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  };
 
-  //     if (error) {
-  //       console.error('Login failed:', error.message);
-  //       Alert.alert('Login Failed', error.message);
-  //     } else {
-  //       // Check if email is verified
-  //       const {data: userData, error: verificationError} =
-  //         await supabase.auth.getUser();
-
-  //       if (verificationError || !userData.user.email_verified_at) {
-  //         Alert.alert('Email not verified');
-  //       } else {
-  //         navigation.navigate('BottomTabs');
-  //       }
-  //     }
-  //   } catch (error) {
-  //     console.error('Failed to sign in:', error);
-  //     Alert.alert('Login Error', 'An unexpected error occurred');
-  //   }
-  // };
-
-  // const loginUser = async (data: FieldValues) => {
-  //   try {
-  //     await auth().signInWithEmailAndPassword(data.email, data.password);
-  //     navigation.navigate('BottomTabs');
-  //   } catch (error) {
-  //     console.error('Failed to sign in:', error);
-  //     Alert.alert('Login Error', 'Invalid email or password');
-  //   }
-  // };
+  const validatePassword = (password: string) => {
+    return password.length >= 6;
+  };
 
   return (
     <View style={styles.body}>
       <View style={styles.logo}>
         <Text style={styles.logoTxt}>Logo</Text>
       </View>
-      <Controller
-        control={control}
-        render={({field: {onChange, onBlur, value}}) => (
-          <TextInput
-            style={styles.input}
-            placeholder={'E-mail'}
-            placeholderTextColor="#1B1B1B"
-            value={value}
-            onChangeText={input => onChange(input)}
-            onBlur={onBlur}
-          />
-        )}
-        name="email"
-        rules={{required: true}}
-        defaultValue=""
+      <TextInput
+        style={styles.input}
+        secureTextEntry={true}
+        placeholder={'E-mail'}
+        placeholderTextColor="#1B1B1B"
+        value={emailValue}
+        onChangeText={text => {
+          setEmail(text);
+          setEmailError(
+            validateEmail(text) ? '' : 'Please enter a valid email address',
+          );
+        }}
       />
-      {errors.email && <Text style={styles.require}>*Required</Text>}
-      <Controller
-        control={control}
-        render={({field: {onChange, onBlur, value}}) => (
-          <TextInput
-            style={styles.input}
-            secureTextEntry={true}
-            placeholder={'password'}
-            value={value}
-            onChangeText={input => onChange(input)}
-            onBlur={onBlur}
-            placeholderTextColor="#1B1B1B"
-          />
-        )}
-        name="password"
-        rules={{required: true}}
-        defaultValue=""
+      {emailError && <Text style={styles.require}>{emailError}</Text>}
+
+      <TextInput
+        style={styles.input}
+        secureTextEntry={true}
+        placeholder={'Password'}
+        placeholderTextColor="#1B1B1B"
+        value={passwordValue}
+        onChangeText={text => {
+          setPassword(text);
+          setPasswordError(
+            validatePassword(text)
+              ? ''
+              : 'Password must be at least 6 characters long',
+          );
+        }}
       />
-      {errors.password && <Text style={styles.require}>*Required</Text>}
-      <Pressable style={styles.LoginBtn}>
-        <Text style={styles.loginTxt} onPress={handleSubmit(loginUser)}>
-          Login
-        </Text>
+      {passwordError && <Text style={styles.require}>{passwordError}</Text>}
+
+      <Pressable style={styles.LoginBtn} onPress={loginUser}>
+        <Text style={styles.loginTxt}>Login</Text>
       </Pressable>
+
       <Text style={styles.text}>
         Don't have an account?
         <Text
           style={styles.signUpTxt}
           onPress={() => navigation.navigate('SignUp')}>
-          {' '}
           SignUp
         </Text>
       </Text>
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   body: {
     flex: 1,
