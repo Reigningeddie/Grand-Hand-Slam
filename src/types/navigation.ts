@@ -8,10 +8,13 @@ export interface User {
   points: number;
 }
 
-export interface FormData {
-  email: string;
-  password: string;
-}
+export type AuthContextType = {
+  AuthUser: string;
+  isLoading: boolean;
+  login: (email: string, password: string) => Promise<{data: any; error?: any}>;
+  logout: () => Promise<void>;
+  err: string | null;
+};
 
 //! figure out how to keep bottomTabs only in bottomTabs list
 

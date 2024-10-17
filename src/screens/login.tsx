@@ -19,8 +19,28 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
   const {login} = useAuth();
 
   const loginUser = async () => {
+    if (!validateEmail(emailValue)) {
+      Alert.alert('Error', 'Please enter a valid email address');
+      return;
+    }
+
+    if (!validatePassword(passwordValue)) {
+      Alert.alert('Error', 'Password must be at least 6 characters long');
+      return;
+    }
     try {
-      await login(emailValue, passwordValue);
+      const {data, error} = await login(emailValue, passwordValue);
+      if (error && typeof error.message === 'string') {
+        if (error.message.includes('Invalid login credential')) {
+          throw new Error('Invalid login credential');
+          Alert.alert('Invalid credentials')
+          return;
+        }
+        throw new Error(`Authentication error: ${error.message}`);
+      }
+      if (!data.session) {
+        throw new Error('No session returned after login');
+      }
       console.log('Login successful!');
       navigation.navigate('BottomTabs');
     } catch (error) {
