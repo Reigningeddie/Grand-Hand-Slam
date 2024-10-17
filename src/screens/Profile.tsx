@@ -29,7 +29,7 @@ export default function Profile(): React.JSX.Element {
           </Pressable>
         </Text>
         <View style={styles.pic} />
-        <Text style={styles.user}>{TEST}</Text>
+        <Text style={styles.user}>Reigningeddie</Text>
         <View style={styles.flex}>
           <View style={styles.grid}>
             <Text style={styles.num}>150</Text>

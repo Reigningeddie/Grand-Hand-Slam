@@ -1,6 +1,14 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, TextInput, Pressable} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Pressable,
+  Alert,
+} from 'react-native';
 import {NavProps} from '../types/navigation';
+import {useAuth} from '../database/authContext';
 
 export default function Login({navigation}: NavProps): React.JSX.Element {
   const [emailValue, setEmail] = useState('');
@@ -8,9 +16,17 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
+  const {login} = useAuth();
+
   const loginUser = async () => {
-    console.log(emailValue, passwordValue);
-    // Add your login logic here
+    try {
+      await login(emailValue, passwordValue);
+      console.log('Login successful!');
+      navigation.navigate('BottomTabs');
+    } catch (error) {
+      console.log('Login failed:', error);
+      Alert.alert('Failed to login, try again later');
+    }
   };
 
   const validateEmail = (email: string) => {

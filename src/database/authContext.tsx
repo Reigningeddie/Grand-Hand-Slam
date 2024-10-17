@@ -3,10 +3,11 @@ import React, {createContext, useContext, useState, useEffect} from 'react';
 import {supabase} from '../database/supabase';
 
 type AuthContextType = {
-  AuthUser: any;
+  AuthUser: string;
   isLoading: boolean;
-  login: (email: string, password: string) => Promise<void>;
+  login: (email: string, password: string) => Promise<{data: any; error?: any}>;
   logout: () => Promise<void>;
+  err: string | null;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -16,6 +17,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
 }) => {
   const [AuthUser, setAuthUser] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [err, setErr] = useState<string | null>(null);
 
   useEffect(() => {
     const loadUser = async () => {
@@ -26,6 +28,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
         setAuthUser(user);
       } catch (error) {
         console.error('Error loading user:', error);
+        setErr('Failed to load user');
       } finally {
         setIsLoading(false);
       }
@@ -34,24 +37,32 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
     loadUser();
   }, []);
 
-  const login = async (email: string, password: string) => {
+  const login = async (
+    email: string,
+    password: string,
+  ): Promise<{data: any; error?: any}> => {
+    setErr(null);
     try {
-      const {data, error} = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
+      const {data, error: supabaseError} =
+        await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
 
-      if (error) {
-        throw error;
+      if (supabaseError) {
+        throw new Error(supabaseError.message);
       }
 
-      if (!data.session) {
+      if (!data?.session) {
         throw new Error('No session returned after login');
       }
 
       setAuthUser(data.user);
+      return {data, error: null};
     } catch (error) {
       console.error('Login failed:', error);
+      setErr(error instanceof Error ? error.message : 'An unknown error occurred during login');
+      return {data: null, error};
     }
   };
 
@@ -61,11 +72,12 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
       setAuthUser(null);
     } catch (error) {
       console.error('Logout failed:', error);
+      setErr('Failed to sign out');
     }
   };
 
   return (
-    <AuthContext.Provider value={{AuthUser, isLoading, login, logout}}>
+    <AuthContext.Provider value={{AuthUser, isLoading, login, logout, err}}>
       {!isLoading && children}
     </AuthContext.Provider>
   );
