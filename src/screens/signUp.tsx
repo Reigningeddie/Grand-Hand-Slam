@@ -20,6 +20,8 @@ export default function SignUp({}: NavProps): React.JSX.Element {
   const [email, setEmail] = useState('');
   const [mobileNumber, setNumber] = useState('');
   const [password, setPassword] = useState('');
+  
+  console.log(firstName, lastName, email, mobileNumber, password);
 
   return (
     <View style={styles.body}>
