@@ -33,8 +33,6 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
       if (error && typeof error.message === 'string') {
         if (error.message.includes('Invalid login credential')) {
           throw new Error('Invalid login credential');
-          Alert.alert('Invalid credentials')
-          return;
         }
         throw new Error(`Authentication error: ${error.message}`);
       }
@@ -69,10 +67,10 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
         placeholder={'E-mail'}
         placeholderTextColor="#1B1B1B"
         value={emailValue}
-        onChangeText={text => {
-          setEmail(text);
+        onChangeText={input => {
+          setEmail(input);
           setEmailError(
-            validateEmail(text) ? '' : 'Please enter a valid email address',
+            validateEmail(input) ? '' : 'Please enter a valid email address',
           );
         }}
       />
@@ -84,10 +82,10 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
         placeholder={'Password'}
         placeholderTextColor="#1B1B1B"
         value={passwordValue}
-        onChangeText={text => {
-          setPassword(text);
+        onChangeText={input => {
+          setPassword(input);
           setPasswordError(
-            validatePassword(text)
+            validatePassword(input)
               ? ''
               : 'Password must be at least 6 characters long',
           );

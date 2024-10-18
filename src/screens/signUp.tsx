@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   Text,
@@ -8,167 +8,71 @@ import {
   Dimensions,
 } from 'react-native';
 import {NavProps} from '../types/navigation';
-import {useForm, Controller} from 'react-hook-form';
 
 const screenWidth = Dimensions.get('window').width;
 
 const thirds = screenWidth / -1.3;
 
 export default function SignUp({}: NavProps): React.JSX.Element {
-  //use FieldValue handle submit in useForm
-  const {
-    control,
-    formState: {errors},
-  } = useForm();
-
-  // function verifyPassword(data: FieldValues) {
-  //   if (data.password !== data.confirmPassword) {
-  //     Alert.alert('passwords do not match.');
-  //   } else if (data.password.length < 8) {
-  //     Alert.alert('password must contain at least 8 characters.');
-  //   } else {
-  //     signUp(data);
-  //   }
-  // }
-
-  // const signUp = async (data: FieldValues) => {
-  //   try {
-  //     const createUser = await auth().createUserWithEmailAndPassword(
-  //       data.email,
-  //       data.password,
-  //     );
-  //     if (createUser.user) {
-  //       Alert.alert('Welcome to Grand Hand Slam', 'Please verify e-mail.', [
-  //         {
-  //           text: 'ok',
-  //           onPress: () => {
-  //             navigation.navigate('Login');
-  //           },
-  //         },
-  //       ]);
-  //     }
-  //     await createUser.user.updateProfile({displayName: data.username});
-  //     await firestore().collection('users').doc(createUser.user.uid).set({
-  //       mobileNumber: data.mobileNumber,
-  //       firstName: data.firstName,
-  //       lastName: data.lastName,
-  //       points: 0,
-  //     });
-  //     await createUser.user.sendEmailVerification();
-  //   } catch (err: any) {
-  //     console.log(err.code);
-  //     console.log(err.message);
-  //     if (err.code === 'auth/invalid-email') {
-  //       Alert.alert('Not a verified e-mail');
-  //     } else if (err.code === 'auth/email-already-in-use') {
-  //       Alert.alert('e-mail already signed up. try resetting your password.');
-  //     }
-  //   }
-  // };
+  const [firstName, setFirst] = useState('');
+  const [lastName, setLast] = useState('');
+  const [userName, setUser] = useState('');
+  const [email, setEmail] = useState('');
+  const [mobileNumber, setNumber] = useState('');
+  const [password, setPassword] = useState('');
 
   return (
     <View style={styles.body}>
       <Text style={styles.txt}>Let's get you signed up!</Text>
       <View style={styles.name}>
-        <Controller
-          control={control}
-          render={({field: {onChange, value}}) => (
             <TextInput
               style={styles.nameInput}
               placeholder={'First Name'}
               placeholderTextColor="#1B1B1B"
-              value={value}
-              onChangeText={input => onChange(input)}
+              value={firstName}
+              onChangeText={input => setFirst(input)}
             />
-          )}
-          name="firstName"
-          defaultValue=""
-        />
-        <Controller
-          control={control}
-          render={({field: {onChange, value}}) => (
             <TextInput
               style={styles.nameInput}
               placeholder={'Last Name'}
               placeholderTextColor="#1B1B1B"
-              value={value}
-              onChangeText={input => onChange(input)}
+              value={lastName}
+              onChangeText={input => setLast(input)}
             />
-          )}
-          name="lastName"
-          defaultValue=""
-        />
       </View>
-      <Controller
-        control={control}
-        render={({field: {onChange, onBlur, value}}) => (
           <TextInput
             style={styles.input}
             placeholder={'Create a User Name'}
             placeholderTextColor="#1B1B1B"
-            value={value}
-            onChangeText={input => onChange(input)}
-            onBlur={onBlur}
+            value={userName}
+            onChangeText={input => setUser(input)}
           />
-        )}
-        name="username"
-        rules={{required: true}}
-        defaultValue=""
-      />
-      {errors.username && <Text style={styles.require}>*Required</Text>}
-      <Controller
-        control={control}
-        render={({field: {onChange, onBlur, value}}) => (
+      {/* {errors.username && <Text style={styles.require}>*Required</Text>} */}
           <TextInput
             style={styles.input}
-            value={value}
-            onChangeText={input => onChange(input)}
-            onBlur={onBlur}
+            value={email}
+            onChangeText={input => setEmail(input)}
             placeholder={'Email'}
             placeholderTextColor="#1B1B1B"
           />
-        )}
-        name="email"
-        rules={{required: true}}
-        defaultValue=""
-      />
-      {errors.email && <Text style={styles.require}>*Required</Text>}
-      <Controller
-        control={control}
-        render={({field: {onChange, value}}) => (
+      {/* {errors.email && <Text style={styles.require}>*Required</Text>} */}
           <TextInput
             style={styles.input}
             placeholder={'Mobile Number'}
             placeholderTextColor="#1B1B1B"
-            value={value}
-            onChangeText={input => onChange(input)}
+            value={mobileNumber}
+            onChangeText={input => setNumber(input)}
           />
-        )}
-        name="mobileNumber"
-        defaultValue=""
-      />
-      <Controller
-        control={control}
-        render={({field: {onChange, onBlur, value}}) => (
           <TextInput
             style={styles.input}
             placeholder={'New Password'}
             secureTextEntry={true}
             placeholderTextColor="#1B1B1B"
-            value={value}
-            onChangeText={input => onChange(input)}
-            onBlur={onBlur}
+            value={password}
+            onChangeText={input => setPassword(input)}
           />
-        )}
-        name="password"
-        rules={{required: true}}
-        defaultValue=""
-      />
-      {errors.password && <Text style={styles.require}>*Required</Text>}
-      <Controller
-        control={control}
-        render={({field: {onChange, onBlur, value}}) => (
-          <TextInput
+      {/* {errors.password && <Text style={styles.require}>*Required</Text>} */}
+          {/* <TextInput
             style={styles.input}
             placeholder={'Confirm Password'}
             secureTextEntry={true}
@@ -177,12 +81,7 @@ export default function SignUp({}: NavProps): React.JSX.Element {
             onChangeText={input => onChange(input)}
             onBlur={onBlur}
           />
-        )}
-        name="confirmPassword"
-        rules={{required: true}}
-        defaultValue=""
-      />
-      {errors.confirmPassword && <Text style={styles.require}>*Required</Text>}
+      {errors.confirmPassword && <Text style={styles.require}>*Required</Text>} */}
       <Pressable style={styles.btn}>
         <Text style={styles.signUp}>Sign Up</Text>
       </Pressable>
