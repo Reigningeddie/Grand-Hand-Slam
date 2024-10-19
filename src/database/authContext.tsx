@@ -1,8 +1,7 @@
 // src/contexts/AuthContext.tsx
 import React, {createContext, useContext, useState, useEffect} from 'react';
 import {supabase} from '../database/supabase';
-import {AuthContextType} from '../types/navigation';
-
+import {AuthContextType} from '../types/database';
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -60,6 +59,25 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
     }
   };
 
+  const signUp = async(email: string, password: string) => {
+    setErr(null);
+    try {
+      const {data, error: signUpError} = await supabase.auth.signUp({
+        email,
+        password,
+      });
+      if (signUpError) {
+        throw new Error(signUpError.message);
+      }
+      console.log('User signed up:', data.user);
+      return {data, error:null};
+    } catch (error) {
+      console.error('Sign up Failed', error);
+      setErr(error instanceof Error ? error.message : 'An unknown error occurred during sign up');
+      return {data:null, error};
+    }
+  };
+
   const logout = async () => {
     try {
       await supabase.auth.signOut();
@@ -71,7 +89,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
   };
 
   return (
-    <AuthContext.Provider value={{AuthUser, isLoading, login, logout, err}}>
+    <AuthContext.Provider value={{AuthUser, isLoading, signUp, login, logout, err}}>
       {!isLoading && children}
     </AuthContext.Provider>
   );

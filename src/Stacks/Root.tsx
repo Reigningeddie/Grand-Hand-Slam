@@ -1,11 +1,11 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {NavigationList} from '../types/navigation';
-import Auth from './Auth';
+import {RootList} from '../types/navigation';
+import AuthStack from './Auth';
 import BottomTabs from './BottomTabs';
 
-const Stack = createNativeStackNavigator<NavigationList>();
+const Stack = createNativeStackNavigator<RootList>();
 
 const Root = () => {
   return (
@@ -13,7 +13,7 @@ const Root = () => {
       <Stack.Navigator initialRouteName="Auth">
         <Stack.Screen
           name="Auth"
-          component={Auth}
+          component={AuthStack}
           options={{headerShown: false}}
         />
         <Stack.Screen
