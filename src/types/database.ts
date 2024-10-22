@@ -1,4 +1,3 @@
-
 export type AuthContextType = {
   AuthUser: any;
   isLoading: boolean;
