@@ -1,7 +1,7 @@
 // src/contexts/AuthContext.tsx
 import React, {createContext, useContext, useState, useEffect} from 'react';
 import {supabase} from '../database/supabase';
-import {AuthContextType} from '../types/database';
+import type {AuthContextType} from '../types/database';
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
