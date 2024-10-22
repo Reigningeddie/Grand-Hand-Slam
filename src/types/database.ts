@@ -1,10 +1,3 @@
-export interface User {
-  firstName: string;
-  id: string;
-  lastName: string;
-  mobileNumber: number;
-  points: number;
-}
 
 export type AuthContextType = {
   AuthUser: any;
