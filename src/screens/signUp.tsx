@@ -6,6 +6,7 @@ import {
   TextInput,
   Pressable,
   Dimensions,
+  Alert
 } from 'react-native';
 import type {NavProps} from '../types/navigation';
 import {useAuth} from '../database/authContext';
@@ -13,7 +14,7 @@ import {useAuth} from '../database/authContext';
 const screenWidth = Dimensions.get('window').width;
 const thirds = screenWidth / -1.3;
 
-export default function SignUp({}: NavProps): React.JSX.Element {
+export default function SignUp({navigation}: NavProps): React.JSX.Element {
   const [firstName, setFirst] = useState<string>('');
   const [lastName, setLast] = useState<string | undefined>(undefined);
   const [userName, setUser] = useState<string | undefined>(undefined);
@@ -34,14 +35,14 @@ export default function SignUp({}: NavProps): React.JSX.Element {
 
       if (error) {
         console.error('Error signing up:', error);
-        // Handle error
+        Alert.alert(error.message);
         return;
       }
       console.log('User signed up successfully:', data);
-      // Navigation to next screen or perform post-signUp actions
-    } catch (error) {
+      navigation.navigate('Login')
+    } catch (error: any) {
       console.error('Error during sign up:', error);
-      // Handle error
+      Alert.alert(error.message)
     }
   };
 
