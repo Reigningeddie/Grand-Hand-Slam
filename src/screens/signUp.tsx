@@ -7,21 +7,43 @@ import {
   Pressable,
   Dimensions,
 } from 'react-native';
-import {NavProps} from '../types/navigation';
+import type {NavProps} from '../types/navigation';
+import {useAuth} from '../database/authContext';
 
 const screenWidth = Dimensions.get('window').width;
-
 const thirds = screenWidth / -1.3;
 
 export default function SignUp({}: NavProps): React.JSX.Element {
-  const [firstName, setFirst] = useState('');
-  const [lastName, setLast] = useState('');
-  const [userName, setUser] = useState('');
-  const [email, setEmail] = useState('');
-  const [mobileNumber, setNumber] = useState('');
-  const [password, setPassword] = useState('');
-  
-  console.log(firstName, lastName, email, mobileNumber, password);
+  const [firstName, setFirst] = useState<string>('');
+  const [lastName, setLast] = useState<string | undefined>(undefined);
+  const [userName, setUser] = useState<string | undefined>(undefined);
+  const [email, setEmail] = useState<string>('');
+  const [mobileNumber, setNumber] = useState<string | undefined>(undefined);
+  const [password, setPassword] = useState<string>('');
+
+  const {signUp} = useAuth();
+
+  const handleSubmit = async() => {
+    try {
+      const userData = {
+        email,
+        password,
+      };
+
+      const {data, error} = await signUp(email, password);
+
+      if (error) {
+        console.error('Error signing up:', error);
+        // Handle error
+        return;
+      }
+      console.log('User signed up successfully:', data);
+      // Navigation to next screen or perform post-signUp actions
+    } catch (error) {
+      console.error('Error during sign up:', error);
+      // Handle error
+    }
+  };
 
   return (
     <View style={styles.body}>
