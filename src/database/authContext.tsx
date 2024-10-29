@@ -59,25 +59,17 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
     }
   };
 
-  const signUp = async(email: string, password: string, firstName?: string, lastName?: String, userName?: string, mobileNumber?: string) => {
+  const signUp = async(email: string, password: string) => {
     setErr(null);
     try {
       const {data, error: signUpError} = await supabase.auth.signUp({
         email,
         password,
-        options: {
-          data: {
-            firstName,
-            lastName,
-            userName,
-            mobileNumber,
-          },
-        },
       });
       if (signUpError) {
         throw new Error(signUpError.message);
       }
-      console.log('User signed up:', data.user);
+      console.log('User signed up:', data?.user);
       return {data, error:null};
     } catch (error) {
       console.error('Sign up Failed', error);
@@ -85,6 +77,35 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
       return {data:null, error};
     }
   };
+
+  const metaData = async (email: string, password: string, firstName?: string, lastName?: string, userName?: string, mobileNumber?: string) => {
+    setErr(null);
+    try{
+      const {data, error: signUpError} = await supabase.auth.signUp({
+        email,
+        password,
+      });
+
+      if (signUpError) {
+        throw new Error(signUpError.message);
+      }
+
+      const userId = data?.user?.id;
+      const metadata = {
+        firstName: firstName || null,
+        lastName: lastName || null,
+        userName: userName || null,
+        mobileNumber: mobileNumber || null,
+      }
+      await supabase.from('users').update({metadata}).eq('id', userId);
+      console.log('User data updated successfully');
+      return {data, error:null};
+    } catch (error) {
+      console.error('Error updating user data:', error);
+      setErr(error instanceof Error ? error.message : 'An unknown error occurred during metadata update');
+      return {data:null, error};
+    }
+  }
 
   const logout = async () => {
     try {
@@ -97,7 +118,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
   };
 
   return (
-    <AuthContext.Provider value={{AuthUser, isLoading, signUp, login, logout, err}}>
+    <AuthContext.Provider value={{AuthUser, isLoading, signUp, login, metaData, logout, err}}>
       {!isLoading && children}
     </AuthContext.Provider>
   );
