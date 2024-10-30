@@ -12,7 +12,6 @@ import type {NavProps} from '../types/navigation';
 import {useAuth} from '../database/authContext';
 
 const screenWidth = Dimensions.get('window').width;
-const thirds = screenWidth / -1.3;
 
 export default function SignUp({navigation}: NavProps): React.JSX.Element {
   const [firstName, setFirst] = useState<string>('');
