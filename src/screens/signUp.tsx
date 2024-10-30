@@ -52,6 +52,24 @@ export default function SignUp({navigation}: NavProps): React.JSX.Element {
     }
   };
 
+  //validation functions for state saves
+  const validateUserName = (value: string): void => {
+    if (!value || value.length < 6) {
+      setErrUserName('Username must be at east 6 characters long');
+    } else {
+      setErrUserName(null);
+    }
+  };
+
+  const validateEmail = (value: string): void => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.(?:com|net|org|edu)$/i;
+    if (!emailRegex.test(value)) {
+      setErrEmail("Invalid email format");
+    } else {
+      setErrEmail(null);
+    }
+  }
+
   return (
     <View style={styles.body}>
       <Text style={styles.txt}>Let's get you signed up!</Text>
@@ -76,17 +94,23 @@ export default function SignUp({navigation}: NavProps): React.JSX.Element {
             placeholder={'Create a User Name'}
             placeholderTextColor="#1B1B1B"
             value={userName}
-            onChangeText={input => setUser(input)}
+            onChangeText={input => {
+              setUser(input);
+              validateUserName(input)
+            }}
           />
-      {/* {errors.username && <Text style={styles.require}>*Required</Text>} */}
+      {errUserName && <Text style={styles.require}>*Required</Text>}
           <TextInput
             style={styles.input}
             value={email}
-            onChangeText={input => setEmail(input)}
             placeholder={'Email'}
             placeholderTextColor="#1B1B1B"
+            onChangeText={input => {
+              setEmail(input);
+              validateEmail(input)
+            }}
           />
-      {/* {errors.email && <Text style={styles.require}>*Required</Text>} */}
+      {errEmail && <Text style={styles.require}>*Required</Text>}
           <TextInput
             style={styles.input}
             placeholder={'Mobile Number'}
