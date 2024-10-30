@@ -69,6 +69,23 @@ export default function SignUp({navigation}: NavProps): React.JSX.Element {
       setErrEmail(null);
     }
   }
+  const validatePassword = (value: string): void => {
+    if (!value || value.length < 6) {
+      setErrPassword("Password must be at least 6 characters long");
+    } else {
+      setErrPassword(null);
+    }
+  };
+  
+  const validateConfirmPassword = (value: string, password: string): void => {
+    if (value !== password) {
+      setErrConfirmPassword("Passwords don't match");
+    } else {
+      setErrConfirmPassword(null);
+    }
+  };
+
+  //end of validation functions
 
   return (
     <View style={styles.body}>
@@ -124,18 +141,22 @@ export default function SignUp({navigation}: NavProps): React.JSX.Element {
             secureTextEntry={true}
             placeholderTextColor="#1B1B1B"
             value={password}
-            onChangeText={input => setPassword(input)}
+            onChangeText={input => {
+              setPassword(input);
+              validatePassword(input)}}
           />
-      {/* {errors.password && <Text style={styles.require}>*Required</Text>} */}
+      {errPassword && <Text style={styles.require}>*Required</Text>}
           <TextInput
             style={styles.input}
             placeholder={'Confirm Password'}
             secureTextEntry={true}
             placeholderTextColor="#1B1B1B"
             value={confirmPassword}
-            onChangeText={input => setConfirmPassword(input)}
+            onChangeText={input => {
+              setConfirmPassword(input);
+              validateConfirmPassword(input, password)}}
           />
-      {/* {errors.confirmPassword && <Text style={styles.require}>*Required</Text>} */}
+      {errConfirmPassword && <Text style={styles.require}>*Required</Text>}
       <Pressable style={styles.btn} onPress={handleSubmit}>
         <Text style={styles.signUp}>Sign Up</Text>
       </Pressable>
