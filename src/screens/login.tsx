@@ -7,7 +7,7 @@ import {
   Pressable,
   Alert,
 } from 'react-native';
-import {NavProps} from '../types/navigation';
+import type {NavProps} from '../types/navigation';
 import {useAuth} from '../database/authContext';
 
 export default function Login({navigation}: NavProps): React.JSX.Element {

@@ -21,8 +21,14 @@ export default function SignUp({navigation}: NavProps): React.JSX.Element {
   const [email, setEmail] = useState<string>('');
   const [mobileNumber, setNumber] = useState<string | undefined>(undefined);
   const [password, setPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
+  //Error State Saves
+  const [errUserName, setErrUserName] = useState<string | null>(null);
+  const [errEmail, setErrEmail] = useState<string | null>(null);
+  const [errPassword, setErrPassword] = useState<string | null>(null);
+  const [errConfirmPassword, setErrConfirmPassword] = useState<string | null>(null);
 
-  const {signUp} = useAuth();
+  const {signUp, userData} = useAuth();
 
   const handleSubmit = async() => {
     try {
@@ -97,16 +103,15 @@ export default function SignUp({navigation}: NavProps): React.JSX.Element {
             onChangeText={input => setPassword(input)}
           />
       {/* {errors.password && <Text style={styles.require}>*Required</Text>} */}
-          {/* <TextInput
+          <TextInput
             style={styles.input}
             placeholder={'Confirm Password'}
             secureTextEntry={true}
             placeholderTextColor="#1B1B1B"
-            value={value}
-            onChangeText={input => onChange(input)}
-            onBlur={onBlur}
+            value={confirmPassword}
+            onChangeText={input => setConfirmPassword(input)}
           />
-      {errors.confirmPassword && <Text style={styles.require}>*Required</Text>} */}
+      {/* {errors.confirmPassword && <Text style={styles.require}>*Required</Text>} */}
       <Pressable style={styles.btn} onPress={handleSubmit}>
         <Text style={styles.signUp}>Sign Up</Text>
       </Pressable>
