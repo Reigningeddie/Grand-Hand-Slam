@@ -107,7 +107,7 @@ export default function SignUp({navigation}: NavProps): React.JSX.Element {
             onBlur={onBlur}
           />
       {errors.confirmPassword && <Text style={styles.require}>*Required</Text>} */}
-      <Pressable style={styles.btn}>
+      <Pressable style={styles.btn} onPress={handleSubmit}>
         <Text style={styles.signUp}>Sign Up</Text>
       </Pressable>
     </View>
