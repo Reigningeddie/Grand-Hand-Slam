@@ -1,30 +1,28 @@
 import {StyleSheet, Text, View, ScrollView, Pressable} from 'react-native';
 import React from 'react';
 import {Dimensions} from 'react-native';
-import {TEST} from '@env';
+import {useAuth} from '../database/authContext';
+import type {NavProps} from '../types/navigation';
 
 //Get device Width
 const screenWidth = Dimensions.get('window').width;
-
 const thirds = screenWidth / 3;
 
-export default function Profile(): React.JSX.Element {
-  // const user = firestore()
-  //   .collection('users')
-  //   .doc(`${metaData?.uid}`)
-  //   .get()
-  //   .then(documentSnapshot => {
-  //     console.log('User:', documentSnapshot.id);
-  //   });
-  // const points = user.collection('points').get();
-  // console.log(points);
+export default function Profile({navigation}: NavProps): React.JSX.Element {
+  const {logout} = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    navigation.navigate('Login');
+  };
+
   return (
     <View>
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <View style={styles.banner} />
         <Text style={styles.txt}>
           Grand Hand Slam{' '}
-          <Pressable>
+          <Pressable onPress={() => handleLogout()}>
             <Text>O</Text>
           </Pressable>
         </Text>
