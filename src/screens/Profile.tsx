@@ -11,7 +11,7 @@ const thirds = screenWidth / 3;
 export default function Profile({navigation}: NavProps): React.JSX.Element {
   const {logout} = useAuth();
 
-  const handleLogout = () => {
+  function handleLogout() {
     logout();
     navigation.navigate('Login');
   };

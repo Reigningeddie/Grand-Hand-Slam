@@ -41,9 +41,9 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
       }
       console.log('Login successful!');
       navigation.navigate('BottomTabs');
-    } catch (error) {
+    } catch (error: any) {
       console.log('Login failed:', error);
-      Alert.alert('Failed to login, try again later');
+      Alert.alert(error.message);
     }
   };
 
