@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {RootList} from '../types/navigation';
+import type {RootList} from '../types/navigation';
 import AuthStack from './Auth';
 import BottomTabs from './BottomTabs';
 

@@ -5,20 +5,17 @@ import {
   View,
   TextInput,
   Pressable,
-  Dimensions,
   Alert
 } from 'react-native';
 import type {NavProps} from '../types/navigation';
 import {useAuth} from '../database/authContext';
-
-const screenWidth = Dimensions.get('window').width;
 
 export default function SignUp({navigation}: NavProps): React.JSX.Element {
   const [firstName, setFirst] = useState<string>('');
   const [lastName, setLast] = useState<string | undefined>(undefined);
   const [userName, setUser] = useState<string | undefined>(undefined);
   const [email, setEmail] = useState<string>('');
-  const [mobileNumber, setNumber] = useState<string | undefined>(undefined);
+  const [mobileNumber, setMobile] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   //Error State Saves
@@ -35,7 +32,6 @@ export default function SignUp({navigation}: NavProps): React.JSX.Element {
         setErrUserName(null);
       }
     };
-
     const emailRegex = /^[^\s@]+@[^\s@]+\.(?:com|net|org|edu)$/i;
   
     const validateEmail = (value: string): void => {
@@ -52,7 +48,6 @@ export default function SignUp({navigation}: NavProps): React.JSX.Element {
         setErrPassword(null);
       }
     };
-    
     const validateConfirmPassword = (value: string, password: string): void => {
       if (value !== password) {
         setErrConfirmPassword("Passwords don't match");
@@ -62,7 +57,7 @@ export default function SignUp({navigation}: NavProps): React.JSX.Element {
     };
     //end of validation functions
 
-  const {signUp, userData} = useAuth();
+  const {signUp} = useAuth();
 
   const handleSubmit = async() => {
     let hasError = false;
@@ -71,28 +66,26 @@ export default function SignUp({navigation}: NavProps): React.JSX.Element {
       setErrUserName('*Required');
       hasError = true;
     }
-
     if (!email || !emailRegex.test(email)) {
       setErrEmail('*Required');
       hasError = true;
     }
-
     if (!password || password.length < 0) {
       setErrPassword("*Required.");
       hasError = true;
     }
-  
     if (password !== confirmPassword) {
       setErrConfirmPassword("Passwords do not match");
       hasError = true;
     }
-
     if (hasError) return
 
     try {
       const userData = {
-        email,
-        password,
+        firstName,
+        lastName,
+        userName,
+        mobileNumber
       };
 
       const {data, error} = await signUp(email, password);
@@ -156,7 +149,7 @@ export default function SignUp({navigation}: NavProps): React.JSX.Element {
             placeholder={'Mobile Number'}
             placeholderTextColor="#1B1B1B"
             value={mobileNumber}
-            onChangeText={input => setNumber(input)}
+            onChangeText={input => setMobile(input)}
           />
           <TextInput
             style={styles.input}
