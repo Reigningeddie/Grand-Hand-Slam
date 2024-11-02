@@ -1,5 +1,4 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-//! figure out how to keep bottomTabs only in bottomTabs list
 
 export type AuthList = {
   Login: any;
@@ -22,7 +21,7 @@ export type RootList = {
 export type NavProps = NativeStackScreenProps<AuthList>;
 
 export type AuthContextType = {
-  AuthUser: any;
+  authUser: any;
   isLoading: boolean;
   signUp: (email: string, password: string) => Promise<{data:any; error?: any}>;
   login: (email: string, password: string) => Promise<{data: any; error?: any}>;
