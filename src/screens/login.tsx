@@ -13,21 +13,10 @@ import {useAuth} from '../database/authContext';
 export default function Login({navigation}: NavProps): React.JSX.Element {
   const [emailValue, setEmail] = useState('');
   const [passwordValue, setPassword] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
 
   const {login} = useAuth();
 
   const loginUser = async () => {
-    if (!validateEmail(emailValue)) {
-      Alert.alert('Error', 'Please enter a valid email address');
-      return;
-    }
-
-    if (!validatePassword(passwordValue)) {
-      Alert.alert('Error', 'Password must be at least 6 characters long');
-      return;
-    }
     try {
       const {data, error} = await login(emailValue, passwordValue);
       if (error && typeof error.message === 'string') {
@@ -58,11 +47,8 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
         placeholder={'E-mail'}
         placeholderTextColor="#1B1B1B"
         value={emailValue}
-        onChangeText={input => {
-          setEmail(input);
-        }}
-      />
-      {emailError && <Text style={styles.require}>{emailError}</Text>}
+        onChangeText={input => 
+          setEmail(input)}/>
 
       <TextInput
         style={styles.input}
@@ -70,16 +56,7 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
         placeholder={'Password'}
         placeholderTextColor="#1B1B1B"
         value={passwordValue}
-        onChangeText={input => {
-          setPassword(input);
-          setPasswordError(
-            validatePassword(input)
-              ? ''
-              : 'Password must be at least 6 characters long',
-          );
-        }}
-      />
-      {passwordError && <Text style={styles.require}>{passwordError}</Text>}
+        onChangeText={input => setPassword(input)}/>
 
       <Pressable style={styles.LoginBtn} onPress={loginUser}>
         <Text style={styles.loginTxt}>Login</Text>
