@@ -2,7 +2,7 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Profile from '../screens/Profile';
 import LeaderBoard from '../screens/LeaderBoard';
-import {BottomTabsList} from '../types/navigation';
+import {BottomTabsList} from '../types/types';
 
 const Home = createBottomTabNavigator<BottomTabsList>();
 

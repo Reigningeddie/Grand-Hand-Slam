@@ -2,7 +2,7 @@ import {StyleSheet, Text, View, ScrollView, Pressable} from 'react-native';
 import React from 'react';
 import {Dimensions} from 'react-native';
 import {useAuth} from '../database/authContext';
-import type {NavProps} from '../types/navigation';
+import type {NavProps} from '../types/types';
 
 //Get device Width
 const screenWidth = Dimensions.get('window').width;
