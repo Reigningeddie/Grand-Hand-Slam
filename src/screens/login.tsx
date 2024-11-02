@@ -47,15 +47,6 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
     }
   };
 
-  const validateEmail = (email: string) => {
-    const re = /^[^\s@]+@[^\s@]+\.(?:com|net|org|edu)$/i;
-    return re.test(email);
-  };
-
-  const validatePassword = (password: string) => {
-    return password.length >= 6;
-  };
-
   return (
     <View style={styles.body}>
       <View style={styles.logo}>
@@ -69,9 +60,6 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
         value={emailValue}
         onChangeText={input => {
           setEmail(input);
-          setEmailError(
-            validateEmail(input) ? '' : 'Please enter a valid email address',
-          );
         }}
       />
       {emailError && <Text style={styles.require}>{emailError}</Text>}
