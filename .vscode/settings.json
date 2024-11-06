@@ -3,7 +3,8 @@
     "firestore",
     "fkey",
     "Leaderboard",
-    "rneui"
+    "rneui",
+    "upsert"
   ],
   "discord.enabled": false,
   "CodeGPT.apiKey": "OpenAI"

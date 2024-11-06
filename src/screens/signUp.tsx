@@ -10,6 +10,8 @@ import {
 import type {NavProps} from '../types/types';
 import {useAuth} from '../database/authContext';
 
+//! add user already exists alerts to userName, email, and mobile Number.
+
 export default function SignUp({navigation}: NavProps): React.JSX.Element {
   const [firstName, setFirst] = useState<string>('');
   const [lastName, setLast] = useState<string | undefined>(undefined);
@@ -57,7 +59,7 @@ export default function SignUp({navigation}: NavProps): React.JSX.Element {
     };
     //end of validation functions
 
-  const {signUp} = useAuth();
+  const {userData} = useAuth();
 
   const handleSubmit = async() => {
     let hasError = false;
@@ -81,25 +83,21 @@ export default function SignUp({navigation}: NavProps): React.JSX.Element {
     if (hasError) return
 
     try {
-      const userData = {
+      // await signUp(email, password);
+      await userData(
+        email,
+        password,
         firstName,
         lastName,
         userName,
         mobileNumber
-      };
+      );
 
-      const {data, error} = await signUp(email, password);
-
-      if (error) {
-        console.error('Error signing up:', error);
-        Alert.alert(error.message);
-        return;
-      }
-      console.log('User signed up successfully:', data);
-      navigation.navigate('Login')
+      Alert.alert('Success!', 'User signed up successfully!');
+      // navigation.navigate('Login');
     } catch (error: any) {
       console.error('Error during sign up:', error);
-      Alert.alert(error.message)
+      Alert.alert('Error', error.message);
     }
   };
 
