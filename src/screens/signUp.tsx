@@ -34,7 +34,8 @@ export default function SignUp({navigation}: NavProps): React.JSX.Element {
         setErrUserName(null);
       }
     };
-    const emailRegex = /^[^\s@]+@[^\s@]+\.(?:com|net|org|edu)$/i;
+    // const emailRegex = /^[^\s@]+@[^\s@]+\.(?:com|net|org|edu)$/i;
+    const emailRegex = /^[^\s@]+@[^\s@]+(\.[a-z]{2,})$/i;
   
     const validateEmail = (value: string): void => {
       if (!emailRegex.test(value)) {
@@ -59,7 +60,7 @@ export default function SignUp({navigation}: NavProps): React.JSX.Element {
     };
     //end of validation functions
 
-  const {userData} = useAuth();
+  const {userData, signUp} = useAuth();
 
   const handleSubmit = async() => {
     let hasError = false;
@@ -93,8 +94,6 @@ export default function SignUp({navigation}: NavProps): React.JSX.Element {
         mobileNumber
       );
 
-      Alert.alert('Success!', 'User signed up successfully!');
-      // navigation.navigate('Login');
     } catch (error: any) {
       console.error('Error during sign up:', error);
       Alert.alert('Error', error.message);

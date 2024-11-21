@@ -60,7 +60,6 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
   };
 
   const signUp = async(email: string, password: string) => {
-    setIsLoading(true);
     setErr(null);
     try {
       const {data, error: signUpError} = await supabase.auth.signUp({
@@ -99,7 +98,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
       }
   
       const userId = data?.user?.id;
-      console.log('UserId:', userId);
+      console.log(userId)
 
       if (!userId) {
         throw new Error('No user ID returned after sign up');
@@ -113,23 +112,23 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
         mobileNumber: mobileNumber || null,
       };
 
-      console.log(metadata);
+      console.log(metadata)
   
       // Update AuthUser with additional user info
       const {data: updateUserResult, error: updateError} = await supabase
-        .from('metaData')
-        .upsert(metadata)
+        .from('profile')
+        .insert(metadata)
         .select()
 
       if (updateError) {
-        throw new Error(`Error updating user metadata: ${updateError.message}`);
+        throw new Error(`Error updating user profile: ${updateError.message}`);
       }
   
-      console.log('User data updated successfully');
+      console.log('Profile updated successfully');
       return {data: updateUserResult, error: null};
     } catch (error) {
-      console.error('Error updating user data:', error);
-      setErr(error instanceof Error ? error.message : 'An unknown error occurred during metadata update');
+      console.error('Error updating profile:', error);
+      setErr(error instanceof Error ? error.message : 'An unknown error occurred during profile update');
       return { data: null, error };
     }
   };

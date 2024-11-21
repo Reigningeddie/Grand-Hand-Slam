@@ -43,7 +43,6 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
       </View>
       <TextInput
         style={styles.input}
-        secureTextEntry={true}
         placeholder={'E-mail'}
         placeholderTextColor="#1B1B1B"
         value={emailValue}
