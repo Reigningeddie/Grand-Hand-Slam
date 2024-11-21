@@ -15,8 +15,46 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
   const [passwordValue, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isSignUp, setIsSignUp] = useState(false);
+  const [errors, setErrors] = useState<{email?: string; password?: string; confirmPassword?: string;}>({})
 
   const {login, signUp} = useAuth();
+
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.(?:com|net|org|edu)$/i;
+    return emailRegex.test(email);
+
+  };
+
+  const validatePassword = (password: string) => {
+    return password.length >= 6;
+  };
+
+  const validate = () => {
+    let validationErrors: {email?: string; password?: string; confirmPassword?: string;} = {};
+    
+    if (isSignUp) {
+      if (!emailValue) {
+        validationErrors.email = 'Email is required';
+      } else if (!validateEmail(emailValue)) {
+        validationErrors.email = 'Invalid email address';
+      }
+
+      if (!passwordValue) {
+        validationErrors.password = 'Password is required';
+      } else if (!validatePassword(passwordValue)) {
+        validationErrors.password = 'Password must be at least 6 characters long';
+      }
+
+      if (!confirmPassword) {
+        validationErrors.confirmPassword = 'Confirm Password is required';
+      } else if (passwordValue !== confirmPassword) {
+        validationErrors.confirmPassword = 'Passwords do not match';
+      }
+    }
+
+    setErrors(validationErrors);
+    return Object.keys(validationErrors).length === 0;
+  };
 
   const handleLogin = async () => {
     try {
@@ -38,11 +76,9 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
     }
   };
 
+  //! create if else email is not unique
   const handleSignUp = async () => {
-    if (passwordValue !== confirmPassword) {
-      Alert.alert('Passwords do not match');
-      return;
-    }
+    if (!validate()) return;
 
     try {
       const {data, error} = await signUp(emailValue, passwordValue);
@@ -71,6 +107,7 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
         value={emailValue}
         onChangeText={input => 
           setEmail(input)}/>
+        {errors.email && <Text style={styles.require}>{errors.email}</Text>}
       <TextInput
         style={styles.input}
         secureTextEntry={true}
@@ -78,6 +115,7 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
         placeholderTextColor="#1B1B1B"
         value={passwordValue}
         onChangeText={input => setPassword(input)}/>
+        {errors.password && <Text style={styles.require}>{errors.password}</Text>}
         {isSignUp && (
           <TextInput
             style={styles.input}
@@ -87,6 +125,7 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
             onChangeText={setConfirmPassword}
             secureTextEntry={true}/>
             )}
+        {errors.confirmPassword && <Text style={styles.require}>{errors.confirmPassword}</Text>}
       <Pressable style={styles.LoginBtn} onPress={isSignUp ? handleSignUp : handleLogin}>
         <Text style={styles.loginTxt}>{isSignUp ? 'SignUp' : 'Login'}</Text>
       </Pressable>
@@ -98,14 +137,14 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
           style={styles.signUpTxt}
           onPress={() => setIsSignUp(!isSignUp)}>
           {' '}
-          Sign Up
-        </Text>) : 
+          Log in
+        </Text>) : (
           <Text
           style={styles.signUpTxt}
           onPress={() => setIsSignUp(!isSignUp)}>
             {' '}
-            Log in
-        </Text>}
+            Sign up
+        </Text>)}
       </Text>
     </View>
   );
@@ -173,6 +212,7 @@ const styles = StyleSheet.create({
   signUpTxt: {
     color: '#2EA1DD',
   },
+
   require: {
     color: 'red',
     marginTop: -15,
