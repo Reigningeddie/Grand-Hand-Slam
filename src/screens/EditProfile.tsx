@@ -102,7 +102,10 @@ export default function SignUp({navigation}: NavProps): React.JSX.Element {
 
   return (
     <View style={styles.body}>
-      <Text style={styles.txt}>Let's get you signed up!</Text>
+      <Text style={styles.txt}>Edit your profile</Text>
+      <Pressable>
+        <View style={styles.pic}/>
+      </Pressable>
       <View style={styles.name}>
             <TextInput
               style={styles.nameInput}
@@ -171,7 +174,7 @@ export default function SignUp({navigation}: NavProps): React.JSX.Element {
           />
       {errConfirmPassword && <Text style={styles.require}>{errConfirmPassword}</Text>}
       <Pressable style={styles.btn} onPress={handleSubmit}>
-        <Text style={styles.signUp}>Sign Up</Text>
+        <Text style={styles.signUp}>Create</Text>
       </Pressable>
     </View>
   );
@@ -189,8 +192,18 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
 
+  pic: {
+    backgroundColor: '#3C6E71',
+    height: 100,
+    width: 100,
+    borderRadius: 80,
+    borderColor: '#353535',
+    borderWidth: 2,
+    marginTop: 20,
+  },
+
   name: {
-    marginTop: 50,
+    marginTop: 15,
     flexDirection: 'row',
   },
 
