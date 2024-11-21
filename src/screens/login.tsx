@@ -14,7 +14,7 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
   const [emailValue, setEmail] = useState('');
   const [passwordValue, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [isSignUp, setIsSignUp] = useState('');
+  const [isSignUp, setIsSignUp] = useState(false);
 
   const {login, signUp} = useAuth();
 
@@ -38,11 +38,32 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
     }
   };
 
+  const handleSignUp = async () => {
+    if (passwordValue !== confirmPassword) {
+      Alert.alert('Passwords do not match');
+      return;
+    }
+
+    try {
+      const {data, error} = await signUp(emailValue, passwordValue);
+      if (error && typeof error.message === 'string') {
+        throw new Error(`Sign Up error: ${error.message}`);
+      }
+      console.log('Sign up successful!', data);
+      Alert.alert('Sign up successful, confirm email then sign in')
+      setIsSignUp(false);
+    } catch (error: any) {
+      console.log('Sign up failed', error);
+      Alert.alert('Sign up failed', error.message);
+    }
+  };
+
   return (
     <View style={styles.body}>
       <View style={styles.logo}>
         <Text style={styles.logoTxt}>Logo</Text>
       </View>
+      {isSignUp && <Text style={styles.signUp}>Sign Up</Text>}
       <TextInput
         style={styles.input}
         placeholder={'E-mail'}
@@ -50,7 +71,6 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
         value={emailValue}
         onChangeText={input => 
           setEmail(input)}/>
-
       <TextInput
         style={styles.input}
         secureTextEntry={true}
@@ -58,18 +78,34 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
         placeholderTextColor="#1B1B1B"
         value={passwordValue}
         onChangeText={input => setPassword(input)}/>
-
-      <Pressable style={styles.LoginBtn} onPress={handleLogin}>
-        <Text style={styles.loginTxt}>Login</Text>
+        {isSignUp && (
+          <TextInput
+            style={styles.input}
+            placeholder={'Confirm Password'}
+            placeholderTextColor='#1B1B1B'
+            value={confirmPassword}
+            onChangeText={setConfirmPassword}
+            secureTextEntry={true}/>
+            )}
+      <Pressable style={styles.LoginBtn} onPress={isSignUp ? handleSignUp : handleLogin}>
+        <Text style={styles.loginTxt}>{isSignUp ? 'SignUp' : 'Login'}</Text>
       </Pressable>
 
       <Text style={styles.text}>
-        Don't have an account?
-        <Text
+        {isSignUp ? `Don't have an account?` : `Don't have and account?`}
+        {isSignUp ? (
+          <Text
           style={styles.signUpTxt}
-          onPress={() => navigation.navigate('SignUp')}>
-          SignUp
-        </Text>
+          onPress={() => setIsSignUp(!isSignUp)}>
+          {' '}
+          Sign Up
+        </Text>) : 
+          <Text
+          style={styles.signUpTxt}
+          onPress={() => setIsSignUp(!isSignUp)}>
+            {' '}
+            Log in
+        </Text>}
       </Text>
     </View>
   );
@@ -95,6 +131,12 @@ const styles = StyleSheet.create({
   logoTxt: {
     color: '#1B1B1B',
     fontSize: 30,
+  },
+
+  signUp: {
+    fontSize: 24,
+    marginBottom: 16,
+    color: '#1B1B1B'
   },
 
   input: {
