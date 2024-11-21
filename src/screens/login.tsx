@@ -92,7 +92,7 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
       </Pressable>
 
       <Text style={styles.text}>
-        {isSignUp ? `Don't have an account?` : `Don't have and account?`}
+        {isSignUp ? `Already have an account?` : `Don't have an account?`}
         {isSignUp ? (
           <Text
           style={styles.signUpTxt}
