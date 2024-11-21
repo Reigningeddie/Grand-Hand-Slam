@@ -2,7 +2,6 @@ import React from 'react';
 // import type {PropsWithChildren} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Login from '../screens/Login';
-import SignUp from '../screens/SignUp';
 import type {AuthList} from '../types/types';
 
 //Auth Stack
@@ -16,7 +15,6 @@ function App(): React.JSX.Element {
         component={Login}
         options={{headerShown: false}}
       />
-      <Auth.Screen name="SignUp" component={SignUp} />
     </Auth.Navigator>
   );
 }
