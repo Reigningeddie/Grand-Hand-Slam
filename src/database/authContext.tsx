@@ -15,10 +15,12 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
   useEffect(() => {
     const loadUser = async () => {
       try {
-        const {
-          data: {user},
-        } = await supabase.auth.getUser();
-        setAuthUser(user);
+        console.log('loadUser');
+        const {data, error} = await supabase.auth.getUser();
+          if (error) {
+            throw new Error(error.message);
+          }
+          setAuthUser(data.user);
       } catch (error) {
         console.error('Error loading user:', error);
         setErr('Failed to load user');
@@ -28,7 +30,41 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
     };
 
     loadUser();
+
+    // Listen for auth state changes
+    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
+      console.log('Auth state change event:', event);
+      if (event === 'SIGNED_IN') {
+        setAuthUser(session?.user);
+      } else if (event === 'SIGNED_OUT' || event === 'INITIAL_SESSION') {
+        setAuthUser(null);
+      }
+    });
+
+    return () => {
+      authListener?.subscription.unsubscribe();
+    };
   }, []);
+
+  const signUp = async(email: string, password: string) => {
+    setIsLoading(true);
+    setErr(null);
+    try {
+      const {data, error: signUpError} = await supabase.auth.signUp({
+        email,
+        password,
+      })
+      if (signUpError) {
+        throw new Error(signUpError.message);
+      }
+      console.log('User signed up:', data?.user);
+      return {data, error:null};
+    } catch (error) {
+      console.error('Sign up Failed', error);
+      setErr(error instanceof Error ? error.message : 'An unknown error occurred during sign up');
+      return {data:null, error};
+    }
+  };
 
   const login = async (
     email: string,
@@ -59,7 +95,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
     }
   };
 
-  const signUp = async(email: string, password: string) => {
+  const profile = async(email: string, password: string) => {
     setErr(null);
     try {
       const {data, error: signUpError} = await supabase.auth.signUp({
@@ -145,7 +181,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
   };
 
   return (
-    <AuthContext.Provider value={{authUser, isLoading, signUp, userData, login, logout, err}}>
+    <AuthContext.Provider value={{authUser, isLoading, signUp, profile, login, logout, err}}>
       {!isLoading && children}
     </AuthContext.Provider>
   );

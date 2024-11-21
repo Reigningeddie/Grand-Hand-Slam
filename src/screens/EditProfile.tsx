@@ -60,7 +60,7 @@ export default function SignUp({navigation}: NavProps): React.JSX.Element {
     };
     //end of validation functions
 
-  const {userData, signUp} = useAuth();
+  const {profile} = useAuth();
 
   const handleSubmit = async() => {
     let hasError = false;
@@ -85,7 +85,7 @@ export default function SignUp({navigation}: NavProps): React.JSX.Element {
 
     try {
       // await signUp(email, password);
-      await userData(
+      await profile(
         email,
         password,
         firstName,
