@@ -13,10 +13,12 @@ import {useAuth} from '../database/authContext';
 export default function Login({navigation}: NavProps): React.JSX.Element {
   const [emailValue, setEmail] = useState('');
   const [passwordValue, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [isSignUp, setIsSignUp] = useState('');
 
-  const {login} = useAuth();
+  const {login, signUp} = useAuth();
 
-  const loginUser = async () => {
+  const handleLogin = async () => {
     try {
       const {data, error} = await login(emailValue, passwordValue);
       if (error && typeof error.message === 'string') {
@@ -57,7 +59,7 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
         value={passwordValue}
         onChangeText={input => setPassword(input)}/>
 
-      <Pressable style={styles.LoginBtn} onPress={loginUser}>
+      <Pressable style={styles.LoginBtn} onPress={handleLogin}>
         <Text style={styles.loginTxt}>Login</Text>
       </Pressable>
 
