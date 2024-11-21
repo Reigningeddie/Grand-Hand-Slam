@@ -26,7 +26,9 @@ export default function Profile({navigation}: NavProps): React.JSX.Element {
             <Text>O</Text>
           </Pressable>
         </Text>
-        <View style={styles.pic} />
+        <Pressable onPress={() => {navigation.navigate('EditProfile')}}>
+          <View style={styles.pic} />
+        </Pressable>
         <Text style={styles.user}>Reigningeddie</Text>
         <View style={styles.flex}>
           <View style={styles.grid}>

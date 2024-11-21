@@ -2,14 +2,14 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 export type AuthList = {
   Login: any;
-  BottomTabs: undefined;
+  EditProfile: any;
+  BottomTabs: any;
 };
 
 export type BottomTabsList = {
   Home: any;
   LeaderBoard: any;
   Search: any;
-  EditProfile: any;
 };
 
 export type RootList = {
