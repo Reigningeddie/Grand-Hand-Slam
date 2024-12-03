@@ -52,7 +52,6 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
   }, []);
 
   const signUp = async(email: string, password: string) => {
-    setIsLoading(true);
     setErr(null);
     try {
       const {data, error: signUpError} = await supabase.auth.signUp({
@@ -119,9 +118,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
     }
   };
 
-  const userData = async (
-    email: string,
-    password: string,
+  const update = async (
     firstName?: string,
     lastName?: string,
     userName?: string,
@@ -129,24 +126,8 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
   ) => {
     setErr(null);
     try {
-      const { data, error: signUpError } = await supabase.auth.signUp({
-        email,
-        password,
-      });
-  
-      if (signUpError) {
-        throw new Error(signUpError.message);
-      }
-  
-      const userId = data?.user?.id;
-      console.log(userId)
-
-      if (!userId) {
-        throw new Error('No user ID returned after sign up');
-      }
-  
       const metadata = {
-        id: userId || null,
+        id: authUser.id || null,
         firstName: firstName || null,
         lastName: lastName || null,
         userName: userName || null,
@@ -186,7 +167,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
   };
 
   return (
-    <AuthContext.Provider value={{authUser, isLoading, signUp, profile, login, logout, err}}>
+    <AuthContext.Provider value={{authUser, isLoading, signUp, profile, update, login, logout, err}}>
       {!isLoading && children}
     </AuthContext.Provider>
   );

@@ -29,7 +29,9 @@ export default function Profile({navigation}: NavProps): React.JSX.Element {
           </Pressable>
         </Text>
         <Pressable onPress={() => {navigation.navigate('EditProfile')}}>
-          <View style={styles.pic} />
+          <View style={styles.pic} >
+            <Text style={styles.create}>Create profile</Text>
+          </View>
         </Pressable>
         <Text style={styles.user}>Reigningeddie</Text>
         <View style={styles.flex}>
@@ -85,6 +87,12 @@ const styles = StyleSheet.create({
     borderRadius: 80,
     borderColor: '#353535',
     borderWidth: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  create: {
+    color: 'black',
+    fontSize: 20,
   },
   user: {
     color: '#3C6E71',

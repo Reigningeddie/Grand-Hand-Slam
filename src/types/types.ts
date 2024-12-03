@@ -26,6 +26,7 @@ export type AuthContextType = {
   signUp: (email: string, password: string) => Promise<{data:any; error?: any}>;
   login: (email: string, password: string) => Promise<{data: any; error?: any}>;
   profile: (email: string, password: string, firstName?: string, lastName?: string, userName?: string, mobileNumber?: string) => Promise<{data: any; error?: any}>;
+  update: (firstName?: string, lastName?: string, userName?: string, mobileNumber?: string) => Promise<{data: any; error?: any}>;
   logout: () => Promise<void>;
   err: string | null;
 };

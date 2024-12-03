@@ -16,15 +16,11 @@ export default function SignUp({navigation}: NavProps): React.JSX.Element {
   const [firstName, setFirst] = useState<string>('');
   const [lastName, setLast] = useState<string | undefined>(undefined);
   const [userName, setUser] = useState<string | undefined>(undefined);
-  const [email, setEmail] = useState<string>('');
   const [mobileNumber, setMobile] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [confirmPassword, setConfirmPassword] = useState<string>('');
   //Error State Saves
   const [errUserName, setErrUserName] = useState<string | null>(null);
-  const [errEmail, setErrEmail] = useState<string | null>(null);
-  const [errPassword, setErrPassword] = useState<string | null>(null);
-  const [errConfirmPassword, setErrConfirmPassword] = useState<string | null>(null);
+
+  const {update} = useAuth();
 
     //validation functions for state saves
     const validateUserName = (value: string): void => {
@@ -32,30 +28,6 @@ export default function SignUp({navigation}: NavProps): React.JSX.Element {
         setErrUserName('Username must be at east 6 characters long');
       } else {
         setErrUserName(null);
-      }
-    };
-    // const emailRegex = /^[^\s@]+@[^\s@]+\.(?:com|net|org|edu)$/i;
-    const emailRegex = /^[^\s@]+@[^\s@]+(\.[a-z]{2,})$/i;
-  
-    const validateEmail = (value: string): void => {
-      if (!emailRegex.test(value)) {
-        setErrEmail("Invalid email format");
-      } else {
-        setErrEmail(null);
-      }
-    }
-    const validatePassword = (value: string): void => {
-      if (!value || value.length < 6) {
-        setErrPassword("Password must be at least 6 characters long");
-      } else {
-        setErrPassword(null);
-      }
-    };
-    const validateConfirmPassword = (value: string, password: string): void => {
-      if (value !== password) {
-        setErrConfirmPassword("Passwords don't match");
-      } else {
-        setErrConfirmPassword(null);
       }
     };
     //end of validation functions
@@ -69,29 +41,15 @@ export default function SignUp({navigation}: NavProps): React.JSX.Element {
       setErrUserName('*Required');
       hasError = true;
     }
-    if (!email || !emailRegex.test(email)) {
-      setErrEmail('*Required');
-      hasError = true;
-    }
-    if (!password || password.length < 0) {
-      setErrPassword("*Required.");
-      hasError = true;
-    }
-    if (password !== confirmPassword) {
-      setErrConfirmPassword("Passwords do not match");
-      hasError = true;
-    }
     if (hasError) return
 
     try {
       // await signUp(email, password);
-      await profile(
-        email,
-        password,
+      await update(
         firstName,
         lastName,
         userName,
-        mobileNumber
+        mobileNumber,
       );
 
     } catch (error: any) {
@@ -133,7 +91,7 @@ export default function SignUp({navigation}: NavProps): React.JSX.Element {
             }}
           />
       {errUserName && <Text style={styles.require}>{errUserName}</Text>}
-          <TextInput
+          {/* <TextInput
             style={styles.input}
             value={email}
             placeholder={'Email'}
@@ -143,7 +101,7 @@ export default function SignUp({navigation}: NavProps): React.JSX.Element {
               validateEmail(input)
             }}
           />
-      {errEmail && <Text style={styles.require}>{errEmail}</Text>}
+      {errEmail && <Text style={styles.require}>{errEmail}</Text>} */}
           <TextInput
             style={styles.input}
             placeholder={'Mobile Number'}
@@ -151,7 +109,7 @@ export default function SignUp({navigation}: NavProps): React.JSX.Element {
             value={mobileNumber}
             onChangeText={input => setMobile(input)}
           />
-          <TextInput
+          {/* <TextInput
             style={styles.input}
             placeholder={'New Password'}
             secureTextEntry={true}
@@ -172,9 +130,9 @@ export default function SignUp({navigation}: NavProps): React.JSX.Element {
               setConfirmPassword(input);
               validateConfirmPassword(input, password)}}
           />
-      {errConfirmPassword && <Text style={styles.require}>{errConfirmPassword}</Text>}
+      {errConfirmPassword && <Text style={styles.require}>{errConfirmPassword}</Text>} */}
       <Pressable style={styles.btn} onPress={handleSubmit}>
-        <Text style={styles.signUp}>Create</Text>
+        <Text style={styles.signUp}>Update</Text>
       </Pressable>
     </View>
   );
