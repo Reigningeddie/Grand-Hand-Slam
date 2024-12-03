@@ -15,10 +15,15 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
   useEffect(() => {
     const loadUser = async () => {
       try {
-        console.log('loadUser');
         const {data, error} = await supabase.auth.getUser();
           if (error) {
             throw new Error(error.message);
+          }
+          console.log('Loaded user:', data.user);
+          if (data.user) {
+            console.log('User Id:', data.user.id);
+          } else {
+            console.log('No user data available');
           }
           setAuthUser(data.user);
       } catch (error) {
@@ -28,7 +33,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
         setIsLoading(false);
       }
     };
-
+    
     loadUser();
 
     // Listen for auth state changes
