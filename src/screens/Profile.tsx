@@ -8,12 +8,15 @@ import {supabase} from '../database/supabase';
 
 //Get device Width
 const screenWidth = Dimensions.get('window').width;
-const thirds = screenWidth / 3;
 const screenHeight = Dimensions.get('window').height;
-const blue = screenHeight / 2.5
+//get specific heights
+const videoBorder = screenHeight / 2.5
+const thirds = screenWidth / 3;
 
 export default function Profile({navigation}: NavProps): React.JSX.Element {
-  const {logout} = useAuth();
+  const {logout, authUser, profile} = useAuth();
+
+  
 
   function handleLogout() {
     logout();
@@ -51,7 +54,7 @@ export default function Profile({navigation}: NavProps): React.JSX.Element {
           </View>
         </View>
         <Text style={styles.bio}>Create user name to enter leaderboard and begin playing.</Text>
-        <View style={styles.blue}>
+        <View style={styles.vBorder}>
           <View style={styles.portrait}>
             <Text style={styles.vids}> 4</Text>
             <Text style={styles.vids}> 3</Text>
@@ -59,7 +62,6 @@ export default function Profile({navigation}: NavProps): React.JSX.Element {
             <Text style={styles.vids}> 1</Text>
           </View>
         </View>
-
       </ScrollView>
     </View>
   );
@@ -126,9 +128,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 25,
   },
-  blue: {
+  vBorder: {
     backgroundColor: '#284B63',
-    minHeight: blue,
+    minHeight: videoBorder,
     width: '100%',
   },
   portrait: {

@@ -17,6 +17,14 @@ export type RootList = {
   BottomTabs: undefined;
 };
 
+export type Profile = {
+  id: number;
+  firstName: string;
+  lastName: string;
+  userName: string;
+  mobileNumber: number;
+}
+
 // export type NavProp = RouteProp<NavigationParamList, 'Login'>;
 export type NavProps = NativeStackScreenProps<AuthList>;
 
@@ -25,7 +33,7 @@ export type AuthContextType = {
   isLoading: boolean;
   signUp: (email: string, password: string) => Promise<{data:any; error?: any}>;
   login: (email: string, password: string) => Promise<{data: any; error?: any}>;
-  profile: (email: string, password: string, firstName?: string, lastName?: string, userName?: string, mobileNumber?: string) => Promise<{data: any; error?: any}>;
+  profile: (id: string) => Promise<{data: any, error: any}>;
   update: (firstName?: string, lastName?: string, userName?: string, mobileNumber?: string) => Promise<{data: any; error?: any}>;
   logout: () => Promise<void>;
   err: string | null;

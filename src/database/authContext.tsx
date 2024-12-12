@@ -100,22 +100,25 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
     }
   };
 
-  const profile = async(email: string, password: string) => {
-    setErr(null);
+
+  const profile = async (id: string) => {
     try {
-      const {data, error: signUpError} = await supabase.auth.signUp({
-        email,
-        password,
-      })
-      if (signUpError) {
-        throw new Error(signUpError.message);
+      const { data, error } = await supabase
+        .from('profile')
+        .select('*')
+        .eq('id', id)
+        .single();
+
+      if (error) {
+        console.error('Error fetching profile:', error); // Log the error object
+        return { data: null, error };
       }
-      console.log('User signed up:', data?.user);
-      return {data, error:null};
+
+      console.log('Profile fetched successfully:', data); // Log the fetched profile data
+      return { data, error: null };
     } catch (error) {
-      console.error('Sign up Failed', error);
-      setErr(error instanceof Error ? error.message : 'An unknown error occurred during sign up');
-      return {data:null, error};
+      console.error('Error fetching profile:', error);
+      return { data: null, error };
     }
   };
 
@@ -135,7 +138,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
         mobileNumber: mobileNumber || null,
       };
 
-      console.log(metadata)
+      console.log('Iam metadata', metadata)
   
       // Update AuthUser with additional user info
       const {data: updateUserResult, error: updateError} = await supabase
