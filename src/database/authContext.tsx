@@ -1,5 +1,6 @@
 // src/contexts/AuthContext.tsx
 import React, {createContext, useContext, useState, useEffect} from 'react';
+import {Alert} from 'react-native';
 import {supabase} from '../database/supabase';
 import type {AuthContextType} from '../types/types';
 
@@ -51,22 +52,22 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
     };
   }, []);
 
-  const signUp = async(email: string, password: string) => {
+  const signUp = async (email: string, password: string) => {
+    setIsLoading(true);
     setErr(null);
     try {
-      const {data, error: signUpError} = await supabase.auth.signUp({
+      const { data, error } = await supabase.auth.signUp({
         email,
         password,
-      })
-      if (signUpError) {
-        throw new Error(signUpError.message);
-      }
-      console.log('User signed up:', data?.user);
-      return {data, error:null};
+      });
+
+      return { data, error};
     } catch (error) {
       console.error('Sign up Failed', error);
       setErr(error instanceof Error ? error.message : 'An unknown error occurred during sign up');
-      return {data:null, error};
+      return { data: null, error };
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -139,7 +140,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
       // Update AuthUser with additional user info
       const {data: updateUserResult, error: updateError} = await supabase
         .from('profile')
-        .insert(metadata)
+        .upsert(metadata)
         .select()
 
       if (updateError) {

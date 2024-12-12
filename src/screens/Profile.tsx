@@ -9,6 +9,8 @@ import {supabase} from '../database/supabase';
 //Get device Width
 const screenWidth = Dimensions.get('window').width;
 const thirds = screenWidth / 3;
+const screenHeight = Dimensions.get('window').height;
+const blue = screenHeight / 2.5
 
 export default function Profile({navigation}: NavProps): React.JSX.Element {
   const {logout} = useAuth();
@@ -33,7 +35,7 @@ export default function Profile({navigation}: NavProps): React.JSX.Element {
             <Text style={styles.create}>Create profile</Text>
           </View>
         </Pressable>
-        <Text style={styles.user}>Reigningeddie</Text>
+        <Text style={styles.user}>Welcome!!</Text>
         <View style={styles.flex}>
           <View style={styles.grid}>
             <Text style={styles.num}>150</Text>
@@ -48,16 +50,16 @@ export default function Profile({navigation}: NavProps): React.JSX.Element {
             <Text style={styles.item}>following</Text>
           </View>
         </View>
-        <Text style={styles.dez}>Description (add max characters)</Text>
-        <View style={styles.portrait}>
-          <Text style={styles.vids} />
-          <Text style={styles.vids} />
-          <Text style={styles.vids} />
-          <Text style={styles.vids} />
-          <Text style={styles.vids} />
-          <Text style={styles.vids} />
-          <Text style={styles.vids} />
+        <Text style={styles.bio}>Create user name to enter leaderboard and begin playing.</Text>
+        <View style={styles.blue}>
+          <View style={styles.portrait}>
+            <Text style={styles.vids}> 4</Text>
+            <Text style={styles.vids}> 3</Text>
+            <Text style={styles.vids}> 2</Text>
+            <Text style={styles.vids}> 1</Text>
+          </View>
         </View>
+
       </ScrollView>
     </View>
   );
@@ -68,6 +70,9 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     alignItems: 'center',
     width: screenWidth,
+  },
+  bold: {
+    fontWeight: 'bold',
   },
   banner: {
     backgroundColor: '#284B63',
@@ -116,13 +121,17 @@ const styles = StyleSheet.create({
     color: '#353535',
     fontSize: 22,
   },
-  dez: {
+  bio: {
     color: '#353535',
     fontSize: 20,
     marginBottom: 25,
   },
-  portrait: {
+  blue: {
     backgroundColor: '#284B63',
+    minHeight: blue,
+    width: '100%',
+  },
+  portrait: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     width: '100%',

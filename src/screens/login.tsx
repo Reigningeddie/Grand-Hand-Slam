@@ -82,12 +82,14 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
 
     try {
       const {data, error} = await signUp(emailValue, passwordValue);
-      if (error && typeof error.message === 'string') {
+      if (error) {
+        console.log(error);
         throw new Error(`Sign Up error: ${error.message}`);
+      } else {
+        console.log('Sign up successful!', data);
+        Alert.alert('Sign up successful, confirm email then sign in')
+        setIsSignUp(false);
       }
-      console.log('Sign up successful!', data);
-      Alert.alert('Sign up successful, confirm email then sign in')
-      setIsSignUp(false);
     } catch (error: any) {
       console.log('Sign up failed', error);
       Alert.alert('Sign up failed', error.message);
