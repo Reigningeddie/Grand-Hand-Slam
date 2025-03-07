@@ -40,7 +40,11 @@ export default function Profile({navigation}: NavProps): React.JSX.Element {
         <Text style={styles.txt}>
           Grand Hand Slam{' '}
           <Pressable onPress={() => handleLogout()}>
-            <Text>O</Text>
+            <View style={styles.settings}>
+              <View style={styles.btn}></View>
+              <View style={styles.btn}></View>
+              <View style={styles.btn}></View>
+            </View>
           </Pressable>
         </Text>
         <Pressable onPress={() => {navigation.navigate('EditProfile')}}>
@@ -90,6 +94,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#284B63',
     width: '100%',
     height: 120,
+  },
+  settings: {
+    flexDirection: 'column',
+  },
+  btn: {
+    backgroundColor: '#1C2222',
+    borderRadius: 5,
+    height: 9,
+    width: 9,
   },
   txt: {
     color: '#D9D9D9',
