@@ -6,6 +6,6 @@
     "rneui",
     "upsert"
   ],
-  "discord.enabled": false,
+  "discord.enabled": true,
   "CodeGPT.apiKey": "OpenAI"
 }

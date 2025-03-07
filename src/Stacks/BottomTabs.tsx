@@ -3,6 +3,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Profile from '../screens/Profile';
 import LeaderBoard from '../screens/LeaderBoard';
 import {BottomTabsList} from '../types/types';
+import Search from '../screens/Search'
 
 const Home = createBottomTabNavigator<BottomTabsList>();
 
@@ -21,7 +22,7 @@ function BottomTabs(): React.JSX.Element {
       />
       <Home.Screen
         name="Search"
-        component={LeaderBoard}
+        component={Search}
         options={{headerShown: false}}
       />
     </Home.Navigator>

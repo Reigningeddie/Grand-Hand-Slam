@@ -32,8 +32,6 @@ export default function SignUp({navigation}: NavProps): React.JSX.Element {
     };
     //end of validation functions
 
-  const {profile} = useAuth();
-
   const handleSubmit = async() => {
     let hasError = false;
 

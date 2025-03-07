@@ -15,8 +15,18 @@ const thirds = screenWidth / 3;
 
 export default function Profile({navigation}: NavProps): React.JSX.Element {
   const {logout, authUser, profile} = useAuth();
+  const [User, setUser] = useState<any>(null);
 
-  
+  // useEffect(() => {
+  //   const fetchProfile = async () => {
+  //     if (authUser) {
+  //       try {
+  //         const {data, error} = await profile(authUser.id);
+  //       }``
+  //     }
+  //   }
+  // })
+
 
   function handleLogout() {
     logout();
@@ -53,7 +63,7 @@ export default function Profile({navigation}: NavProps): React.JSX.Element {
             <Text style={styles.item}>following</Text>
           </View>
         </View>
-        <Text style={styles.bio}>Create user name to enter leaderboard and begin playing.</Text>
+        <Text style={styles.bio}>Create a profile to begin playing the game.</Text>
         <View style={styles.vBorder}>
           <View style={styles.portrait}>
             <Text style={styles.vids}> 4</Text>

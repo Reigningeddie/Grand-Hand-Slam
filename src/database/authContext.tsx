@@ -103,6 +103,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
 
   const profile = async (id: string) => {
     try {
+      console.log('fetching id:', id)
       const { data, error } = await supabase
         .from('profile')
         .select('*')
@@ -138,7 +139,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
         mobileNumber: mobileNumber || null,
       };
 
-      console.log('Iam metadata', metadata)
+      console.log('I am metadata', metadata)
   
       // Update AuthUser with additional user info
       const {data: updateUserResult, error: updateError} = await supabase
