@@ -6,6 +6,7 @@ import {
   TextInput,
   Pressable,
   Alert,
+  Modal
 } from 'react-native';
 import type {NavProps} from '../types/types';
 import {useAuth} from '../database/authContext';
@@ -16,6 +17,7 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isSignUp, setIsSignUp] = useState(false);
   const [errors, setErrors] = useState<{email?: string; password?: string; confirmPassword?: string;}>({})
+  const [modalVisible, setModalVisible] = useState(false);
 
   const {login, signUp} = useAuth();
 
@@ -101,6 +103,12 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
         <Text style={styles.logoTxt}>Logo</Text>
       </View>
       {isSignUp && <Text style={styles.signUp}>Sign Up</Text>}
+      <Modal style={styles.modal}
+        animationType="slide"
+        // transparent={true}
+        visible={modalVisible}>
+        <Text>hello I am a modal</Text>
+      </Modal>
       <TextInput
         style={styles.input}
         placeholder={'E-mail'}
@@ -177,6 +185,12 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginBottom: 16,
     color: '#1B1B1B'
+  },
+
+  modal: {
+    margin: 20,
+    backgroundColor: 'blue',
+    borderRadius: 20,
   },
 
   input: {
