@@ -108,7 +108,7 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
         // transparent={true}
         visible={modalVisible}>
         <View style={styles.modal}>
-          <Text st yle={styles.title}>
+          <Text style={styles.title}>
             Hello, and welome to Grand Hand Slam
           </Text>
           <Text style={styles.modalTxt}>
@@ -192,6 +192,10 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginBottom: 16,
     color: '#1B1B1B'
+  },
+
+  title: {
+    color: 'white'
   },
 
   modal: {
