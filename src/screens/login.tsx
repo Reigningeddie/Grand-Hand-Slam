@@ -17,7 +17,7 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isSignUp, setIsSignUp] = useState(false);
   const [errors, setErrors] = useState<{email?: string; password?: string; confirmPassword?: string;}>({})
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(true);
 
   const {login, signUp} = useAuth();
 
@@ -103,11 +103,18 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
         <Text style={styles.logoTxt}>Logo</Text>
       </View>
       {isSignUp && <Text style={styles.signUp}>Sign Up</Text>}
-      <Modal style={styles.modal}
+      <Modal 
         animationType="slide"
         // transparent={true}
         visible={modalVisible}>
-        <Text>hello I am a modal</Text>
+        <View style={styles.modal}>
+          <Text st yle={styles.title}>
+            Hello, and welome to Grand Hand Slam
+          </Text>
+          <Text style={styles.modalTxt}>
+          Before we begin, we must have deliberate aknowledgement of the rules for this game as well as ask for your full cooperation before begining. By agreeing and signing up, you will FOREVER BE IN THIS GAME. If forever is too long of a commitment then feel free to leave the app now. There will be retributions if a player sees you breaking rules. You will be excommunicated if you are constinuously reported or deemed by a commissioner an unworthy or dishonest player, and you will be forever disgraced and put in to the HALL OF SHAME for all to see. Be aware this is a gentle-man/woman's drinking game. You will conduct yourself as a gentleman or gentlewoman by following the rules. Please drink responsibly and continue at your own risk.
+            </Text>
+        </View>
       </Modal>
       <TextInput
         style={styles.input}
@@ -189,8 +196,13 @@ const styles = StyleSheet.create({
 
   modal: {
     margin: 20,
+    color: 'white',
     backgroundColor: 'blue',
     borderRadius: 20,
+  },
+
+  modalTxt: {
+    color: 'white'
   },
 
   input: {
