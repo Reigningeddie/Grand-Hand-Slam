@@ -109,10 +109,10 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
         visible={modalVisible}>
         <View style={styles.modal}>
           <Text style={styles.title}>
-            Hello, and welome to Grand Hand Slam
+            Welcome to Grand Hand Slam
           </Text>
           <Text style={styles.modalTxt}>
-          Before we begin, we must have deliberate aknowledgement of the rules for this game as well as ask for your full cooperation. By agreeing and signing up, you will FOREVER BE IN THIS GAME. If forever is too long of a commitment then feel free to leave the app now. There will be retributions if a player sees you breaking rules. You will be excommunicated if you are constinuously reported or deemed by a commissioner an unworthy or dishonest player, and you will be forever disgraced and put in to the HALL OF SHAME for all to see. Be aware this is a gentle-man/woman's drinking game. You will conduct yourself as a gentleman or gentlewoman by following the rules. Please drink responsibly and continue at your own risk.
+          Before we begin, we must have your deliberate aknowledgement of the rules for this game. We also ask for your full cooperation. By agreeing and signing up, you will FOREVER BE IN THIS GAME. If forever is too long of a commitment then feel free to leave the app now. There will be retributions if a player sees you breaking rules. You will be excommunicated if you are constinuously reported or deemed by a commissioner as an unworthy or dishonest player, and you will be forever disgraced and put in to the HALL OF SHAME for all to see. Be aware this is a game of honor and merit. You should conduct yourself in those regards regularly. Please drink responsibly and continue at your own risk.
             </Text>
         </View>
       </Modal>
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F2F3F4',
+    backgroundColor: '#F5F5F5',
   },
 
   logo: {
@@ -189,24 +189,34 @@ const styles = StyleSheet.create({
   },
 
   signUp: {
-    fontSize: 24,
+    fontSize: 25,
     marginBottom: 16,
     color: '#1B1B1B'
   },
 
-  title: {
-    color: 'white'
-  },
-
-  modal: {
-    margin: 20,
+   modal: {
+    justifyContent: 'center',
+    padding: 12,
+    height: '100%',
+    alignItems: 'center',
     color: 'white',
-    backgroundColor: 'blue',
-    borderRadius: 20,
+    backgroundColor: '#00308F'
   },
 
+  title: {
+    color: 'white',
+    marginBottom: 40,
+    fontSize: 30,
+    fontWeight: 'bold',
+    
+  },
+
+ 
   modalTxt: {
-    color: 'white'
+    color: 'white',
+    textAlign: 'justify',
+    fontSize: 19,
+    justifyContent: 'space-between',
   },
 
   input: {
