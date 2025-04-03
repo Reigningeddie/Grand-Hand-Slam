@@ -6,7 +6,8 @@ import {
   TextInput,
   Pressable,
   Alert,
-  Modal
+  Modal,
+  Dimensions
 } from 'react-native';
 import type {NavProps} from '../types/types';
 import {useAuth} from '../database/authContext';
@@ -18,6 +19,12 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
   const [isSignUp, setIsSignUp] = useState(false);
   const [errors, setErrors] = useState<{email?: string; password?: string; confirmPassword?: string;}>({})
   const [modalVisible, setModalVisible] = useState(true);
+
+  const {width} = Dimensions.get('window');
+  const vw = width / 100;
+  const gapValue = 2 * vw;
+
+
 
   const {login, signUp} = useAuth();
 
@@ -114,6 +121,10 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
           <Text style={styles.modalTxt}>
           Before we begin, we must have your deliberate aknowledgement of the rules for this game. We also ask for your full cooperation. By agreeing and signing up, you will FOREVER BE IN THIS GAME. If forever is too long of a commitment then feel free to leave the app now. There will be retributions if a player sees you breaking rules. You will be excommunicated if you are constinuously reported or deemed by a commissioner as an unworthy or dishonest player, and you will be forever disgraced and put in to the HALL OF SHAME for all to see. Be aware this is a game of honor and merit. You should conduct yourself in those regards regularly. Please drink responsibly and continue at your own risk.
             </Text>
+          <View style={styles.btnLayout}>
+            <Pressable style={styles.btn}><Text>Decline</Text></Pressable>
+            <Pressable style={styles.btn}><Text>Accept</Text></Pressable>
+          </View>
         </View>
       </Modal>
       <TextInput
@@ -142,7 +153,7 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
             secureTextEntry={true}/>
             )}
         {errors.confirmPassword && <Text style={styles.require}>{errors.confirmPassword}</Text>}
-      <Pressable style={styles.LoginBtn} onPress={isSignUp ? handleSignUp : handleLogin}>
+      <Pressable style={styles.loginBtn} onPress={isSignUp ? handleSignUp : handleLogin}>
         <Text style={styles.loginTxt}>{isSignUp ? 'SignUp' : 'Login'}</Text>
       </Pressable>
 
@@ -203,6 +214,22 @@ const styles = StyleSheet.create({
     backgroundColor: '#00308F'
   },
 
+  btn: {
+    backgroundColor: '#FFBF00',
+    width: 150,
+    height: 35,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    marginBottom: 8,
+    margin: '10%',
+  },
+
+  btnLayout: {
+    flexDirection: 'row',
+    margin: '5%',
+  },
+
   title: {
     color: 'white',
     marginBottom: 40,
@@ -230,7 +257,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
 
-  LoginBtn: {
+  loginBtn: {
     backgroundColor: '#2EA1DD',
     width: 150,
     height: 35,
