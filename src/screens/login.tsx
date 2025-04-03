@@ -18,13 +18,7 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isSignUp, setIsSignUp] = useState(false);
   const [errors, setErrors] = useState<{email?: string; password?: string; confirmPassword?: string;}>({})
-  const [modalVisible, setModalVisible] = useState(true);
-
-  const {width} = Dimensions.get('window');
-  const vw = width / 100;
-  const gapValue = 2 * vw;
-
-
+  const [modalVisible, setModalVisible] = useState(false);
 
   const {login, signUp} = useAuth();
 
@@ -122,8 +116,8 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
           Before we begin, we must have your deliberate aknowledgement of the rules for this game. We also ask for your full cooperation. By agreeing and signing up, you will FOREVER BE IN THIS GAME. If forever is too long of a commitment then feel free to leave the app now. There will be retributions if a player sees you breaking rules. You will be excommunicated if you are constinuously reported or deemed by a commissioner as an unworthy or dishonest player, and you will be forever disgraced and put in to the HALL OF SHAME for all to see. Be aware this is a game of honor and merit. You should conduct yourself in those regards regularly. Please drink responsibly and continue at your own risk.
             </Text>
           <View style={styles.btnLayout}>
-            <Pressable style={styles.btn}><Text>Decline</Text></Pressable>
-            <Pressable style={styles.btn}><Text>Accept</Text></Pressable>
+            <Pressable style={styles.btn}><Text style={styles.btnTxt}>Decline</Text></Pressable>
+            <Pressable style={styles.btn}><Text style={styles.btnTxt}>Accept</Text></Pressable>
           </View>
         </View>
       </Modal>
@@ -210,7 +204,6 @@ const styles = StyleSheet.create({
     padding: 12,
     height: '100%',
     alignItems: 'center',
-    color: 'white',
     backgroundColor: '#00308F'
   },
 
@@ -228,6 +221,10 @@ const styles = StyleSheet.create({
   btnLayout: {
     flexDirection: 'row',
     margin: '5%',
+  },
+  
+  btnTxt: {
+    color: 'black',
   },
 
   title: {
