@@ -19,6 +19,7 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
   const [isSignUp, setIsSignUp] = useState(false);
   const [errors, setErrors] = useState<{email?: string; password?: string; confirmPassword?: string;}>({})
   const [modalVisible, setModalVisible] = useState(false);
+  const [rulesVisible, setRulesVisible] = useState(false);
 
   const {login, signUp} = useAuth();
 
@@ -116,8 +117,48 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
           Before we begin, we must have your deliberate aknowledgement of the rules for this game. We also ask for your full cooperation. By agreeing and signing up, you will FOREVER BE IN THIS GAME. If forever is too long of a commitment then feel free to leave the app now. There will be retributions if a player sees you breaking rules. You will be excommunicated if you are constinuously reported or deemed by a commissioner as an unworthy or dishonest player, and you will be forever disgraced and put in to the HALL OF SHAME for all to see. Be aware this is a game of honor and merit. You should conduct yourself in those regards regularly. Please drink responsibly and continue at your own risk.
             </Text>
           <View style={styles.btnLayout}>
-            <Pressable style={styles.btn}><Text style={styles.btnTxt}>Decline</Text></Pressable>
-            <Pressable style={styles.btn}><Text style={styles.btnTxt}>Accept</Text></Pressable>
+            <Pressable 
+              style={styles.btn} 
+              onPress={() => setModalVisible(false)}>
+              <Text style={styles.btnTxt}>Decline</Text></Pressable>
+            <Pressable 
+              style={styles.btn}
+              onPress={() => (setModalVisible(!modalVisible), (setRulesVisible(!rulesVisible)))}>
+              <Text 
+                style={styles.btnTxt}>Accept</Text></Pressable>
+          </View>
+        </View>
+      </Modal>
+      <Modal
+        animationType="slide"
+        // transparent={true}
+        visible={rulesVisible}>
+        <View style={styles.modal}>
+          <Text style={styles.title}>
+            Rules of Grand Hand Slam
+          </Text>
+          <Text style={styles.modalTxt}>
+            1. You will from now on, only drink with you non-dominant hand.
+            2. If you are caught drinking in your dominant hand(DH) by anyone playing the game, that is a Grand Hand Slam(GHS), you chug.
+            3. A GSH means you have to chug the remainder of you drink, regarless of type, amount, time or place till completion.
+            4. At purchase or upon receival, you are allowed transportation of said drink to which ever location you decided to sit/stand/laydown with your
+            5. DH. After relocation, game is back on and you will be vulnerable to a GHS. Even if you're just holding you're drink.
+            6. This means any drink, bottle, can, pint, ect. or other drinking receptable. (Be aware, holding a straw after receiving a drink and relocating, will be considered a GHS.)
+            7. Touching a straw with your DH after relocation will be vulnerble to a GHS.
+            8. If you cannot chug said drink, you are allowed ONE mulligan per month, absolving you of your responsibitly to chug said drink.
+            9. The mulligan does NOT carry on and will only absolve you of that person's call to GHS you and if you are caught again, you MUST chug.
+            10. It must be your OWN DRINK. Someone cannot call a GHS if you're holding someone else's drink.
+            11. Be a gentleman/gentlewoman, use discretion when calling a GHS. If a player is clearly way too drunk to continue, don't be an asshole.
+          </Text>
+          <View style={styles.btnLayout}>
+            <Pressable 
+            style={styles.btn} 
+            onPress={() => setRulesVisible(!rulesVisible)}>
+              <Text style={styles.btnTxt}>Decline</Text></Pressable>
+            <Pressable 
+              style={styles.btn}
+              onPress={() => (setRulesVisible(!rulesVisible), (setIsSignUp(!isSignUp)))}>
+              <Text style={styles.btnTxt}>Accept</Text></Pressable>
           </View>
         </View>
       </Modal>
@@ -154,15 +195,17 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
       <Text style={styles.text}>
         {isSignUp ? `Already have an account?` : `Don't have an account?`}
         {isSignUp ? (
+      // This is mini Log in Button
           <Text
           style={styles.signUpTxt}
           onPress={() => setIsSignUp(!isSignUp)}>
           {' '}
           Log in
         </Text>) : (
+      // This is mini sign Up Button
           <Text
           style={styles.signUpTxt}
-          onPress={() => setIsSignUp(!isSignUp)}>
+          onPress={() => setModalVisible(!modalVisible)}>
             {' '}
             Sign up
         </Text>)}
