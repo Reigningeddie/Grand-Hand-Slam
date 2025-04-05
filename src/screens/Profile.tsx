@@ -22,7 +22,7 @@ export default function Profile({navigation}: NavProps): React.JSX.Element {
   //     if (authUser) {
   //       try {
   //         const {data, error} = await profile(authUser.id);
-  //       }``
+  //       }
   //     }
   //   }
   // })
@@ -74,6 +74,7 @@ export default function Profile({navigation}: NavProps): React.JSX.Element {
             <Text style={styles.vids}> 3</Text>
             <Text style={styles.vids}> 2</Text>
             <Text style={styles.vids}> 1</Text>
+
           </View>
         </View>
       </ScrollView>

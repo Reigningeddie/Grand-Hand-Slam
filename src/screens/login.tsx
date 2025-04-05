@@ -7,7 +7,7 @@ import {
   Pressable,
   Alert,
   Modal,
-  Dimensions
+  ScrollView,
 } from 'react-native';
 import type {NavProps} from '../types/types';
 import {useAuth} from '../database/authContext';
@@ -129,39 +129,6 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
           </View>
         </View>
       </Modal>
-      <Modal
-        animationType="slide"
-        // transparent={true}
-        visible={rulesVisible}>
-        <View style={styles.modal}>
-          <Text style={styles.title}>
-            Rules of Grand Hand Slam
-          </Text>
-          <Text style={styles.modalTxt}>
-            1. You will from now on, only drink with you non-dominant hand.
-            2. If you are caught drinking in your dominant hand(DH) by anyone playing the game, that is a Grand Hand Slam(GHS), you chug.
-            3. A GSH means you have to chug the remainder of you drink, regarless of type, amount, time or place till completion.
-            4. At purchase or upon receival, you are allowed transportation of said drink to which ever location you decided to sit/stand/laydown with your
-            5. DH. After relocation, game is back on and you will be vulnerable to a GHS. Even if you're just holding you're drink.
-            6. This means any drink, bottle, can, pint, ect. or other drinking receptable. (Be aware, holding a straw after receiving a drink and relocating, will be considered a GHS.)
-            7. Touching a straw with your DH after relocation will be vulnerble to a GHS.
-            8. If you cannot chug said drink, you are allowed ONE mulligan per month, absolving you of your responsibitly to chug said drink.
-            9. The mulligan does NOT carry on and will only absolve you of that person's call to GHS you and if you are caught again, you MUST chug.
-            10. It must be your OWN DRINK. Someone cannot call a GHS if you're holding someone else's drink.
-            11. Be a gentleman/gentlewoman, use discretion when calling a GHS. If a player is clearly way too drunk to continue, don't be an asshole.
-          </Text>
-          <View style={styles.btnLayout}>
-            <Pressable 
-            style={styles.btn} 
-            onPress={() => setRulesVisible(!rulesVisible)}>
-              <Text style={styles.btnTxt}>Decline</Text></Pressable>
-            <Pressable 
-              style={styles.btn}
-              onPress={() => (setRulesVisible(!rulesVisible), (setIsSignUp(!isSignUp)))}>
-              <Text style={styles.btnTxt}>Accept</Text></Pressable>
-          </View>
-        </View>
-      </Modal>
       <TextInput
         style={styles.input}
         placeholder={'E-mail'}
@@ -191,7 +158,6 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
       <Pressable style={styles.loginBtn} onPress={isSignUp ? handleSignUp : handleLogin}>
         <Text style={styles.loginTxt}>{isSignUp ? 'SignUp' : 'Login'}</Text>
       </Pressable>
-
       <Text style={styles.text}>
         {isSignUp ? `Already have an account?` : `Don't have an account?`}
         {isSignUp ? (
@@ -210,6 +176,39 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
             Sign up
         </Text>)}
       </Text>
+{/* //*TODO double check propagateswipe for modals otherwise create new component for Rules  */}
+      <Modal
+        animationType="slide"
+        visible={rulesVisible}>
+        <View style={styles.modal}> 
+          <Text style={styles.title}>
+            Rules of Grand Hand Slam
+          </Text>
+          <Text style={styles.modalTxt}>
+            1. You will from now on, only drink with you non-dominant hand. {'\n'}{'\n'}
+            2. If you are caught drinking in your dominant hand(DH) by anyone playing the game, that is a Grand Hand Slam(GHS), you chug. {'\n'}{'\n'}
+            3. A GHS means you have to chug the remainder of your drink, regarless of type, amount, time or place to completion. {'\n'}{'\n'}
+            4. At purchase or upon receival, you are allowed transportation of said drink to which ever location you decided to sit/stand/laydown with your
+            DH. After relocation, game is back on and you will be vulnerable to a GHS. Even if you're just holding you're drink. {'\n'}{'\n'}
+            5. This means any drink, bottle, can, pint, ect. or other drinking receptable. (Be aware, holding a straw after receiving a drink and relocating, will be considered a GHS.) {'\n'}{'\n'}
+            6. Touching a straw with your DH after relocation will be vulnerble to a GHS. {'\n'}{'\n'}
+            7. If you cannot chug said drink, you are allowed ONE mulligan per month, absolving you of your responsibitly to chug said drink. {'\n'}{'\n'}
+            8. The mulligan does NOT carry on and will only absolve you of that person's call to GHS you and if you are caught again, you MUST chug. {'\n'}{'\n'}
+            9. It must be your OWN DRINK. Someone cannot call a GHS if you're holding someone else's drink. {'\n'}{'\n'}
+            10. Be a gentleman/gentlewoman, use discretion when calling a GHS. If a player is clearly way too drunk to continue, don't be an asshole.
+          </Text>
+          <View style={styles.btnLayout}>
+            <Pressable 
+            style={styles.btn} 
+            onPress={() => setRulesVisible(!rulesVisible)}>
+              <Text style={styles.btnTxt}>Decline</Text></Pressable>
+            <Pressable 
+              style={styles.btn}
+              onPress={() => (setRulesVisible(!rulesVisible), (setIsSignUp(!isSignUp)))}>
+              <Text style={styles.btnTxt}>Accept</Text></Pressable>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
