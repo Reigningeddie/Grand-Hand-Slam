@@ -109,11 +109,11 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
         animationType="slide"
         // transparent={true}
         visible={modalVisible}>
-        <View style={styles.modal}>
+        <View style={[styles.modal, styles.mFormat]}>
           <Text style={styles.title}>
             Welcome to Grand Hand Slam
           </Text>
-          <Text style={styles.modalTxt}>
+          <Text style={[styles.modalTxt, styles.intro]}>
           Before we begin, we must have your deliberate aknowledgement of the rules for this game. We also ask for your full cooperation. By agreeing and signing up, you will FOREVER BE IN THIS GAME. If forever is too long of a commitment then feel free to leave the app now. There will be retributions if a player sees you breaking rules. You will be excommunicated if you are constinuously reported or deemed by a commissioner as an unworthy or dishonest player, and you will be forever disgraced and put in to the HALL OF SHAME for all to see. Be aware this is a game of honor and merit. You should conduct yourself in those regards regularly. Please drink responsibly and continue at your own risk.
             </Text>
           <View style={styles.btnLayout}>
@@ -176,7 +176,6 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
             Sign up
         </Text>)}
       </Text>
-{/* //*TODO double check propagateswipe for modals otherwise create new component for Rules  */}
       <Modal
         animationType="slide"
         visible={rulesVisible}>
@@ -184,9 +183,10 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
           <Text style={styles.title}>
             Rules of Grand Hand Slam
           </Text>
-          <Text style={styles.modalTxt}>
-            1. You will from now on, only drink with you non-dominant hand. {'\n'}{'\n'}
-            2. If you are caught drinking in your dominant hand(DH) by anyone playing the game, that is a Grand Hand Slam(GHS), you chug. {'\n'}{'\n'}
+          <ScrollView contentContainerStyle={styles.scroll}>
+        <Text style={styles.modalTxt}>
+            1. You will from now on, only drink with your non-dominant hand. {'\n'}{'\n'}
+            2. If you are called out for drinking with your dominant hand(DH) by anyone playing the game, that is a Grand Hand Slam(GHS), you chug. {'\n'}{'\n'}
             3. A GHS means you have to chug the remainder of your drink, regarless of type, amount, time or place to completion. {'\n'}{'\n'}
             4. At purchase or upon receival, you are allowed transportation of said drink to which ever location you decided to sit/stand/laydown with your
             DH. After relocation, game is back on and you will be vulnerable to a GHS. Even if you're just holding you're drink. {'\n'}{'\n'}
@@ -207,6 +207,7 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
               onPress={() => (setRulesVisible(!rulesVisible), (setIsSignUp(!isSignUp)))}>
               <Text style={styles.btnTxt}>Accept</Text></Pressable>
           </View>
+          </ScrollView>
         </View>
       </Modal>
     </View>
@@ -241,12 +242,29 @@ const styles = StyleSheet.create({
     color: '#1B1B1B'
   },
 
+  mFormat: {
+    alignItems: 'center',
+  },
+
    modal: {
     justifyContent: 'center',
-    padding: 12,
     height: '100%',
-    alignItems: 'center',
+    padding: 12,
     backgroundColor: '#00308F'
+  },
+
+  modalTxt: {
+    color: 'white',
+    fontSize: 19,
+  },
+
+  intro: {
+    textAlign: 'justify',
+  },
+
+  scroll: {
+    flexGrow: 1,
+    alignItems: 'center',
   },
 
   btn: {
@@ -275,14 +293,6 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
     
-  },
-
- 
-  modalTxt: {
-    color: 'white',
-    textAlign: 'justify',
-    fontSize: 19,
-    justifyContent: 'space-between',
   },
 
   input: {
