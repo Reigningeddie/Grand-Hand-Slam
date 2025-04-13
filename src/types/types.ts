@@ -10,6 +10,7 @@ export type BottomTabsList = {
   Home: any;
   LeaderBoard: any;
   Search: any;
+  Rules: any;
 };
 
 export type RootList = {
