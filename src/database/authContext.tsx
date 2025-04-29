@@ -10,6 +10,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
   children,
 }) => {
   const [authUser, setAuthUser] = useState<any>(null);
+  const [profile, setProfile] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [err, setErr] = useState<string | null>(null);
 
@@ -24,6 +25,8 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
           console.log('Loaded user:', data.user);
           if (data.user) {
             console.log('User Id:', data.user.id);
+            setAuthUser(data.user);
+            await fetchProfile(data.user.id)
           } else {
             console.log('No user data available');
           }
@@ -45,6 +48,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
         setAuthUser(session?.user);
       } else if (event === 'SIGNED_OUT' || event === 'INITIAL_SESSION') {
         setAuthUser(null);
+        setProfile(null);
       }
     });
 
@@ -93,6 +97,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
       }
 
       setAuthUser(data.user);
+      await fetchProfile(data.user.id)
       return {data, error: null};
     } catch (error) {
       console.error('Login failed:', error);
@@ -102,7 +107,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
   };
 
 
-  const profile = async (id: string) => {
+  const fetchProfile = async (id: string) => {
     try {
       console.log('fetching id:', id)
       const { data, error } = await supabase
@@ -117,6 +122,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
       }
 
       console.log('Profile fetched successfully:', data); // Log the fetched profile data
+      setProfile(data);
       return { data, error: null };
     } catch (error) {
       console.error('Error fetching profile:', error);
@@ -152,7 +158,8 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
         throw new Error(`Error updating user profile: ${updateError.message}`);
       }
   
-      console.log('Profile updated successfully');
+      console.log('Profile updated successfully', updateUserResult);
+      setProfile(updateUserResult[0]);
       return {data: updateUserResult, error: null};
     } catch (error) {
       console.error('Error updating profile:', error);
@@ -166,6 +173,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
       await supabase.auth.signOut();
       console.log('logout Successful!')
       setAuthUser(null);
+      setProfile(null);
     } catch (error) {
       console.error('Logout failed:', error);
       setErr('Failed to sign out');
@@ -173,7 +181,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
   };
 
   return (
-    <AuthContext.Provider value={{authUser, isLoading, signUp, profile, update, login, logout, err}}>
+    <AuthContext.Provider value={{authUser, profile, isLoading, signUp, fetchProfile, update, login, logout, err}}>
       {!isLoading ? children : <View style={styles.view}><Text style={styles.loading}>Loading...</Text></View>  }
     </AuthContext.Provider>
   );

@@ -14,10 +14,11 @@ const videoBorder = screenHeight / 2.5
 const thirds = screenWidth / 3;
 
 export default function Profile({navigation}: NavProps): React.JSX.Element {
-  const {logout, authUser, profile} = useAuth();
+  const {logout, profile} = useAuth();
 
-  console.log(profile)
-
+  // useEffect(() => {
+  //   console.log(profile);
+  // }, [profile]);
 
   function handleLogout() {
     logout();
@@ -40,10 +41,10 @@ export default function Profile({navigation}: NavProps): React.JSX.Element {
         </Text>
         <Pressable onPress={() => {navigation.navigate('EditProfile')}}>
           <View style={styles.pic} >
-            <Text style={styles.create}>Create profile</Text>
+            <Text style={styles.create}>{profile?.firstName ? '' : 'create Profile'}</Text>
           </View>
         </Pressable>
-        <Text style={styles.user}>Welcome!!</Text>
+        <Text style={styles.user}>{profile?.userName ?? 'Welcome!!'}</Text>
         <View style={styles.flex}>
           <View style={styles.grid}>
             <Text style={styles.num}>150</Text>
