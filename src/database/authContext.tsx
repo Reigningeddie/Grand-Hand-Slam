@@ -1,6 +1,6 @@
 // src/contexts/AuthContext.tsx
 import React, {createContext, useContext, useState, useEffect} from 'react';
-import {Alert} from 'react-native';
+import {Alert, Text, View, StyleSheet} from 'react-native';
 import {supabase} from '../database/supabase';
 import type {AuthContextType} from '../types/types';
 
@@ -12,6 +12,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
   const [authUser, setAuthUser] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [err, setErr] = useState<string | null>(null);
+
 
   useEffect(() => {
     const loadUser = async () => {
@@ -173,7 +174,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
 
   return (
     <AuthContext.Provider value={{authUser, isLoading, signUp, profile, update, login, logout, err}}>
-      {!isLoading && children}
+      {!isLoading ? children : <View style={styles.view}><Text style={styles.loading}>Loading...</Text></View>  }
     </AuthContext.Provider>
   );
 };
@@ -185,3 +186,15 @@ export const useAuth = () => {
   }
   return context;
 };
+
+const styles = StyleSheet.create({
+  view: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  loading: {
+    backgroundColor: '#F5F5F5',
+    fontSize: 50
+  }
+});

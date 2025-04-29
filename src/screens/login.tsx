@@ -193,7 +193,7 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
             5. This means any drink, bottle, can, pint, ect. or other drinking receptable. (Be aware, holding a straw after receiving a drink and relocating, will be considered a GHS.) {'\n'}{'\n'}
             6. Touching a straw with your DH after relocation will be vulnerble to a GHS. {'\n'}{'\n'}
             7. If you cannot chug said drink, you are allowed ONE mulligan per month, absolving you of your responsibitly to chug said drink. {'\n'}{'\n'}
-            8. The mulligan does NOT carry on and will only absolve you of that person's call to GHS you and if you are caught again, you MUST chug. {'\n'}{'\n'}
+            8. The mulligan does NOT carry over to the next month and will only absolve you of that person's call to GHS you and if you are caught again, you MUST chug. {'\n'}{'\n'}
             9. It must be your OWN DRINK. Someone cannot call a GHS if you're holding someone else's drink. {'\n'}{'\n'}
             10. Be a gentleman/gentlewoman, use discretion when calling a GHS. If a player is clearly way too drunk to continue, don't be an asshole.
           </Text>

@@ -15,17 +15,8 @@ const thirds = screenWidth / 3;
 
 export default function Profile({navigation}: NavProps): React.JSX.Element {
   const {logout, authUser, profile} = useAuth();
-  const [User, setUser] = useState<any>(null);
 
-  // useEffect(() => {
-  //   const fetchProfile = async () => {
-  //     if (authUser) {
-  //       try {
-  //         const {data, error} = await profile(authUser.id);
-  //       }
-  //     }
-  //   }
-  // })
+  console.log(profile)
 
 
   function handleLogout() {

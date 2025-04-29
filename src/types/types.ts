@@ -14,8 +14,8 @@ export type BottomTabsList = {
 };
 
 export type RootList = {
-  Auth: undefined;
-  BottomTabs: undefined;
+  Auth: any;
+  BottomTabs: any;
 };
 
 // export type NavProp = RouteProp<NavigationParamList, 'Login'>;
