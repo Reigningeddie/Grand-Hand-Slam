@@ -24,7 +24,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
           }
           console.log('Loaded user:', data.user);
           if (data.user) {
-            console.log('User Id:', data.user.id);
+            // console.log('User Id:', data.user.id);
             setAuthUser(data.user);
             await fetchProfile(data.user.id)
           } else {
@@ -109,7 +109,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
 
   const fetchProfile = async (id: string) => {
     try {
-      console.log('fetching id:', id)
+      // console.log('fetching id:', id)
       const { data, error } = await supabase
         .from('profile')
         .select('*')
@@ -121,7 +121,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
         return { data: null, error };
       }
 
-      console.log('Profile fetched successfully:', data); // Log the fetched profile data
+      // console.log('Profile fetched successfully:', data); // Log the fetched profile data
       setProfile(data);
       return { data, error: null };
     } catch (error) {
@@ -158,7 +158,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
         throw new Error(`Error updating user profile: ${updateError.message}`);
       }
   
-      console.log('Profile updated successfully', updateUserResult);
+      // console.log('Profile updated successfully', updateUserResult);
       setProfile(updateUserResult[0]);
       return {data: updateUserResult, error: null};
     } catch (error) {

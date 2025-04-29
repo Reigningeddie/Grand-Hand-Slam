@@ -59,7 +59,7 @@ export default function Profile({navigation}: NavProps): React.JSX.Element {
             <Text style={styles.item}>following</Text>
           </View>
         </View>
-        <Text style={styles.bio}>Create a profile to begin playing the game.</Text>
+        <Text style={styles.bio}>{profile?.lastName ? '' : 'Create a profile to begin playing the game.'}</Text>
         <View style={styles.vBorder}>
           <View style={styles.portrait}>
             <Text style={styles.vids}> 4</Text>
