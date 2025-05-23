@@ -8,6 +8,7 @@ import {
   Alert,
   Modal,
   ScrollView,
+  Image,
 } from 'react-native';
 import type {NavProps} from '../types/types';
 import {useAuth} from '../database/authContext';
@@ -102,7 +103,7 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
   return (
     <View style={styles.body}>
       <View style={styles.logo}>
-        <Text style={styles.logoTxt}>Logo</Text>
+        <Image source={require('../assets/GrandHandSlam2.png')} />
       </View>
       {isSignUp && <Text style={styles.signUp}>Sign Up</Text>}
       <Modal 
@@ -218,7 +219,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5F5F5',
+    backgroundColor: '#000000',
   },
 
   logo: {
@@ -229,11 +230,6 @@ const styles = StyleSheet.create({
     borderRadius: 80,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-
-  logoTxt: {
-    color: '#1B1B1B',
-    fontSize: 30,
   },
 
   signUp: {
