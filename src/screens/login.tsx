@@ -102,9 +102,7 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
 
   return (
     <View style={styles.body}>
-      <View style={styles.logo}>
-        <Image source={require('../assets/GrandHandSlam2.png')} />
-      </View>
+      <Image source={require('../assets/GrandHandSlam2.png')} />
       {isSignUp && <Text style={styles.signUp}>Sign Up</Text>}
       <Modal 
         animationType="slide"
@@ -133,7 +131,7 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
       <TextInput
         style={styles.input}
         placeholder={'E-mail'}
-        placeholderTextColor="#1B1B1B"
+        placeholderTextColor="white"
         value={emailValue}
         onChangeText={input => 
           setEmail(input)}/>
@@ -142,7 +140,7 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
         style={styles.input}
         secureTextEntry={true}
         placeholder={'Password'}
-        placeholderTextColor="#1B1B1B"
+        placeholderTextColor="white"
         value={passwordValue}
         onChangeText={input => setPassword(input)}/>
         {errors.password && <Text style={styles.require}>{errors.password}</Text>}
@@ -150,7 +148,7 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
           <TextInput
             style={styles.input}
             placeholder={'Confirm Password'}
-            placeholderTextColor='#1B1B1B'
+            placeholderTextColor='white'
             value={confirmPassword}
             onChangeText={setConfirmPassword}
             secureTextEntry={true}/>
@@ -235,7 +233,7 @@ const styles = StyleSheet.create({
   signUp: {
     fontSize: 25,
     marginBottom: 16,
-    color: '#1B1B1B'
+    color: 'white'
   },
 
   mFormat: {
@@ -292,7 +290,7 @@ const styles = StyleSheet.create({
   },
 
   input: {
-    color: '#1B1B1B',
+    color: 'white',
     fontSize: 15,
     borderWidth: 2,
     height: 40,
@@ -309,7 +307,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
-    marginBottom: 8,
+    marginBottom: 10,
   },
 
   loginTxt: {
@@ -319,7 +317,7 @@ const styles = StyleSheet.create({
 
   text: {
     fontSize: 14,
-    color: '#1B1B1B',
+    color: 'white',
   },
 
   signUpTxt: {
