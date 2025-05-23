@@ -1,5 +1,8 @@
 import { View, TextInput, StyleSheet } from 'react-native'
 import React from 'react'
+import {useAuth} from '../database/authContext';
+
+
 
 const Search = () => {
   return (

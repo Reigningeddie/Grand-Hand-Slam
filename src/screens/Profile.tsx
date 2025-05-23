@@ -4,7 +4,6 @@ import React from 'react';
 import {Dimensions} from 'react-native';
 import {useAuth} from '../database/authContext';
 import type {NavProps} from '../types/types';
-import {supabase} from '../database/supabase';
 
 //Get device Width
 const screenWidth = Dimensions.get('window').width;
@@ -44,7 +43,7 @@ export default function Profile({navigation}: NavProps): React.JSX.Element {
             <Text style={styles.create}>{profile?.firstName ? '' : 'create Profile'}</Text>
           </View>
         </Pressable>
-        <Text style={styles.user}>{profile?.userName ?? 'Welcome!!'}</Text>
+        <Text style={styles.user}>{profile?.userName ?? 'Welcome'}</Text>
         <View style={styles.flex}>
           <View style={styles.grid}>
             <Text style={styles.num}>150</Text>
@@ -62,10 +61,10 @@ export default function Profile({navigation}: NavProps): React.JSX.Element {
         <Text style={styles.bio}>{profile?.lastName ? '' : 'Create a profile to begin playing the game.'}</Text>
         <View style={styles.vBorder}>
           <View style={styles.portrait}>
-            <Text style={styles.vids}> 4</Text>
+            {/* <Text style={styles.vids}> 4</Text>
             <Text style={styles.vids}> 3</Text>
             <Text style={styles.vids}> 2</Text>
-            <Text style={styles.vids}> 1</Text>
+            <Text style={styles.vids}> 1</Text> */}
 
           </View>
         </View>
