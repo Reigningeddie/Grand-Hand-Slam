@@ -102,7 +102,7 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
 
   return (
     <View style={styles.body}>
-      <Image source={require('../assets/GrandHandSlam2.png')} />
+      <Image source={require('../assets/GrandHandSlam1.png')} />
       {isSignUp && <Text style={styles.signUp}>Sign Up</Text>}
       <Modal 
         animationType="slide"
@@ -220,16 +220,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#000000',
   },
 
-  logo: {
-    borderWidth: 5,
-    marginBottom: 50,
-    height: 150,
-    width: 150,
-    borderRadius: 80,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
   signUp: {
     fontSize: 25,
     marginBottom: 16,
@@ -240,7 +230,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-   modal: {
+  modal: {
     justifyContent: 'center',
     height: '100%',
     padding: 12,
