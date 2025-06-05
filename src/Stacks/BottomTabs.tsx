@@ -12,7 +12,8 @@ const Home = createBottomTabNavigator<BottomTabsList>();
 function BottomTabs(): React.JSX.Element {
   return (
     <Home.Navigator
-      screenOptions={({ route }) => ({
+      screenOptions={({route}) => ({
+        tabBarShowLabel: false,
         tabBarIcon: ({color, size}) => {
           let iconSource;
 
