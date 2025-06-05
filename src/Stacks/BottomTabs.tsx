@@ -13,7 +13,7 @@ function BottomTabs(): React.JSX.Element {
   return (
     <Home.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size}) => {
+        tabBarIcon: ({color, size}) => {
           let iconSource;
 
           if (route.name === "Home") {
