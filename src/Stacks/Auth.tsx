@@ -16,7 +16,9 @@ function App(): React.JSX.Element {
       <Auth.Screen
         name="Login"
         component={Login}
-        options={{headerShown: false}}
+        options={{headerShown: false,
+          statusBarColor: 'black'
+        }}
       />
       <Auth.Screen
         name="BottomTabs"

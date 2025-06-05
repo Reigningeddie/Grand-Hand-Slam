@@ -185,7 +185,7 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
           <ScrollView contentContainerStyle={styles.scroll}>
         <Text style={styles.modalTxt}>
             1. You will from now on, only drink with your non-dominant hand. {'\n'}{'\n'}
-            2. If you are called out for drinking with your dominant hand(DH) by anyone playing the game, that is a Grand Hand Slam(GHS), you chug. {'\n'}{'\n'}
+            2. If you are called out for drinking with your dominant hand(DH) by anyone playing the game, that is a Grand Hand Slam(GHS), you chug the remainder of your drink. {'\n'}{'\n'}
             3. A GHS means you have to chug the remainder of your drink, regarldess of type, amount, time or place to completion. {'\n'}{'\n'}
             4. At purchase or upon receival, you are allowed transportation of said drink to which ever location you decided to sit/stand/laydown with your
             DH. After relocation, game is back on and you will be vulnerable to a GHS. Even if you're just holding you're drink. {'\n'}{'\n'}
