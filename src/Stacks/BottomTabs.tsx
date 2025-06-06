@@ -4,6 +4,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Profile from '../screens/Profile';
 import LeaderBoard from '../screens/LeaderBoard';
 import {BottomTabsList} from '../types/types';
+import Feed from '../screens/Feed';
 import Search from '../screens/Search';
 import Rules from '../screens/Rules';
 
@@ -19,6 +20,8 @@ function BottomTabs(): React.JSX.Element {
 
           if (route.name === "Home") {
             iconSource = require('../assets/BottomTabs/Home.png');
+          } else if(route.name === "Feed") {
+            iconSource= require('../assets/BottomTabs/Feed.png');
           } else if (route.name === "LeaderBoard") {
             iconSource = require('../assets/BottomTabs/Leaderboard.png');
           } else if (route.name === "Search") {
@@ -35,6 +38,11 @@ function BottomTabs(): React.JSX.Element {
       <Home.Screen
         name="Home"
         component={Profile}
+        options={{headerShown: false}}
+      />
+      <Home.Screen
+        name="Feed"
+        component={Feed}
         options={{headerShown: false}}
       />
       <Home.Screen

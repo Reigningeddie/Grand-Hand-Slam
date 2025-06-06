@@ -8,6 +8,7 @@ export type AuthList = {
 
 export type BottomTabsList = {
   Home: any;
+  Feed: any;
   LeaderBoard: any;
   Search: any;
   Rules: any;

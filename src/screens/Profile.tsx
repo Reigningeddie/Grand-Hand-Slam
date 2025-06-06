@@ -1,6 +1,5 @@
-import {StyleSheet, Text, View, ScrollView, Pressable} from 'react-native';
-import {useState, useEffect} from 'react';
-import React from 'react';
+import {StyleSheet, Text, View, ScrollView, Pressable, Image} from 'react-native';
+import React, {useState, useEffect} from 'react';
 import {Dimensions} from 'react-native';
 import {useAuth} from '../database/authContext';
 import type {NavProps} from '../types/types';
@@ -31,11 +30,12 @@ export default function Profile({navigation}: NavProps): React.JSX.Element {
         <Text style={styles.txt}>
           Grand Hand Slam{' '}
           <Pressable onPress={() => handleLogout()}>
-            <View style={styles.settings}>
+            <Image source={require('../assets/Menu.png')} />
+            {/* <View style={styles.settings}>
               <View style={styles.btn}></View>
               <View style={styles.btn}></View>
               <View style={styles.btn}></View>
-            </View>
+            </View> */}
           </Pressable>
         </Text>
         <Pressable onPress={() => {navigation.navigate('EditProfile')}}>

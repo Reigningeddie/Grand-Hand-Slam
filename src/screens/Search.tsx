@@ -46,6 +46,8 @@ const Search = () => {
   return (
     <View>
       <TextInput
+        textContentType="none"
+        autoComplete="off"
         style={styles.input}
         placeholder={'Search by name'}
         value={query}
