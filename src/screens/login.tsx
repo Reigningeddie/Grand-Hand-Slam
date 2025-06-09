@@ -102,7 +102,7 @@ export default function Login({navigation}: NavProps): React.JSX.Element {
 
   return (
     <View style={styles.body}>
-      <Image source={require('../assets/GrandHandSlam1.png')} />
+      <Image source={require('../assets/GrandHandSlam2.png')} />
       {isSignUp && <Text style={styles.signUp}>Sign Up</Text>}
       <Modal 
         animationType="slide"

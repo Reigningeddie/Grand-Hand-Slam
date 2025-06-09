@@ -48,26 +48,30 @@ const Search = () => {
       <TextInput
         textContentType="none"
         autoComplete="off"
+        spellCheck={false}
+        importantForAutofill="no"
+        autoCorrect={false}
         style={styles.input}
         placeholder={'Search by name'}
         value={query}
         onChangeText={setQuery} />
 
         {loading ? (
-        <Text>Loading...</Text>
+        <Text style={styles.results}>Loading...</Text>
       ) : result.length > 0 ? (
         <FlatList
+          style={styles.results}
           data={result}
           keyExtractor={(item) => item.id.toString()} 
           renderItem={({ item }) => (
             <View>
               {/* <Text>{`${item.firstName} ${item.lastName}`}</Text> */}
-              <Text style={{ color: 'gray' }}>{item.userName}</Text>
+              <Text style={styles.users}>{item.userName}</Text>
             </View>
           )}
         />
       ) : (
-        <Text>No results found</Text>
+        <Text style={styles.results}>No results found</Text>
       )}
     </View>
   )
@@ -78,11 +82,19 @@ export default Search
 const styles = StyleSheet.create({
   input: {
     color: '#1B1B1B',
-    fontSize: 15,
+    fontSize: 20,
     borderWidth: 2,
     borderRadius: 5,
-    height: 40,
+    height: 43,
     margin: 15,
     paddingLeft: 15,
+  },
+  results: {
+    padding: 20,
+    fontSize: 20
+  },
+  users: {
+    margin: 3,
+    fontSize: 23 
   }
 })
