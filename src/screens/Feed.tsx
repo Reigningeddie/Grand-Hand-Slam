@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     borderWidth: .8,
     alignSelf: 'stretch',
     width: '80%',
-    marginTop: 10
+    marginTop: 10,
   },
   sides: {
     width: '10%',
@@ -75,6 +75,13 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     height: 'auto',
     width: '97%',
+    boxShadow: {
+      offsetX: 5,
+      offsetY: 5, 
+      blurRAdius: 10,
+      spreadDistance: 2,
+      color: 'rgba(0,0,0,0.5)',
+    },
   },
   vsView: {
     flexDirection: 'row',
