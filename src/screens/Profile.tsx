@@ -31,7 +31,7 @@ export default function Profile({navigation}: NavProps): React.JSX.Element {
           Grand Hand Slam{' '}
           <Pressable onPress={() => handleLogout()}>
             <View>
-              <Image source={require('../assets/menu.png')} />
+              <Image source={require('../assets/menu.png')} style={styles.menu}/>
             </View>
           </Pressable>
         </Text>
@@ -76,16 +76,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: screenWidth,
   },
-  bold: {
-    fontWeight: 'bold',
-  },
   banner: {
     backgroundColor: '#284B63',
     width: '100%',
     height: 120,
   },
-  settings: {
-    flexDirection: 'column',
+  menu: {
+    height: 40,
+    width: 40,
   },
   btn: {
     backgroundColor: '#1C2222',
@@ -96,7 +94,7 @@ const styles = StyleSheet.create({
   txt: {
     color: '#D9D9D9',
     marginTop: -120,
-    fontSize: 48,
+    fontSize: 47,
     fontWeight: 'bold',
   },
   pic: {
