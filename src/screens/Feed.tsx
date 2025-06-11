@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=comment" />
+
 
 const photoWidth = '25%'
 
@@ -23,11 +23,15 @@ const Feed = () => {
           </View>
           <View style={styles.oponent} />
         </View>
+          <View style={styles.captionArea}>
+            <Text style={styles.caption}>"Add Caption Here."</Text>
+          </View>
           <View style={styles.likesArea}>
+          <Image source={require('../assets/post/likeActive.png')} />
           <Text style={styles.likes}>5</Text>
         </View>
         <View style={styles.commentArea}>
-          <Image source={require('../assets/post/comment.png')} style={styles.commentLogo} />
+          <Image source={require('../assets/post/comment.png')} />
           <Text style={styles.comment}>12</Text>
         </View>
       </View>
@@ -40,7 +44,6 @@ export default Feed;
 const styles = StyleSheet.create({
 
   body: {
-    justifyContent: 'center',
     alignItems: 'center',
     marginTop: 10
   },
@@ -70,7 +73,7 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderWidth: 1,
     borderRadius: 5,
-    height: 150,
+    height: 'auto',
     width: '97%',
   },
   vsView: {
@@ -107,14 +110,25 @@ const styles = StyleSheet.create({
   time: {
     fontSize: 10,
   },
-  likesArea: {},
-  likes: {},
+  captionArea: {
+    alignItems: 'center',
+  },
+  caption: {
+    color: 'green',
+  },
+  likesArea: {
+    flexDirection: 'row',
+    marginLeft: 5,
+  },
+  likes: {
+    marginLeft: 2
+  },
   commentArea: {
-    padding: 5,
+    margin: 5,
     flexDirection: 'row',
   },
-  commentLogo: {
-    marginRight: 5,
+  commentLogo: {},
+  comment: {
+    marginLeft: 2,
   },
-  comment: {},
 });
