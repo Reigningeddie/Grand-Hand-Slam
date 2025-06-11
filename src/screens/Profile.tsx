@@ -30,12 +30,9 @@ export default function Profile({navigation}: NavProps): React.JSX.Element {
         <Text style={styles.txt}>
           Grand Hand Slam{' '}
           <Pressable onPress={() => handleLogout()}>
-            <Image source={require('../assets/Menu.png')} />
-            {/* <View style={styles.settings}>
-              <View style={styles.btn}></View>
-              <View style={styles.btn}></View>
-              <View style={styles.btn}></View>
-            </View> */}
+            <View>
+              <Image source={require('../assets/menu.png')} />
+            </View>
           </Pressable>
         </Text>
         <Pressable onPress={() => {navigation.navigate('EditProfile')}}>
