@@ -19,15 +19,15 @@ function BottomTabs(): React.JSX.Element {
           let iconSource;
 
           if (route.name === "Home") {
-            iconSource = require('../assets/BottomTabs/Home.png');
+            iconSource = require('../assets/bottomTabs/home.png');
           } else if(route.name === "Feed") {
-            iconSource= require('../assets/BottomTabs/Feed.png');
+            iconSource= require('../assets/bottomTabs/feed.png');
           } else if (route.name === "LeaderBoard") {
-            iconSource = require('../assets/BottomTabs/Leaderboard.png');
+            iconSource = require('../assets/bottomTabs/leaderboard.png');
           } else if (route.name === "Search") {
-            iconSource = require('../assets/BottomTabs/Search.png');
+            iconSource = require('../assets/bottomTabs/search.png');
           } else if (route.name === "Rules") {
-            iconSource = require('../assets/BottomTabs/Rules.png');
+            iconSource = require('../assets/bottomTabs/rules.png');
           }
 
           return <Image source={iconSource} style={{ width: size, height: size, tintColor: color }} />
