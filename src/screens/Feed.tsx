@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     height: 'auto',
     width: '97%',
+
   },
   vsView: {
     flexDirection: 'row',

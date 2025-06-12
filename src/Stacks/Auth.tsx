@@ -28,9 +28,7 @@ function App(): React.JSX.Element {
       <Auth.Screen 
         name="EditProfile" 
         component={Edit}
-        options={{
-          title: 'back'
-        }} />
+        options={{title: 'back'}} />
     </Auth.Navigator>
   );
 }
