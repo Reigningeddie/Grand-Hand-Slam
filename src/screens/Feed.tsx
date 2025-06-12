@@ -23,6 +23,10 @@ const Feed = () => {
           </View>
           <View style={styles.oponent} />
         </View>
+        <View style={styles.nameArea}>
+          <Text style={styles.name}>ReigningEddie</Text>
+          <Text style={styles.opponentName}>BeerFlips</Text>
+        </View>
           <View style={styles.captionArea}>
             <Text style={styles.caption}>"Add Caption Here."</Text>
           </View>
@@ -31,7 +35,7 @@ const Feed = () => {
           <Text style={styles.likes}>5</Text>
         </View>
         <View style={styles.commentArea}>
-          <Image source={require('../assets/post/comment.png')} />
+          <Image source={require('../assets/post/comment1.png')} />
           <Text style={styles.comment}>12</Text>
         </View>
       </View>
@@ -71,21 +75,22 @@ const styles = StyleSheet.create({
   card: {
     marginTop: 10,
     borderColor: 'black',
-    borderWidth: 1,
+    borderWidth: 2,
     borderRadius: 5,
     height: 'auto',
     width: '97%',
-
+    backgroundColor: '#284B63'
   },
   vsView: {
     flexDirection: 'row',
   },
   player: {
     borderColor: 'black',
+    backgroundColor: 'white',
     borderWidth: .5,
     borderTopWidth: 0,
     borderLeftWidth: 0,
-    borderTopLeftRadius: 5,
+    borderRadius: 5,
     height: 120,
     width: photoWidth
   },
@@ -94,35 +99,55 @@ const styles = StyleSheet.create({
   gshText: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: '50%'
+    width: '50%',
   },
   gsh: {
-    fontSize: 15,
+    fontSize: 23,
+    fontWeight: 'bold',
+    color: 'white'
   },
   oponent: {
     borderColor: 'black',
+    backgroundColor: 'white',
     borderWidth: .5,
     borderTopWidth: 0,
     borderRightWidth: 0,
-    borderTopRightRadius: 5,
+    borderRadius: 5,
     height: 120,
     width: photoWidth
   },
+  nameArea: {
+    flexDirection: 'row',
+  },
+  name: {
+    color: 'white',
+    width: '50%',
+    fontSize: 15
+  },
+  opponentName: {
+    color: 'white',
+    width: '50%',
+    textAlign: 'right',
+    fontSize: 15
+  },
   time: {
-    fontSize: 10,
+    fontSize: 13,
+    color: 'white'
   },
   captionArea: {
     alignItems: 'center',
   },
   caption: {
-    color: 'green',
+    color: 'white',
+    fontSize: 17
   },
   likesArea: {
     flexDirection: 'row',
     marginLeft: 5,
   },
   likes: {
-    marginLeft: 2
+    marginLeft: 2,
+    color: 'white'
   },
   commentArea: {
     margin: 5,
@@ -131,5 +156,6 @@ const styles = StyleSheet.create({
   commentLogo: {},
   comment: {
     marginLeft: 2,
+    color: 'white'
   },
 });
