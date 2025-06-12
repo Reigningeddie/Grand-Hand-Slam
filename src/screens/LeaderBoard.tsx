@@ -1,8 +1,8 @@
 import {View, StyleSheet, ScrollView} from 'react-native';
 import React from 'react';
 //components
-import TopThree from '../components/TopThree';
-import UnderThree from '../components/UnderThree';
+import TopThree from '../components/topThree';
+import UnderThree from '../components/underThree';
 
 const LeaderBoard = (): React.JSX.Element => {
   return (
