@@ -121,14 +121,15 @@ const styles = StyleSheet.create({
   },
   name: {
     color: 'white',
-    width: '50%',
-    fontSize: 15
+    width: '48%',
+    fontSize: 15,
+    marginLeft: 3
   },
   opponentName: {
     color: 'white',
     width: '50%',
     textAlign: 'right',
-    fontSize: 15
+    fontSize: 15,
   },
   time: {
     fontSize: 13,
