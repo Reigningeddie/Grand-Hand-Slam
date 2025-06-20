@@ -58,10 +58,10 @@ export default function Profile({navigation}: NavProps): React.JSX.Element {
         <Text style={styles.bio}>{profile?.lastName ? '' : 'Create a profile to begin playing the game.'}</Text>
         <View style={styles.vBorder}>
           <View style={styles.portrait}>
-            {/* <Text style={styles.vids}> 4</Text>
+            <Text style={styles.vids}> 4</Text>
             <Text style={styles.vids}> 3</Text>
             <Text style={styles.vids}> 2</Text>
-            <Text style={styles.vids}> 1</Text> */}
+            <Text style={styles.vids}> 1</Text>
 
           </View>
         </View>

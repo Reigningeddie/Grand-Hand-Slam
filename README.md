@@ -1,4 +1,22 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+
+# Axie Infinity Scholarship application
+
+### **Project description**
+   A fully functional web application designed to streamline scholarship applications for a popular blockchain-based game. Built as a centralized hub for          aspiring players to access resources, apply for in-game asset scholarships, and connect with gaming communities.
+   Enabled hundreds of players to access scholarship programs, reducing entry barriers for new users in the Web3 gaming ecosystem.
+   Fostered a thriving community by providing educational resources and direct links to Discord servers, DAOs, and competitive leaderboards.
+
+### **Tech Stack**
+
+- **FrontEnd:** HTML, CSS, JS
+- **BackEnd:** Node, Nodemailer, express
+- **Database:** MongoDB
+- **tools:** dotEnv
+
+![login Page](/src/assets/examples/login.png) ![Link Page](/src/assets/examples/profile.png)
+![Link Page](/src/assets/examples/feed.png)   ![Link Page](/src/assets/examples/leaderboard.png)
+![Link Page](/src/assets/examples/feed.png)   ![Link Page](/src/assets/examples/search.png)
+
 
 # Getting Started
 

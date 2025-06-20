@@ -130,7 +130,6 @@ const styles = StyleSheet.create({
     width: '50%',
     textAlign: 'right',
     fontSize: 15,
-    
   },
   time: {
     fontSize: 13,
