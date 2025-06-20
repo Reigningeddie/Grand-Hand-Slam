@@ -15,10 +15,7 @@ Grand Hand Slam is a social gaming application that allows users to create profi
 - **Database:** MongoDB
 - **tools:** dotEnv
 
-![login Page](/src/assets/examples/login.png) ![Link Page](/src/assets/examples/profile.png)
-![Link Page](/src/assets/examples/feed.png)   ![Link Page](/src/assets/examples/leaderboard.png)
-![Link Page](/src/assets/examples/feed.png)   ![Link Page](/src/assets/examples/search.png)
-
+# scroll down pictures of app
 
 # Getting Started
 
@@ -97,3 +94,9 @@ To learn more about React Native, take a look at the following resources:
 - [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
 - [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
 - [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+
+  ***   App is expected to be release end of July   ***
+
+![login Page](/src/assets/examples/login.png)  ![Link Page](/src/assets/examples/profile.png)  ![Link Page](/src/assets/examples/feed.png)
+![Link Page](/src/assets/examples/feed.png)   ![Link Page](/src/assets/examples/leaderboard.png)  ![Link Page](/src/assets/examples/search.png)
+
