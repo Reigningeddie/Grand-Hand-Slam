@@ -98,5 +98,5 @@ To learn more about React Native, take a look at the following resources:
   ***   App is expected to be release end of July   ***
 
 ![login Page](/src/assets/examples/login.png)  ![Link Page](/src/assets/examples/profile.png)  ![Link Page](/src/assets/examples/feed.png)
-![Link Page](/src/assets/examples/feed.png)   ![Link Page](/src/assets/examples/leaderboard.png)  ![Link Page](/src/assets/examples/search.png)
+![Link Page](/src/assets/examples/leaderboard.png)  ![Link Page](/src/assets/examples/search.png)
 
