@@ -1,10 +1,12 @@
 
-# Axie Infinity Scholarship application
+# Grand Hand Slam - cross platform mobile application
 
 ### **Project description**
-   A fully functional web application designed to streamline scholarship applications for a popular blockchain-based game. Built as a centralized hub for          aspiring players to access resources, apply for in-game asset scholarships, and connect with gaming communities.
-   Enabled hundreds of players to access scholarship programs, reducing entry barriers for new users in the Web3 gaming ecosystem.
-   Fostered a thriving community by providing educational resources and direct links to Discord servers, DAOs, and competitive leaderboards.
+
+Grand Hand Slam is a social gaming application that allows users to create profiles, earn points, and connect with friends. The app features a user-friendly interface, allowing users to navigate through various sections, including their profile, friends, and game statistics.
+
+
+** The application is expected to be hosted on android and iOS mid july 2025  **
 
 ### **Tech Stack**
 
