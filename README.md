@@ -10,12 +10,12 @@ Grand Hand Slam is a social gaming application that allows users to create profi
 
 ### **Tech Stack**
 
-- **FrontEnd:** HTML, CSS, JS
-- **BackEnd:** Node, Nodemailer, express
-- **Database:** MongoDB
-- **tools:** dotEnv
+- **FrontEnd:** HTML, CSS, Typescript
+- **BackEnd:** Node, React Native
+- **Database:** supabase
+- **tools:** dotEnv, prettier eslint
 
-# scroll down pictures of app
+# scroll down for pictures of app
 
 # Getting Started
 
