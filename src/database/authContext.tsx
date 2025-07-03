@@ -131,19 +131,19 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
   };
 
   const update = async (
-    firstName?: string,
-    lastName?: string,
-    userName?: string,
-    mobileNumber?: string
+    first_name?: string,
+    last_name?: string,
+    user_name?: string,
+    mobile_number?: string
   ) => {
     setErr(null);
     try {
       const metadata = {
         id: authUser.id || null,
-        firstName: firstName || null,
-        lastName: lastName || null,
-        userName: userName || null,
-        mobileNumber: mobileNumber || null,
+        first_name: first_name || null,
+        last_name: last_name || null,
+        user_name: user_name || null,
+        mobile_number: mobile_number || null,
       };
 
       console.log('I am metadata', metadata)

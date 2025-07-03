@@ -32,29 +32,42 @@ export default function SignUp({navigation}: NavProps): React.JSX.Element {
     };
     //end of validation functions
 
-  const handleSubmit = async() => {
+const handleSubmit = async () => {
     let hasError = false;
-
-    if (!userName || userName.trim().length < 0) {
-      setErrUserName('*Required');
-      hasError = true;
+    
+    // Validation
+    if (!userName || userName.trim().length === 0) {  // Fixed comparison operator
+        setErrUserName('*Required');
+        hasError = true;
     }
-    if (hasError) return
+    
+    if (hasError) return;
 
     try {
-      // await signUp(email, password);
-      await update(
-        firstName,
-        lastName,
-        userName,
-        mobileNumber,
-      );
-
+        // await signUp(email, password);
+        await update(
+            firstName,
+            lastName,
+            userName,
+            mobileNumber,
+        );
+        
+        // Show success alert
+        Alert.alert(
+            'Success',
+            'Profile updated successfully!',
+            [
+                {
+                    text: 'OK',
+                    onPress: () => console.log('Success alert closed')
+                }
+            ]
+        );
     } catch (error: any) {
-      console.error('Error during sign up:', error);
-      Alert.alert('Error', error.message);
+        console.error('Error during sign up:', error);
+        Alert.alert('Error', error.message);
     }
-  };
+};
 
   return (
     <View style={styles.body}>

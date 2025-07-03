@@ -1,7 +1,7 @@
 import React from 'react';
 // import type {PropsWithChildren} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Login from '../screens/Login';
+import Login from '../screens/login';
 import Edit from '../screens/EditProfile';
 import BottomTabs from '../Stacks/BottomTabs';
 import type {AuthList} from '../types/types';

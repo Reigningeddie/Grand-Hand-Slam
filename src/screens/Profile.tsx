@@ -37,10 +37,10 @@ export default function Profile({navigation}: NavProps): React.JSX.Element {
         </Text>
         <Pressable onPress={() => {navigation.navigate('EditProfile')}}>
           <View style={styles.pic} >
-            <Text style={styles.create}>{profile?.firstName ? '' : 'create Profile'}</Text>
+            <Text style={styles.create}>{profile?.first_name ? '' : 'create Profile'}</Text>
           </View>
         </Pressable>
-        <Text style={styles.user}>{profile?.userName ?? 'Welcome'}</Text>
+        <Text style={styles.user}>{profile?.user_name ?? 'Welcome'}</Text>
         <View style={styles.flex}>
           <View style={styles.grid}>
             <Text style={styles.num}>150</Text>
@@ -55,7 +55,7 @@ export default function Profile({navigation}: NavProps): React.JSX.Element {
             <Text style={styles.item}>following</Text>
           </View>
         </View>
-        <Text style={styles.bio}>{profile?.lastName ? '' : 'Create a profile to begin playing the game.'}</Text>
+        <Text style={styles.bio}>{profile?.last_name ? '' : 'Create a profile to begin playing the game.'}</Text>
         <View style={styles.vBorder}>
           <View style={styles.portrait}>
             <Text style={styles.vids}> 4</Text>
