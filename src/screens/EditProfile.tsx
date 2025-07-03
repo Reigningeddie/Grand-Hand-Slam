@@ -32,7 +32,7 @@ export default function SignUp({navigation}: NavProps): React.JSX.Element {
     };
     //end of validation functions
 
-const handleSubmit = async () => {
+  const handleSubmit = async () => {
     let hasError = false;
     
     // Validation

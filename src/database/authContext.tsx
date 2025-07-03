@@ -130,43 +130,41 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
     }
   };
 
-  const update = async (
-    first_name?: string,
-    last_name?: string,
-    user_name?: string,
-    mobile_number?: string
-  ) => {
-    setErr(null);
-    try {
-      const metadata = {
-        id: authUser.id || null,
-        first_name: first_name || null,
-        last_name: last_name || null,
-        user_name: user_name || null,
-        mobile_number: mobile_number || null,
-      };
+const update = async (
+  first_name?: string,
+  last_name?: string,
+  user_name?: string,
+  mobile_number?: string
+) => {
+  setErr(null);
+  try {
+    // Build metadata with only filled-in values
+    const metadata: Record<string, string | null> = { id: authUser.id || null };
 
-      console.log('I am metadata', metadata)
-  
-      // Update AuthUser with additional user info
-      const {data: updateUserResult, error: updateError} = await supabase
-        .from('profile')
-        .upsert(metadata)
-        .select()
+    if (first_name?.trim()) metadata.first_name = first_name.trim();
+    if (last_name?.trim()) metadata.last_name = last_name.trim();
+    if (user_name?.trim()) metadata.user_name = user_name.trim();
+    if (mobile_number?.trim()) metadata.mobile_number = mobile_number.trim();
 
-      if (updateError) {
-        throw new Error(`Error updating user profile: ${updateError.message}`);
-      }
-  
-      // console.log('Profile updated successfully', updateUserResult);
-      setProfile(updateUserResult[0]);
-      return {data: updateUserResult, error: null};
-    } catch (error) {
-      console.error('Error updating profile:', error);
-      setErr(error instanceof Error ? error.message : 'An unknown error occurred during profile update');
-      return { data: null, error };
+    console.log('I am metadata', metadata);
+
+    const { data: updateUserResult, error: updateError } = await supabase
+      .from('profile')
+      .upsert(metadata, { onConflict: 'id' }) // assumes 'id' is the primary key
+      .select();
+
+    if (updateError) {
+      throw new Error(`Error updating user profile: ${updateError.message}`);
     }
-  };
+
+    setProfile(updateUserResult[0]);
+    return { data: updateUserResult, error: null };
+  } catch (error) {
+    console.error('Error updating profile:', error);
+    setErr(error instanceof Error ? error.message : 'An unknown error occurred during profile update');
+    return { data: null, error };
+  }
+};
 
   const logout = async () => {
     try {
