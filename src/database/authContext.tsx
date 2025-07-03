@@ -139,7 +139,7 @@ const update = async (
   setErr(null);
   try {
     // Build metadata with only filled-in values
-    const metadata: Record<string, string | null> = { id: authUser.id || null };
+    const metadata: Record<string, string | null> = { id: authUser.id };
 
     if (first_name?.trim()) metadata.first_name = first_name.trim();
     if (last_name?.trim()) metadata.last_name = last_name.trim();
